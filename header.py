@@ -1,11 +1,13 @@
 import streamlit as st
 import base64
 
-if "usuario" not in st.session_state:
+if "email" not in st.session_state:
     st.session_state.email = ""
 
  
 def show():
+    st.write("Nome da tabela:", "Usuario")
+    
     header_html = f"""
     <div style="display: flex; align-items: center; padding: 10px 0 5px 0;">
         <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="50" style="margin-right: 15px;">
