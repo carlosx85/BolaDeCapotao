@@ -21,7 +21,7 @@ def validar_login(email, senha):
     resultado = cursor.fetchone()
     cursor.close()
     conexao.close()
-    return resultado is not None
+    return resultado["Nome"] if resultado else None
 
 
 
