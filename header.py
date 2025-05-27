@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 
 if "email" not in st.session_state:
-    st.session_state.email = ""
+    st.session_state.nome = ""
 
  
 def show():
@@ -11,7 +11,7 @@ def show():
     header_html = f"""
     <div style="display: flex; align-items: center; padding: 10px 0 5px 0;">
         <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="50" style="margin-right: 15px;">
-        <h5 style="margin: 0;">Racha do Parque  ({st.session_state.nome})</h5>
+        <h5 style="margin: 0;">Racha do Parque  ({st.session_state.nome} - {st.session_state.email})</h5>
     </div>
     <hr style="margin-top: 5px; margin-bottom: 15px;">
     """
