@@ -4,7 +4,7 @@ import header  # se tiver
 
 
 if "usuario" not in st.session_state:
-    st.session_state.usuario = ""
+    st.session_state.email = ""
 
 
 
