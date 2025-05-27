@@ -7,3 +7,5 @@ if "email" not in st.session_state:
 
 
 
+def show():
+    header.show()   
