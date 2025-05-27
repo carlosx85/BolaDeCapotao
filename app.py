@@ -36,9 +36,10 @@ else:
         dados_usuario = validar_login(email, senha)
 
         if dados_usuario:
+            
             st.session_state.logado = True
             st.session_state.email = email
-            st.session_state.senha = senha
+            st.session_state.senha = senha            
             st.session_state.nome = dados_usuario[3]  # ← nome do usuário
             st.rerun()
         else:
