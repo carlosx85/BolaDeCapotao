@@ -24,3 +24,4 @@ def validar_login(email, senha):
     return resultado is not None
 
 
+
