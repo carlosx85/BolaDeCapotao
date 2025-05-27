@@ -40,7 +40,7 @@ else:
             st.session_state.logado = True
             st.session_state.email = email
             st.session_state.senha = senha            
-            st.session_state.nome = dados_usuario[3]  # ← nome do usuário
+            st.session_state.nome = dados_usuario[1]  # ← nome do usuário
             st.rerun()
         else:
             st.error("Usuário ou senha inválidos.")
