@@ -15,7 +15,7 @@ def conectar():
 
 def validar_login(email, senha):
     conexao = conectar()
-    cursor = conexao.cursor(buffered=True)  # <-- corrigido aqui
+    cursor = conexao.cursor(dictionary=True)  
     consulta = "SELECT * FROM Usuario WHERE email = %s AND senha = %s"
     cursor.execute(consulta, (email, senha))
     resultado = cursor.fetchone()
