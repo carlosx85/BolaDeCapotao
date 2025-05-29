@@ -8,7 +8,7 @@ from db import validar_login
 def login_page():
     mostrar_cabecalho_publico()
 
-    st.title("Login")
+    
     email = st.text_input("Email")
     senha = st.text_input("Senha", type="password")
 
