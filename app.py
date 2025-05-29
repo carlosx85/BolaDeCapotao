@@ -21,7 +21,7 @@ else:
         """
         <div style="text-align: center;">
             <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="150">
-            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotão</p>
+            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotãox</p>
         </div>
         """,
         unsafe_allow_html=True
