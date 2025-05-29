@@ -1,10 +1,17 @@
 import streamlit as st
 
 def home_page():
-    usuario = st.session_state.get("usuario_logado", {})
-    st.title(f"Bem-vindo, {usuario.get('nome', '')}!")
-    st.write(f"Email: {usuario.get('email', '')}")
+    if "usuario_logado" not in st.session_state:
+        st.warning("Você precisa estar logado para acessar esta página.")
+        st.session_state["pagina"] = "login"
+        st.rerun()
+        return
+
+    usuario = st.session_state["usuario_logado"]
+    st.title(f"Bem-vindo, {usuario['nome']}!")
+    st.write(f"Email: {usuario['email']}")
 
     if st.button("Logout"):
         st.session_state.clear()
         st.session_state["pagina"] = "login"
+        st.rerun()
