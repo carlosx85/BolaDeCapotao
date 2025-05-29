@@ -30,3 +30,6 @@ def validar_login(email, senha):
         st.session_state["pagina"] = "home"
         return True
     return False
+
+
+
