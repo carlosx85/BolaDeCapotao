@@ -9,9 +9,3 @@ def home_page():
 
     usuario = st.session_state["usuario_logado"]
     st.title(f"Bem-vindo, {usuario['nome']}!")
-    st.write(f"Email: {usuario['email']}")
-
-    if st.button("Logout"):
-        st.session_state.clear()
-        st.session_state["pagina"] = "login"
-        st.rerun()

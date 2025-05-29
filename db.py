@@ -21,9 +21,13 @@ def validar_login(email, senha):
     cursor.close()
     conexao.close()
 
-    # apenas altera session_state
     if resultado:
-        st.session_state["pagina"] = "home"
+        st.session_state["usuario_logado"] = {
+            "id": resultado["idUsuario"],
+            "nome": resultado["Nome"],
+            "email": resultado["email"]
+        }
+        st.session_state["pagina"] = "home"  # Troca para página home
         return True
     return False
 
