@@ -43,3 +43,14 @@ def verificar_email_sn(seq):
     return resultado["email_SN"] if resultado else None
 
 
+def atualizar_email_sn_para_s(seq):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Usuario SET email_SN = 'S' WHERE Seq = %s"
+    cursor.execute(atualiza, (seq,))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+
+
+
