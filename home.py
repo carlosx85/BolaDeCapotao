@@ -24,9 +24,10 @@ def home_page():
                 time.sleep(2)  # Delay de 1 segundo 
 
             st.success("Agora você está participando!")
-            st.balloons()
+             st.balloons()
             
             st.rerun()
-
+    elif email_sn == "S":
+        st.success("Você já está participando!")
     else:
-    
+        st.error("Não foi possível verificar seu status de participação.")
