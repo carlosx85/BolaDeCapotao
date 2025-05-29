@@ -2,7 +2,19 @@ import streamlit as st
 from db import validar_login
 
 def login_page():
-    st.title("Login")
+    
+    
+        # Só mostra o cabeçalho quando NÃO está logado
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="150">
+            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotão</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
 
     email = st.text_input("Email")
     senha = st.text_input("Senha", type="password")
@@ -14,5 +26,4 @@ def login_page():
             st.error("Email ou senha inválidos.")
 
     st.markdown("---")
-    if st.button("Ir para Cadastro"):
-        st.session_state["pagina"] = "cadastro"
+
