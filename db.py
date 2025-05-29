@@ -23,7 +23,7 @@ def validar_login(email, senha):
 
     if resultado:
         st.session_state["usuario_logado"] = {
-            "id": resultado["idUsuario"],
+            "seq": resultado["Seq"],
             "nome": resultado["Nome"],
             "email": resultado["email"]
         }
