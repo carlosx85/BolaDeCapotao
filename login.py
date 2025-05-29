@@ -2,18 +2,20 @@ import streamlit as st
 from layout import mostrar_cabecalho_publico
 from db import validar_login
 
-def login_page():
+ 
     
-    
-        # Só mostra o cabeçalho quando NÃO está logado
-    st.markdown(
+
+    # Só mostra o cabeçalho quando NÃO está logado
+st.markdown(
         """
         <div style="text-align: center;">
             <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="150">
-            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotão</p>
+            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotãox</p>
         </div>
         """,
-        unsafe_allow_html=True   
+        unsafe_allow_html=True
+    )
+
 
 
 def login_page():

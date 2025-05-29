@@ -4,17 +4,6 @@ from home import home_page
 
  
 
-    # Só mostra o cabeçalho quando NÃO está logado
-st.markdown(
-        """
-        <div style="text-align: center;">
-            <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="150">
-            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotãox</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
  
 
 def main():
