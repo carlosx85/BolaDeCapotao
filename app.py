@@ -2,7 +2,14 @@ import streamlit as st
 from login import login_page
 from home import home_page
 
- 
+ # db.py
+def validar_login(email, senha):
+    # apenas altera session_state
+    if sucesso:
+        st.session_state["pagina"] = "home"
+        return True
+    return False
+
 
 def main():
     if "pagina" not in st.session_state:
