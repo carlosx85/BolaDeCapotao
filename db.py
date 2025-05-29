@@ -46,6 +46,15 @@ def verificar_email_sn(seq):
 def atualizar_email_sn_para_s(seq):
     conexao = conectar()
     cursor = conexao.cursor()
+    atualiza = "INSERT INTO Jogos ( Seq, Nome, Rodada, Mandante, Visitante, Casa, Fora, Data_Participacao ) SELECT Usuario.Seq, Usuario.Nome, Jogos_Origem.Rodada, Jogos_Origem.Mandante, Jogos_Origem.Visitante, Jogos_Origem.Casa, Jogos_Origem.Fora,NOW() FROM Usuario, Jogos_Origem WHERE Usuario.Seq  = %s ORDER BY Jogos_Origem.Mandante"
+    cursor.execute(atualiza, (seq,))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+    
+def atualizar_email_sn_para_s1(seq):
+    conexao = conectar()
+    cursor = conexao.cursor()
     atualiza = "UPDATE Usuario SET email_SN = 'S' WHERE Seq = %s"
     cursor.execute(atualiza, (seq,))
     conexao.commit()
