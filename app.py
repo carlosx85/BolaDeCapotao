@@ -1,23 +1,11 @@
 import streamlit as st
-from database import validar_login
-import main_menu  # importa para redirecionar sem recarregar
+from login import login_page
+from home import home_page
 
+ 
 
-if "usuario" not in st.session_state:
-    st.session_state.email = ""
-
-# Inicializa estado
-if "logado" not in st.session_state:
-    st.session_state.logado = False
-
-# Se logado, mostra tela principal
-if st.session_state.logado:
-    main_menu.show()
-
-# Senão, mostra tela de login
-else:
     # Só mostra o cabeçalho quando NÃO está logado
-    st.markdown(
+st.markdown(
         """
         <div style="text-align: center;">
             <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="150">
@@ -27,21 +15,24 @@ else:
         unsafe_allow_html=True
     )
 
-    email = st.text_input("Email")
-    senha = st.text_input("Senha", type="password")
+ 
 
+def main():
+    if "pagina" not in st.session_state:
+        st.session_state["pagina"] = "login"
 
-            
-if st.button("Entrar"):
-    nome = validar_login(email, senha)
-    if nome:
-        st.session_state.logado = True
-        st.session_state.nome   = nome
-        st.session_state.email  = email
-        
-        
-        
-        st.rerun()
-    else:
-        st.error("Usuário ou senha inválidos.")
+    pagina_atual = st.session_state["pagina"]
 
+    if pagina_atual == "login":
+        login_page()
+    elif pagina_atual == "home":
+        if "usuario_logado" in st.session_state:
+            home_page()
+        else:
+            st.warning("Você precisa estar logado.")
+            st.session_state["pagina"] = "login"
+    # elif pagina_atual == "cadastro":
+    #     cadastro_page()
+
+if __name__ == "__main__":
+    main()
