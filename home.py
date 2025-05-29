@@ -26,6 +26,6 @@ def home_page():
             st.balloons()            
             st.rerun()
     elif email_sn == "S":
-        st.success("")
+        
     else:
         st.error("Não foi possível verificar seu status de participação.")
