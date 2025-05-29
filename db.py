@@ -32,3 +32,14 @@ def validar_login(email, senha):
     return False
 
 
+def verificar_email_sn(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT email_SN FROM Usuario WHERE Seq = %s"
+    cursor.execute(consulta, (seq,))
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    return resultado["email_SN"] if resultado else None
+
+
