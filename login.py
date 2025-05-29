@@ -13,6 +13,6 @@ def login_page():
     if st.button("Entrar"):
         if validar_login(email, senha):
             st.success("Login realizado com sucesso!")
-            st.st.rerun() # <- só roda depois que tudo deu certo
+            st.rerun() # <- só roda depois que tudo deu certo
         else:
             st.error("Email ou senha inválidos.")
