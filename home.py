@@ -29,4 +29,4 @@ def home_page():
             st.rerun()
 
     else:
-        st.error("Não foi possível verificar seu status de participação.")
+    
