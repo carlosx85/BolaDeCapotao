@@ -6,7 +6,7 @@ def login_page():
     # Exibe cabeçalho só se o usuário não estiver logado
     mostrar_cabecalho_publico()
     
-  
+    st.title("Login")
 
     email = st.text_input("Email")
     senha = st.text_input("Senha", type="password")
