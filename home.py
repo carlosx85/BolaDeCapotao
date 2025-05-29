@@ -22,7 +22,9 @@ def home_page():
                 time.sleep(2)  # Delay de 1 segundo 
                 atualizar_email_sn_para_s1(usuario["seq"])
                 time.sleep(2)  # Delay de 1 segundo 
+                st.balloons()
             st.success("Agora você está participando!")
+            
             st.rerun()
     elif email_sn == "S":
         st.success("Você já está participando!")
