@@ -4,8 +4,6 @@ from home import home_page
 
  
 
- 
-
 def main():
     if "pagina" not in st.session_state:
         st.session_state["pagina"] = "login"
