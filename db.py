@@ -71,7 +71,7 @@ def buscar_rodada_ativa_seq(seq):
     cursor = conexao.cursor(dictionary=True)
 
     query = """
-        SELE  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq LIKE  = %s         
+        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s         
     """
     cursor.execute(query, (seq, ))
     resultados = cursor.fetchall()
