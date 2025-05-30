@@ -19,9 +19,16 @@ def home_page():
         if st.button("Participar"):
             with st.spinner("Processando..."):
                 atualizar_email_sn_para_s(usuario["seq"])   
-                time.sleep(2)  # Delay de 1 segundo 
+                  
                 atualizar_email_sn_para_s1(usuario["seq"])
-                time.sleep(2)  # Delay de 1 segundo 
+                progress_text = "Operação em Atualização!!! Agurade"
+                my_bar = st.progress(0, text=progress_text)
+
+                for percent_complete in range(100):
+                    time.sleep(0.01)
+                    my_bar.progress(percent_complete + 1, text=progress_text)
+                time.sleep(1)
+                my_bar.empty()
             st.success("Agora você está participando!")
             st.balloons()            
             st.rerun()
@@ -29,3 +36,15 @@ def home_page():
         st.success("")
     else:
         st.error("Não foi possível verificar seu status de participação.")
+        
+        
+        
+        progress_text = "Operação em Atualização!!! Agurade"
+        my_bar = st.progress(0, text=progress_text)
+
+        for percent_complete in range(100):
+            time.sleep(0.01)
+            my_bar.progress(percent_complete + 1, text=progress_text)
+        time.sleep(1)
+        my_bar.empty()
+
