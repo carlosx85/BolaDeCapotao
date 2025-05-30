@@ -62,8 +62,17 @@ def home_page():
                 seq = item.get("Seq", "—")      
                 id = item.get("Id", "—")   
                 mandante = item.get("Mandante", "—")     
-                mandante_gol = item.get("Mandante_Gol", "—")        
+                mandante_gol = item.get("Mandante_Gol", 0)      
 
+                # Campo para editar os gols do mandante
+                novo_gol = st.number_input(
+                f"{i}. {mandante} (Seq: {seq}) - Gols:",
+                min_value=0, value=int(mandante_gol), key=f"gol_{seq}"
+                ) 
+                    
+                
+                
+                
                 
                 
                 st.markdown(f"""
