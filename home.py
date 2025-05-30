@@ -69,6 +69,10 @@ def home_page():
                 f"{i}. {mandante} (Seq: {seq}) - Gols:",
                 min_value=0, value=int(mandante_gol), key=f"gol_{seq}"
                 ) 
+                
+                
+                # Botão para salvar a alteração
+                if st.button(f"Salvar gols para {mandante}", key=f"btn_{seq}"):
                     
                 
                 
