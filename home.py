@@ -86,9 +86,9 @@ def home_page():
                     key=f"gol_{seq}_{i}
                 )
                 if col5.button("Salvar", key=f"btn_{seq}_{i}"):
-                sucesso = atualizar_mandante_gol(seq, novo_gol)
-                if sucesso:
-                                st.success(f"Atualizado: {mandante} ({seq}) -> {novo_gol} gol(s)")
+                    sucesso = atualizar_mandante_gol(seq, novo_gol)
+                    if sucesso:
+                        st.success(f"Atualizado: {mandante} ({seq}) -> {novo_gol} gol(s)")
 
 
 
