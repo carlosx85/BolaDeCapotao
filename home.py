@@ -21,30 +21,25 @@ def home_page():
                 atualizar_email_sn_para_s(usuario["seq"])   
                   
                 atualizar_email_sn_para_s1(usuario["seq"])
-                progress_text = "Operação em Atualização!!! Agurade"
+                progress_text = "Operação em Atualização!!! Aguarde"
                 my_bar = st.progress(0, text=progress_text)
 
                 for percent_complete in range(100):
                     time.sleep(0.01)
                     my_bar.progress(percent_complete + 1, text=progress_text)
                 time.sleep(1)
+                
                 my_bar.empty()
             st.success("Agora você está participando!")
             st.balloons()            
             st.rerun()
+            
+            
+            
     elif email_sn == "S":
         st.success("")
     else:
         st.error("Não foi possível verificar seu status de participação.")
         
         
-        
-        progress_text = "Operação em Atualização!!! Agurade"
-        my_bar = st.progress(0, text=progress_text)
-
-        for percent_complete in range(100):
-            time.sleep(0.01)
-            my_bar.progress(percent_complete + 1, text=progress_text)
-        time.sleep(1)
-        my_bar.empty()
-
+ 
