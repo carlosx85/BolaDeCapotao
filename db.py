@@ -60,6 +60,25 @@ def atualizar_email_sn_para_s1(seq):
     conexao.commit()
     cursor.close()
     conexao.close()
+    
+    
+    
+    
+# database.py
+
+def buscar_rodada_ativa_seq(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    query = """
+        SELE  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq LIKE  = %s         
+    """
+    cursor.execute(query, (seq, ))
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return resultados
+
 
 
 

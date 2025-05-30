@@ -45,7 +45,17 @@ def home_page():
             
             
     elif email_sn == "S":
+        
+        
+        
+        
         st.success("cccc")
+        
+        
+        
+        
+        
+        
     else:
         st.error("Não foi possível verificar seu status de participação.")
         
