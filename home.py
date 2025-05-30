@@ -57,14 +57,15 @@ def home_page():
                 st.warning("Nenhum dado encontrado.")
                 return                   
            
-            safe_key = f"seq_{str(seq).replace('-', '_').replace(' ', '_')}"
+            
             
             
             for i, item in enumerate(dados, start=1):
                 seq = str(item.get("Seq")) if item.get("Seq") is not None else f"sem_seq_{i}"     
                 id = item.get("Id", "—")   
                 mandante = item.get("Mandante", "—")     
-                mandante_gol = item.get("Mandante_Gol", 0)     
+                mandante_gol = item.get("Mandante_Gol", 0)  
+                safe_key = f"seq_{str(seq).replace('-', '_').replace(' ', '_')}"   
                  
                 novo_gol = st.number_input(
                     f"{i}. {mandante} (Seq: {seq}) - Gols:",
