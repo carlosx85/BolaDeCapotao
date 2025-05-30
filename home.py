@@ -64,13 +64,15 @@ def home_page():
                 mandante = jogo["Mandante"]
                 mandante_gol = jogo["Mandante_Gol"] or 0
 
-                # Input para editar o número de gols
                 novo_gol = st.number_input(
                     f"{i}. {mandante} (ID: {jogo_id}, Seq: {seq}) - Gols do Mandante",
                     min_value=0,
                     value=int(mandante_gol),
-                    key=f"gol_{seq}"
-                )
+                    key=f"gol_{seq}_{i}"  # <- combinação única
+)
+
+            if st.button(f"Salvar gols para {mandante} (Seq: {seq})", key=f"btn_{seq}_{i}"):
+
 
                 # Botão para atualizar
                 if st.button(f"Salvar gols para {mandante} (Seq: {seq})", key=f"btn_{seq}"):
