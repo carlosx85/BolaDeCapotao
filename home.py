@@ -60,6 +60,7 @@ def home_page():
 
             for i, item in enumerate(dados, start=1):
                 seq = item.get("Seq", "—")      
+                id = item.get("ID", "—")   
                 mandante = item.get("Mandante", "—")     
                 mandante_gol = item.get("Mandante_Gol", "—")        
 
@@ -67,7 +68,7 @@ def home_page():
                 
                 st.markdown(f"""
                     <div style="font-size: 12px;">
-                        <b>{i}.  {seq} {mandante} {mandante_gol}
+                        <b>{i}.  {seq} {id} {mandante} {mandante_gol}
                     </div>
                 """, unsafe_allow_html=True)
 
