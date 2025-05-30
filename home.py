@@ -59,7 +59,8 @@ def home_page():
            
 
             for i, item in enumerate(dados, start=1):
-                seq = item.get("Seq", "—")      
+                seq = item.get("Seq", "—")  
+                id = item.get("ID", "—")     
                 mandante = item.get("Mandante", "—")     
                 mandante_gol = item.get("Mandante_Gol", 0)       
 
@@ -68,7 +69,7 @@ def home_page():
 
                 # Campo para editar os gols do mandante
                 novo_gol = st.number_input(
-                    f"{i}. {mandante} (Seq: {seq}) - Gols:",
+                    f"{i}. {id}) {mandante}  (Seq: {seq}) - Gols:",
                     min_value=0, value=int(mandante_gol), key=f"gol_{seq}"
                 )
 
