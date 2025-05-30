@@ -11,6 +11,15 @@ def home_page():
 
     usuario = st.session_state["usuario_logado"]
     st.title(f"Bem-vindo, {usuario['nome']}!")
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     email_sn = verificar_email_sn(usuario["seq"])
 
@@ -25,19 +34,18 @@ def home_page():
                 my_bar = st.progress(0, text=progress_text)
 
                 for percent_complete in range(100):
-                    time.sleep(0.01)
+                    time.sleep(0.02)
                     my_bar.progress(percent_complete + 1, text=progress_text)
-                time.sleep(1)
+                time.sleep(2)
                 
                 my_bar.empty()
             st.success("Agora você está participando!")
             st.balloons()            
-            st.rerun()
-            
+            st.rerun()          
             
             
     elif email_sn == "S":
-        st.success("")
+        st.success("cccc")
     else:
         st.error("Não foi possível verificar seu status de participação.")
         
