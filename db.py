@@ -66,7 +66,7 @@ def atualizar_email_sn_para_s1(seq):
     
 # database.py
 
-def buscar_rodada_ativa_seq(seq):
+def buscar_jogos_ativos(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
 
@@ -81,7 +81,7 @@ def buscar_rodada_ativa_seq(seq):
 
 
 
-def atualizar_seq_rodada(seq,id):
+def atualizar_mandante_gol(seq,id):
     conexao = conectar()
     cursor = conexao.cursor()
     atualiza = "UPDATE Usuario SET email_SN = 'S' WHERE Seq = %s and  ID = %s and  StatusRodada LIKE 'Ativo'"

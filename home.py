@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_rodada_ativa_seq
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_mandante_gol
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -50,27 +50,34 @@ def home_page():
         
         
     
-        try:
-            dados = buscar_rodada_ativa_seq(usuario["seq"])
+        # Interface principal
+        st.title("Atualização de Gols do Mandante - Rodada Ativa")
 
-            if not dados:
-                st.warning("Nenhum dado encontrado.")
-                return                   
-           
+        jogos = buscar_jogos_ativos(usuario["seq"])
 
-            for i, item in enumerate(dados, start=1):
-                seq = item.get("Seq", "—")      
-                id = item.get("Id", "—")   
-                mandante = item.get("Mandante", "—")     
-                mandante_gol = item.get("Mandante_Gol", 0)      
+        if not jogos:
+            st.warning("Nenhum jogo ativo encontrado.")
+        else:
+            for i, jogo in enumerate(jogos, start=1):
+                seq = jogo["Seq"]
+                jogo_id = jogo["Id"]
+                mandante = jogo["Mandante"]
+                mandante_gol = jogo["Mandante_Gol"] or 0
 
-                
-                
-                st.markdown(f"""
-                    <div style="font-size: 12px;">
-                        <b>{i}.  {seq} {id} {mandante} {mandante_gol}
-                    </div>
-                """, unsafe_allow_html=True)
+                # Input para editar o número de gols
+                novo_gol = st.number_input(
+                    f"{i}. {mandante} (ID: {jogo_id}, Seq: {seq}) - Gols do Mandante",
+                    min_value=0,
+                    value=int(mandante_gol),
+                    key=f"gol_{seq}"
+                )
+
+                # Botão para atualizar
+                if st.button(f"Salvar gols para {mandante} (Seq: {seq})", key=f"btn_{seq}"):
+                    sucesso = atualizar_mandante_gol(seq, novo_gol)
+                    if sucesso:
+                        st.success(f"Gols atualizados para {mandante} com sucesso!")
+
 
         except Exception as e:
             st.error(f"Erro ao buscar dados: {e}")
