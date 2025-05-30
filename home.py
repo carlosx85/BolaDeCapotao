@@ -58,8 +58,10 @@ def home_page():
                 return                   
            
             safe_key = f"seq_{str(seq).replace('-', '_').replace(' ', '_')}"
+            
+            
             for i, item in enumerate(dados, start=1):
-                seq = item.get("Seq", "—")      
+                seq = str(item.get("Seq")) if item.get("Seq") is not None else f"sem_seq_{i}"     
                 id = item.get("Id", "—")   
                 mandante = item.get("Mandante", "—")     
                 mandante_gol = item.get("Mandante_Gol", 0)     
