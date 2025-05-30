@@ -59,13 +59,14 @@ def home_page():
            
 
             for i, item in enumerate(dados, start=1):
-                seq = item.get("Seq", "—")              
+                seq = item.get("Seq", "—")      
+                mandante = item.get("mandante", "—")           
 
                 
                 
                 st.markdown(f"""
                     <div style="font-size: 12px;">
-                        <b>{i}. {seq} 
+                        <b>{i}.  {seq} {mandante}
                     </div>
                 """, unsafe_allow_html=True)
 
