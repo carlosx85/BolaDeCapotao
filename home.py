@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_rodada_ativa_seq
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -44,13 +44,33 @@ def home_page():
             st.rerun()          
             
             
-    elif email_sn == "S":
+    elif email_sn == "S":     
         
         
         
         
-        st.success("cccc")
-        
+    
+        try:
+            dados = buscar_rodada_ativa_seq(seq)
+
+            if not dados:
+                st.warning("Nenhum dado encontrado.")
+                return                   
+           
+
+            for i, item in enumerate(dados, start=1):
+                seq = item.get("Seq", "—")              
+
+                
+                
+                st.markdown(f"""
+                    <div style="font-size: 12px;">
+                        <b>{i}. {seq} 
+                    </div>
+                """, unsafe_allow_html=True)
+
+        except Exception as e:
+            st.error(f"Erro ao buscar dados: {e}")
         
         
         
