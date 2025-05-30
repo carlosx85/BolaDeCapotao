@@ -79,9 +79,7 @@ def home_page():
                         st.success(f"Gols atualizados para {mandante} com sucesso!")
 
 
-        except Exception as e:
-            st.error(f"Erro ao buscar dados: {e}")
-        
+ 
         
         
         
