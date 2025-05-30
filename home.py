@@ -60,7 +60,7 @@ def home_page():
 
             for i, item in enumerate(dados, start=1):
                 seq = item.get("Seq", "—")      
-                mandante = item.get("mandante", "—")           
+                mandante = item.get("Mandante", "—")           
 
                 
                 
