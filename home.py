@@ -75,7 +75,7 @@ def home_page():
 
 
                 # Botão para atualizar
-                if st.button(f"Salvar gols para {mandante} (Seq: {seq})", key=f"btn_{seq}"):
+                if st.button(f"Salvar gols para {mandante} (Seq: {seq} (Id: {jogo_id})", key=f"btn_{seq}"):
                     sucesso = atualizar_mandante_gol(seq, novo_gol)
                     if sucesso:
                         st.success(f"Gols atualizados para {mandante} com sucesso!")
