@@ -57,25 +57,18 @@ def home_page():
                 st.warning("Nenhum dado encontrado.")
                 return                   
            
-            
-            
-            
+
             for i, item in enumerate(dados, start=1):
-                seq = str(item.get("Seq")) if item.get("Seq") is not None else f"sem_seq_{i}"     
+                seq = item.get("Seq", "—")      
                 id = item.get("Id", "—")   
                 mandante = item.get("Mandante", "—")     
-                mandante_gol = item.get("Mandante_Gol", 0)  
-                safe_key = f"seq_{str(seq).replace('-', '_').replace(' ', '_')}"   
-                 
+                mandante_gol = item.get("Mandante_Gol", 0)      
+
+                # Campo para editar os gols do mandante
                 novo_gol = st.number_input(
-                    f"{i}. {mandante} (Seq: {seq}) - Gols:",
-                    min_value=0,
-                    value=int(mandante_gol),
-                    key=f"gol_{safe_key}"
-                )
-
-                if st.button(f"Salvar gols para {mandante}", key=f"btn_{safe_key}"):
-
+                f"{i}. {mandante} (Seq: {seq}) - Gols:",
+                min_value=0, value=int(mandante_gol), key=f"gol_{seq}"
+                ) 
                 
                 
                 # Botão para salvar a alteração
