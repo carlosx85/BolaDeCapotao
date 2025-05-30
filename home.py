@@ -59,22 +59,20 @@ def home_page():
            
 
             for i, item in enumerate(dados, start=1):
-                seq = item.get("Seq", "—")  
-                id = item.get("ID", "—")     
+                seq = item.get("Seq", "—")      
                 mandante = item.get("Mandante", "—")     
-                mandante_gol = item.get("Mandante_Gol", 0)       
+                mandante_gol = item.get("Mandante_Gol", "—")        
 
                 
+                
+                st.markdown(f"""
+                    <div style="font-size: 12px;">
+                        <b>{i}.  {seq} {mandante} {mandante_gol}
+                    </div>
+                """, unsafe_allow_html=True)
 
-
-                # Campo para editar os gols do mandante
-                novo_gol = st.number_input(
-                    f"{i}. {id}) {mandante}  (Seq: {seq}) - Gols:",
-                    min_value=0, value=int(mandante_gol), key=f"gol_{seq}"
-                )
-
-                # Botão para salvar a alteração
-                if st.button(f"Salvar gols para {mandante}", key=f"btn_{seq}"):
+        except Exception as e:
+            st.error(f"Erro ao buscar dados: {e}")
         
         
         
