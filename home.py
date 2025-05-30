@@ -51,7 +51,7 @@ def home_page():
         
     
         try:
-            dados = buscar_rodada_ativa_seq(seq)
+            dados = buscar_rodada_ativa_seq(usuario["seq"])
 
             if not dados:
                 st.warning("Nenhum dado encontrado.")
