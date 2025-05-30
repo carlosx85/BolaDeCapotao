@@ -81,4 +81,15 @@ def buscar_rodada_ativa_seq(seq):
 
 
 
+def atualizar_seq_rodada(seq,id):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Usuario SET email_SN = 'S' WHERE Seq = %s and  ID = %s and  StatusRodada LIKE 'Ativo'"
+    cursor.execute(atualiza, (seq,id))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+
+
+
 
