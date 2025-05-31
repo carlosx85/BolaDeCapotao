@@ -86,7 +86,7 @@ def home_page():
 
                     # Infos centrais
                     with col2:
-                        st.markdown(f"### {mandante} x {visitante}")
+                  
                         novo_mandante_gol = st.number_input(
                             "Gols", min_value=0, value=int(mandante_gol),
                             key=f"mandante_gol_{i}"
