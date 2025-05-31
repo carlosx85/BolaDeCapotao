@@ -57,45 +57,56 @@ def home_page():
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
         else:
-            # Cabeçalhos da "tabela"
-            st.markdown("### Jogos Ativos")
-     
+             # Cabeçalhos da "tabela"for i, jogo in enumerate(jogos, start=1):
+            seq = jogo["Seq"]
+            jogo_id = jogo["Id"]
+            mandante = jogo["Mandante"]
+            visitante = jogo["Visitante"]
+            mandante_gol = jogo["Mandante_Gol"] or 0
+            visitante_gol = jogo["Visitante_Gol"] or 0
 
-            for i, jogo in enumerate(jogos, start=1):
-                seq = jogo["Seq"]
-                jogo_id = jogo["Id"]
-                mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
+            with st.container():
+                st.markdown("---")
+                
+                # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
+                col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
 
-                with st.container():
-                    st.markdown("---")
-                    col1, col2, col3 = st.columns([1, 2, 1])
+                # Escudo Mandante
+                with col1:
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)
 
-                    # Escudo Mandante
-                    with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)
+                # Gols Mandante
+                with col2:
+                    novo_mandante_gol = st.number_input(
+                        label="",
+                        min_value=0,
+                        value=int(mandante_gol),
+                        key=f"mandante_gol_{i}",
+                        step=1
+                    )
 
-                    # Infos centrais
-                    with col2:
-                  
-                        novo_mandante_gol = st.number_input(
-                            "", min_value=0, value=int(mandante_gol),
-                            key=f"mandante_gol_{i}"
-                        )
-                        novo_visitante_gol = st.number_input(
-                            "", min_value=0, value=int(visitante_gol),
-                            key=f"visitante_gol_{i}"
-                        )
-                        if st.button("Salvar", key=f"btn_{i}"):
-                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
-                            if sucesso:
-                                st.success("Placar atualizado com sucesso!")
+                # Botão centralizado
+                with col3:
+                    st.markdown(f"<div style='text-align: center; font-weight: bold'>{mandante} x {visitante}</div>", unsafe_allow_html=True)
+                    if st.button("Salvar", key=f"btn_{i}"):
+                        sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
+                        if sucesso:
+                            st.success("✅ Placar atualizado!")
 
-                    # Escudo Visitante
-                    with col3:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+                # Gols Visitante
+                with col4:
+                    novo_visitante_gol = st.number_input(
+                        label="",
+                        min_value=0,
+                        value=int(visitante_gol),
+                        key=f"visitante_gol_{i}",
+                        step=1
+                    )
+
+                # Escudo Visitante
+                with col5:
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+
 
 
 
