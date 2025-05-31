@@ -110,6 +110,15 @@ def home_page():
                     # Escudo Visitante
                     with col5:
                         st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=30)
+                        
+                    
+                    # Botão centralizado
+                    with col5:
+                        
+                        if st.button("Salvar", key=f"btn_{i}"):
+                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
+                            if sucesso:
+                                st.success("✅ Placar atualizado!")
 
 
 
