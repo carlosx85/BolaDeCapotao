@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_mandante_gol
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -51,7 +51,7 @@ def home_page():
         # Interface principal
         st.title("Atualização de Placar - Rodada Ativa")
 
-        jogos = buscar_jogos_ativos()
+        jogos = buscar_jogos_ativos(usuario["seq"])
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
