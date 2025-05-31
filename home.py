@@ -72,8 +72,8 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
+                mandante_gol = jogo["Placar"] or 0
+                visitante_gol = jogo["Placar"] or 0
 
                 col1, col2, col3, col4, col5, col6, col7 = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5, 2])
                 col1.write(seq)
