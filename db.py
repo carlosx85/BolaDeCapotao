@@ -1,6 +1,7 @@
 import mysql.connector
 import streamlit as st
 import pandas as pd
+import unicodedata
 
 
 def conectar():
@@ -99,6 +100,13 @@ def atualizar_placar(seq,id,mandante_gol, visitante_gol):
     conexao.commit()
     cursor.close()
     conexao.close()
+    
+    
+import unicodedata
+def normalizar_nome(nome):
+    nome = unicodedata.normalize('NFKD', nome).encode('ASCII', 'ignore').decode('utf-8')
+    return nome.lower().replace(" ", "-")
+
     
 
 

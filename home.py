@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import unicodedata
 from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_placar,normalizar_nome
 
 def home_page():
