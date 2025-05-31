@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_placar
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_placar,normalizar_nome
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -72,32 +72,36 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Placar"] or 0
-                visitante_gol = jogo["Placar"] or 0
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
-                col1, col2, col3, col4, col5, col6, col7 = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5, 2])
-                col1.write(seq)
-                col2.write(jogo_id)
-                col3.write(mandante)
-                col4.write(visitante)
+                with st.container():
+                    st.markdown("---")
+                    col1, col2, col3 = st.columns([1, 2, 1])
 
-                novo_mandante_gol = col5.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(mandante_gol),
-                    key=f"mandante_gol_{seq}_{i}"
-                )
-                novo_visitante_gol = col6.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(visitante_gol),
-                    key=f"visitante_gol_{seq}_{i}"
-                )
+                    # Escudo Mandante
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)
 
-                if col7.button("Salvar", key=f"btn_{seq}_{i}"):
-                    sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
-                    if sucesso:
-                        st.success(f"Placar atualizado: {mandante} {novo_mandante_gol} x {novo_visitante_gol} {visitante}")
+                    # Infos centrais
+                    with col2:
+                        st.markdown(f"### {mandante} x {visitante}")
+                        novo_mandante_gol = st.number_input(
+                            "Gols Mandante", min_value=0, value=int(mandante_gol),
+                            key=f"mandante_gol_{i}"
+                        )
+                        novo_visitante_gol = st.number_input(
+                            "Gols Visitante", min_value=0, value=int(visitante_gol),
+                            key=f"visitante_gol_{i}"
+                        )
+                        if st.button("Salvar Placar", key=f"btn_{i}"):
+                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
+                            if sucesso:
+                                st.success("Placar atualizado com sucesso!")
+
+                    # Escudo Visitante
+                    with col3:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
 
 
 
