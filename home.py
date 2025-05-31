@@ -91,7 +91,7 @@ def home_page():
 
                     # Botão centralizado
                     with col3:
-                        st.markdown(f"<div style='text-align: center; font-weight: bold'>{mandante} x {visitante}</div>", unsafe_allow_html=True)
+                        
                         if st.button("Salvar", key=f"btn_{i}"):
                             sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
                             if sucesso:
