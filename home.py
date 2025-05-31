@@ -73,7 +73,7 @@ def home_page():
                     st.markdown("---")
                     
                     # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
-                    col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
+                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
                     # Escudo Mandante
                     with col1:
@@ -89,16 +89,10 @@ def home_page():
                             step=1
                         )
 
-                    # Botão centralizado
-                    with col3:
-                        
-                        if st.button("Salvar", key=f"btn_{i}"):
-                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
-                            if sucesso:
-                                st.success("✅ Placar atualizado!")
+
 
                     # Gols Visitante
-                    with col4:
+                    with col3:
                         novo_visitante_gol = st.number_input(
                             label="",
                             min_value=0,
@@ -108,7 +102,7 @@ def home_page():
                         )
 
                     # Escudo Visitante
-                    with col5:
+                    with col4:
                         st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=30)
                         
                     
