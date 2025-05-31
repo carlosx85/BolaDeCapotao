@@ -46,13 +46,10 @@ def home_page():
             
     elif email_sn == "S":     
         
-        
-        
-        
-            
-                # Interface principal
+         
+
         # Interface principal
-        st.title("Atualização de Gols do Mandante - Rodada Ativa")
+        st.title("Atualização de Placar - Rodada Ativa")
 
         jogos = buscar_jogos_ativos()
 
@@ -61,34 +58,46 @@ def home_page():
         else:
             # Cabeçalhos da "tabela"
             st.markdown("### Jogos Ativos")
-            header_cols = st.columns([1, 1, 3, 2, 2])
-            header_cols[0].markdown("**Seq**")
-            header_cols[1].markdown("**ID**")
-            header_cols[2].markdown("**Mandante**")
-            header_cols[3].markdown("**Gols**")
-            header_cols[4].markdown("**Ação**")
+            header = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5, 2])
+            header[0].markdown("**Seq**")
+            header[1].markdown("**ID**")
+            header[2].markdown("**Mandante**")
+            header[3].markdown("**Visitante**")
+            header[4].markdown("**Gols Mandante**")
+            header[5].markdown("**Gols Visitante**")
+            header[6].markdown("**Ação**")
 
             for i, jogo in enumerate(jogos, start=1):
                 seq = jogo["Seq"]
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
+                visitante = jogo["Visitante"]
                 mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
-                col1, col2, col3, col4, col5 = st.columns([1, 1, 3, 2, 2])
-
+                col1, col2, col3, col4, col5, col6, col7 = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5, 2])
                 col1.write(seq)
                 col2.write(jogo_id)
                 col3.write(mandante)
-                novo_gol = col4.number_input(
+                col4.write(visitante)
+
+                novo_mandante_gol = col5.number_input(
                     label="",
                     min_value=0,
                     value=int(mandante_gol),
-                    key=f"gol_{seq}_{i}
+                    key=f"mandante_gol_{seq}_{i}"
                 )
-                if col5.button("Salvar", key=f"btn_{seq}_{i}"):
-                    sucesso = atualizar_mandante_gol(seq, novo_gol)
+                novo_visitante_gol = col6.number_input(
+                    label="",
+                    min_value=0,
+                    value=int(visitante_gol),
+                    key=f"visitante_gol_{seq}_{i}"
+                )
+
+                if col7.button("Salvar", key=f"btn_{seq}_{i}"):
+                    sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
                     if sucesso:
-                        st.success(f"Atualizado: {mandante} ({seq}) -> {novo_gol} gol(s)")
+                        st.success(f"Placar atualizado: {mandante} {novo_mandante_gol} x {novo_visitante_gol} {visitante}")
 
 
 

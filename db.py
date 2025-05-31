@@ -89,6 +89,19 @@ def atualizar_mandante_gol(seq,id):
     conexao.commit()
     cursor.close()
     conexao.close()
+    
+    
+def atualizar_placar(seq,id,mandante_gol, visitante_gol):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Jogos SET Mandante_Gol = %s, Visitante_Gol = %s WHERE ID = %s "
+    cursor.execute(atualiza, (mandante_gol, visitante_gol, seq))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+    
+
+
 
 
 
