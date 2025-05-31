@@ -88,11 +88,11 @@ def home_page():
                     with col2:
                   
                         novo_mandante_gol = st.number_input(
-                            "Gols", min_value=0, value=int(mandante_gol),
+                            "", min_value=0, value=int(mandante_gol),
                             key=f"mandante_gol_{i}"
                         )
                         novo_visitante_gol = st.number_input(
-                            "Gols", min_value=0, value=int(visitante_gol),
+                            "", min_value=0, value=int(visitante_gol),
                             key=f"visitante_gol_{i}"
                         )
                         if st.button("Salvar", key=f"btn_{i}"):
