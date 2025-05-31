@@ -1,6 +1,6 @@
 import streamlit as st
 import time
-import unicodedata
+
 from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_placar,normalizar_nome
 
 def home_page():
@@ -73,8 +73,8 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandl"] or 0
-                visitante_gol = jogo["Visit"] or 0
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
                 with st.container():
                     st.markdown("---")
@@ -88,14 +88,14 @@ def home_page():
                     with col2:
                         st.markdown(f"### {mandante} x {visitante}")
                         novo_mandante_gol = st.number_input(
-                            "Gols", min_value=0, value=int(mandante_gol),
+                            "Gols Mandante", min_value=0, value=int(mandante_gol),
                             key=f"mandante_gol_{i}"
                         )
                         novo_visitante_gol = st.number_input(
-                            "Gols", min_value=0, value=int(visitante_gol),
+                            "Gols Visitante", min_value=0, value=int(visitante_gol),
                             key=f"visitante_gol_{i}"
                         )
-                        if st.button("Salvar", key=f"btn_{i}"):
+                        if st.button("Salvar Placar", key=f"btn_{i}"):
                             sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
                             if sucesso:
                                 st.success("Placar atualizado com sucesso!")
