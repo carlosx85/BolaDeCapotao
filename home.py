@@ -59,12 +59,12 @@ def home_page():
             # Cabeçalhos da "tabela"
             st.markdown("### Jogos Ativos")
             header = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5, 2])
-            header[0].markdown("**Seq**")
+            header[0].markdown("Seq")
             header[1].markdown("**ID**")
             header[2].markdown("**Mandante**")
             header[3].markdown("**Visitante**")
-            header[4].markdown("**Gols Mandante**")
-            header[5].markdown("**Gols Visitante**")
+            header[4].markdown("**Placar**")
+            header[5].markdown("**Placar**")
             header[6].markdown("**Ação**")
 
             for i, jogo in enumerate(jogos, start=1):
