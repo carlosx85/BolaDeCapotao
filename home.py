@@ -77,7 +77,7 @@ def home_page():
 
                     # Escudo Mandante
                     with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=30)
 
                     # Gols Mandante
                     with col2:
@@ -109,7 +109,7 @@ def home_page():
 
                     # Escudo Visitante
                     with col5:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=30)
 
 
 
