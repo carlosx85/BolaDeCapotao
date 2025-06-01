@@ -119,13 +119,16 @@ def home_page():
 
                                     sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+                                    
                                     st.rerun() 
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         
-                                        # 🧹 Limpar campos após salvar
-                                        st.session_state[mandante_key] = ""
-                                        st.session_state[visitante_key] = ""
+
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
