@@ -97,7 +97,7 @@ def atualizar_mandante_gol(seq,id):
 def atualizar_placar_pendente(seq,jogo_id,mandante_gol, visitante_gol):
     conexao = conectar()
     cursor = conexao.cursor()
-    atualiza = "UPDATE Jogos SET Mandante_Gol = %s, Visitante_Gol = %s WHERE Seq = %s AND id = %s "
+    atualiza = "UPDATE Jogos SET Palpite_Mandante_Gol = %s, Palpite_Visitante_Gol = %s WHERE Seq = %s AND id = %s "
     cursor.execute(atualiza, (mandante_gol, visitante_gol, seq,jogo_id))
     conexao.commit()
     cursor.close()
