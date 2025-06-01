@@ -83,7 +83,7 @@ def home_page():
                         mandante_gol_str = st.text_input(
                             label="",
                             value="",
-                            placeholder="Gols M",
+                            placeholder="",
                             key=f"mandante_gol_{i}"
                         )
 
@@ -92,7 +92,7 @@ def home_page():
                         visitante_gol_str = st.text_input(
                             label="",
                             value="",
-                            placeholder="Gols V",
+                            placeholder="",
                             key=f"visitante_gol_{i}"
     )
 
