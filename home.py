@@ -80,18 +80,20 @@ def home_page():
                         st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
                     
                     with col2:
+                        mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
-                            value="",
+                            value=st.session_state.get(mandante_key, ""),
                             placeholder="",
                             key=f"mandante_gol_{i}"
                         )
 
                     # Gols Visitante (como texto, para permitir vazio)
                     with col3:
+                        visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
-                            value="",
+                            value=st.session_state.get(visitante_key, ""),
                             placeholder="",
                             key=f"visitante_gol_{i}"
     )
@@ -120,6 +122,10 @@ def home_page():
                                     st.rerun() 
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
+                                        
+                                        # 🧹 Limpar campos após salvar
+                                        st.session_state[mandante_key] = ""
+                                        st.session_state[visitante_key] = ""
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
