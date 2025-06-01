@@ -116,7 +116,7 @@ def home_page():
  
                                 
                         if st.button("Salvar", key=f"btn_{i}"):
-                            if st.button("Salvar", key=f"btn_{seq}", disabled=not campos_preenchidos):
+                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
                                 st.error("⚠️ Preencha todos os campos de gols.")
                             else:
                                 try:
@@ -134,17 +134,7 @@ def home_page():
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         
-                        # Botão só aparece se os campos estiverem preenchidos corretamente
-                        
-                          
 
-                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
-                            if sucesso:
-                                st.success("✅ Placar atualizado com sucesso!")
-
-                                # 🧹 Limpa os campos após salvar
-                                st.session_state[mandante_key] = ""
-                                st.session_state[visitante_key] = ""
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
