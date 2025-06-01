@@ -112,8 +112,10 @@ def home_page():
                         if st.button("Salvar", key=f"btn_{i}"):
                             sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                             sucessox = atualizar_placar_pendente_palpite()
+                            st.rerun()  
                             if sucesso:
                                 st.success("✅ Placar atualizado!")
+                                
 
 
 
