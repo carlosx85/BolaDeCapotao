@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos,atualizar_placar,normalizar_nome
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos_Pendente,atualizar_placar_pendente,normalizar_nome
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -52,7 +52,7 @@ def home_page():
         # Interface principal
 
 
-        jogos = buscar_jogos_ativos(usuario["seq"])
+        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
@@ -110,7 +110,7 @@ def home_page():
                     with col5:
                         
                         if st.button("Salvar", key=f"btn_{i}"):
-                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
+                            sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                             if sucesso:
                                 st.success("✅ Placar atualizado!")
 

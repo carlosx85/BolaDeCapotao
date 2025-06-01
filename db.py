@@ -53,6 +53,8 @@ def atualizar_email_sn_para_s(seq):
     cursor.close()
     conexao.close()
     
+    
+    
 def atualizar_email_sn_para_s1(seq):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -67,12 +69,12 @@ def atualizar_email_sn_para_s1(seq):
     
 # database.py
 
-def buscar_jogos_ativos(seq):
+def buscar_jogos_ativos_Pendente(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
 
     query = """
-        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s         
+        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s  AND AND Palpite LIKE 'Pendente'        
     """
     cursor.execute(query, (seq, ))
     resultados = cursor.fetchall()
@@ -92,11 +94,11 @@ def atualizar_mandante_gol(seq,id):
     conexao.close()
     
     
-def atualizar_placar(seq,id,mandante_gol, visitante_gol):
+def atualizar_placar_pendente(seq,jogo_id,mandante_gol, visitante_gol):
     conexao = conectar()
     cursor = conexao.cursor()
-    atualiza = "UPDATE Jogos SET Mandante_Gol = %s, Visitante_Gol = %s WHERE ID = %s "
-    cursor.execute(atualiza, (mandante_gol, visitante_gol, seq))
+    atualiza = "UPDATE Jogos SET Mandante_Gol = %s, Visitante_Gol = %s WHERE Seq = %s AND id = %s "
+    cursor.execute(atualiza, (mandante_gol, visitante_gol, seq,jogo_id))
     conexao.commit()
     cursor.close()
     conexao.close()
