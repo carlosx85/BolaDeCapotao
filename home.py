@@ -84,25 +84,19 @@ def home_page():
                         mandante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(mandante_key, ""),
-                            placeholder="Gols M",
-                            key=mandante_key
+                            placeholder="",
+                            key=f"mandante_gol_{i}"
                         )
 
-                    # Gols Visitante
+                    # Gols Visitante (como texto, para permitir vazio)
                     with col3:
                         visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(visitante_key, ""),
-                            placeholder="Gols V",
-                            key=visitante_key
-                        )
-
-                    # Verifica se os valores são preenchidos e numéricos
-                    campos_preenchidos = (
-                        mandante_gol_str.strip().isdigit() and 
-                        visitante_gol_str.strip().isdigit()
-)
+                            placeholder="",
+                            key=f"visitante_gol_{i}"
+    )
 
 
                     # Escudo Visitante
