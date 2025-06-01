@@ -84,19 +84,25 @@ def home_page():
                         mandante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(mandante_key, ""),
-                            placeholder="",
-                            key=f"mandante_gol_{i}"
+                            placeholder="Gols M",
+                            key=mandante_key
                         )
 
-                    # Gols Visitante (como texto, para permitir vazio)
+                    # Gols Visitante
                     with col3:
                         visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(visitante_key, ""),
-                            placeholder="",
-                            key=f"visitante_gol_{i}"
-    )
+                            placeholder="Gols V",
+                            key=visitante_key
+                        )
+
+                    # Verifica se os valores são preenchidos e numéricos
+                    campos_preenchidos = (
+                        mandante_gol_str.strip().isdigit() and 
+                        visitante_gol_str.strip().isdigit()
+)
 
 
                     # Escudo Visitante
@@ -110,7 +116,7 @@ def home_page():
  
                                 
                         if st.button("Salvar", key=f"btn_{i}"):
-                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
+                            if st.button("Salvar", key=f"btn_{seq}", disabled=not campos_preenchidos):
                                 st.error("⚠️ Preencha todos os campos de gols.")
                             else:
                                 try:
@@ -128,7 +134,8 @@ def home_page():
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         
-
+                        # Botão só aparece se os campos estiverem preenchidos corretamente
+    
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
