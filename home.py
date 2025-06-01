@@ -58,7 +58,7 @@ def home_page():
             st.warning("Nenhum jogo ativo encontrado.")
         else:
             # Cabeçalhos da "tabela"
-            st.markdown("### Jogos Ativos")
+            st.markdown(f"### Jogos Ativos {jogos["Rodada"]}")
             
             for i, jogo in enumerate(jogos, start=1):
                     
