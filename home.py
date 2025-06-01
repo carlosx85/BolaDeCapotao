@@ -66,8 +66,8 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = []
-                visitante_gol = []
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
                 with st.container():
                     st.markdown("---")
@@ -77,29 +77,25 @@ def home_page():
 
                     # Escudo Mandante
                     with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=30)
-
-                    # Gols Mandante
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=30)# Gols Mandante (como texto, para permitir vazio)
+                    
                     with col2:
-                        novo_mandante_gol = st.number_input(
+                        mandante_gol_str = st.text_input(
                             label="",
-                            min_value=0,
-                            value=int(mandante_gol),
-                            key=f"mandante_gol_{i}",
-                            step=1
+                            value="",
+                            placeholder="Gols M",
+                            key=f"mandante_gol_{i}"
                         )
 
-
-
-                    # Gols Visitante
+                    # Gols Visitante (como texto, para permitir vazio)
                     with col3:
-                        novo_visitante_gol = st.number_input(
+                        visitante_gol_str = st.text_input(
                             label="",
-                            min_value=0,
-                            value=int(visitante_gol),
-                            key=f"visitante_gol_{i}",
-                            step=1
-                        )
+                            value="",
+                            placeholder="Gols V",
+                            key=f"visitante_gol_{i}"
+    )
+
 
                     # Escudo Visitante
                     with col4:
@@ -109,12 +105,25 @@ def home_page():
                     # Botão centralizado
                     with col5:
                         
+ 
+                                
                         if st.button("Salvar", key=f"btn_{i}"):
-                            sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                            sucessox = atualizar_placar_pendente_palpite()
-                            st.rerun()  
-                            if sucesso:
-                                st.success("✅ Placar atualizado!")
+                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
+                                st.error("⚠️ Preencha todos os campos de gols.")
+                            else:
+                                try:
+                                    novo_mandante_gol = int(mandante_gol_str)
+                                    novo_visitante_gol = int(visitante_gol_str)
+
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    sucessox = atualizar_placar_pendente_palpite()
+                                    st.rerun() 
+                                    if sucesso:
+                                        st.success("✅ Placar atualizado com sucesso!")
+
+                                except ValueError:
+                                    st.error("⚠️ Os valores devem ser números inteiros.")
+
                                 
 
 
