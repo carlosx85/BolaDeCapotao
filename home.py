@@ -66,8 +66,8 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
+                mandante_gol = jogo[ ]
+                visitante_gol = jogo[ ]
 
                 with st.container():
                     st.markdown("---")
