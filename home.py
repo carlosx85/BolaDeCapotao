@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos_Pendente,atualizar_placar_pendente,normalizar_nome
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
