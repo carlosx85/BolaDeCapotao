@@ -74,7 +74,7 @@ def buscar_jogos_ativos_Pendente(seq):
     cursor = conexao.cursor(dictionary=True)
 
     query = """
-        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s  AND AND Palpite LIKE 'Pendente'        
+        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s  AND  Palpite LIKE 'Pendente'        
     """
     cursor.execute(query, (seq, ))
     resultados = cursor.fetchall()
