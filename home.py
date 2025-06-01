@@ -113,31 +113,41 @@ def home_page():
                     # Botão centralizado
                     with col5:
                         
-                                                # Verifica se os valores são preenchidos e numéricos
-                        campos_preenchidos = (
-                            mandante_gol_str.strip().isdigit() and 
-                            visitante_gol_str.strip().isdigit()
-                        )
+ 
+                                
+                        if st.button("Salvar", key=f"btn_{i}"):
+                            if st.button("Salvar", key=f"btn_{seq}", disabled=not campos_preenchidos):
+                                st.error("⚠️ Preencha todos os campos de gols.")
+                            else:
+                                try:
+                                    novo_mandante_gol = int(mandante_gol_str)
+                                    novo_visitante_gol = int(visitante_gol_str)
 
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+                                    
+                                    st.rerun() 
+                                    if sucesso:
+                                        st.success("✅ Placar atualizado com sucesso!")
+                                        
                         # Botão só aparece se os campos estiverem preenchidos corretamente
-                        if st.button("Salvar", key=f"btn_{seq}", disabled=not campos_preenchidos):
-                            novo_mandante_gol = int(mandante_gol_str)
-                            novo_visitante_gol = int(visitante_gol_str)
+                        
+                          
 
-                            sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                            sucessox = atualizar_placar_pendente_palpite()
-                            st.rerun() 
-                            
-                                                                 # 🧹 Limpar campos após salvar
-                            st.session_state[mandante_key] = ""
-                            st.session_state[visitante_key] = ""
-                            
+                            sucesso = atualizar_placar(seq, novo_mandante_gol, novo_visitante_gol)
                             if sucesso:
                                 st.success("✅ Placar atualizado com sucesso!")
 
+                                # 🧹 Limpa os campos após salvar
+                                st.session_state[mandante_key] = ""
+                                st.session_state[visitante_key] = ""
 
-
-         
+                                except ValueError:
+                                    st.error("⚠️ Os valores devem ser números inteiros.")
 
                                 
 
