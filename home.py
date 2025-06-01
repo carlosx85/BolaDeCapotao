@@ -77,7 +77,7 @@ def home_page():
 
                     # Escudo Mandante
                     with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=60)# Gols Mandante (como texto, para permitir vazio)
                     
                     with col2:
                         mandante_gol_str = st.text_input(
@@ -99,7 +99,7 @@ def home_page():
 
                     # Escudo Visitante
                     with col4:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=60)
                         
                     
                     # Botão centralizado
