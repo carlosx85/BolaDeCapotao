@@ -103,6 +103,15 @@ def atualizar_placar_pendente(seq,jogo_id,mandante_gol, visitante_gol):
     cursor.close()
     conexao.close()
     
+def atualizar_placar_pendente_palpite():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Jogos SET Palpite = CASE WHEN Palpite_Mandante_Gol = Palpite_Visitante_Gol THEN 'Empate'    WHEN Palpite_Mandante_Gol > Palpite_Visitante_Gol THEN Mandante  WHEN Palpite_Mandante_Gol < Palpite_Visitante_Gol THEN Visitante     ELSE 'Pendente' END WHERE StatusRodada LIKE 'Ativo';"
+    cursor.execute(atualiza, ())
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+    
     
 import unicodedata
 def normalizar_nome(nome):
