@@ -83,14 +83,11 @@ def home_page():
                     
                     with col2:
                         
-                        # Garante que vai começar limpo (por exemplo, se a flag de limpar foi ativada)
-                        if st.session_state.get("limpar_campos"):
-                            st.session_state[mandante_key] = " "
-                        
+ 
                         mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
-                            value=st.session_state.get(mandante_key, " "),
+                            value=  "",
                             placeholder="",
                             key=f"mandante_gol_{i}"
                         )
