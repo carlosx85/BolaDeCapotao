@@ -82,7 +82,7 @@ def home_page():
                         
                         mandante_gol_str = st.text_input(
                             label="",
-                            value=st.session_state.get(""),
+                            value="",
                             placeholder="",
                             key=f"mandante_gol_{i}"
                         )
