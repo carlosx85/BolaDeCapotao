@@ -68,65 +68,63 @@ def home_page():
                 mandante_key = f"mandante_gol_{seq}"
                 visitante_key = f"visitante_gol_{seq}"
 
-                # Inicializa valores em branco, se necessário
+                # Inicializa valores em branco
                 st.session_state.setdefault(mandante_key, "")
                 st.session_state.setdefault(visitante_key, "")
 
-                with st.container():
-                    st.markdown("---")
+                st.markdown("---")
+
+                # 🧩 Tudo precisa estar dentro do form
+                with st.form(key=f"form_{seq}", clear_on_submit=True):
                     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
                     with col1:
                         st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
 
+                    with col2:
+                        mandante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state[mandante_key],
+                            placeholder="Gols",
+                            key=f"{mandante_key}_input"
+                        )
+
+                    with col4:
+                        visitante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state[visitante_key],
+                            placeholder="Gols",
+                            key=f"{visitante_key}_input"
+                        )
+
                     with col5:
                         st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
 
-                    # Toda a entrada de dados e botão dentro do formulário
-                    with st.form(key=f"form_{seq}", clear_on_submit=True):
-                        with col2:
-                            mandante_gol_str = st.text_input(
-                                label="",
-                                value=st.session_state[mandante_key],
-                                placeholder="Gols",
-                                key=f"{mandante_key}_input"
-                            )
+                    # O botão precisa estar dentro do form
+                    submit = st.form_submit_button("Salvar")
 
-                        with col4:
-                            visitante_gol_str = st.text_input(
-                                label="",
-                                value=st.session_state[visitante_key],
-                                placeholder="Gols",
-                                key=f"{visitante_key}_input"
-                            )
+                    if submit:
+                        if not mandante_gol_str.strip() or not visitante_gol_str.strip():
+                            st.error("⚠️ Preencha todos os campos de gols.")
+                        else:
+                            try:
+                                novo_mandante_gol = int(mandante_gol_str)
+                                novo_visitante_gol = int(visitante_gol_str)
 
-                        with col3:
-                            submit = st.form_submit_button("Salvar")
+                                sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                atualizar_placar_pendente_palpite()
 
-                        if submit:
-                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
-                                st.error("⚠️ Preencha todos os campos de gols.")
-                            else:
-                                try:
-                                    novo_mandante_gol = int(mandante_gol_str)
-                                    novo_visitante_gol = int(visitante_gol_str)
+                                # Zera os valores
+                                st.session_state[mandante_key] = ""
+                                st.session_state[visitante_key] = ""
 
-                                    sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                    atualizar_placar_pendente_palpite()
+                                if sucesso:
+                                    st.success("✅ Placar atualizado com sucesso!")
 
-                                    # Limpa os valores no session_state
-                                    st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""
+                                st.rerun()
 
-                                    if sucesso:
-                                        st.success("✅ Placar atualizado com sucesso!")
-
-                                    # Atualiza a tela
-                                    st.rerun()
-
-                                except ValueError:
-                                    st.error("⚠️ Os valores devem ser números inteiros.")
-
+                            except ValueError:
+                                st.error("⚠️ Os valores devem ser números inteiros.")
 
 
                 
