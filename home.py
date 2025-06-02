@@ -128,6 +128,7 @@ def home_page():
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         st.rerun()  
+                                        st.session_state["pagina"] = "home" 
                                         
 
 
