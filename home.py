@@ -50,89 +50,102 @@ def home_page():
          
 
         # Interface principal
-            
-    
-        st.markdown(f"### Bem-vindo, {usuario['nome']}!")
+
 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
-            return
+        else:
+            # Cabeçalhos da "tabela"
+            st.markdown(f"Bem-vindo, {usuario['nome']}!")
+    
+            
+            for i, jogo in enumerate(jogos, start=1):
+                    
+                seq = jogo["Seq"]
+                jogo_id = jogo["Id"]
+                mandante = jogo["Mandante"]
+                visitante = jogo["Visitante"]
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
-        for i, jogo in enumerate(jogos):
-            seq = jogo["Seq"]
-            jogo_id = jogo["Id"]
-            mandante = jogo["Mandante"]
-            visitante = jogo["Visitante"]
+                with st.container():
+                    st.markdown("---")
+                    
+                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
+                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-            mandante_key = f"mandante_gol_{seq}_{i}"
-            visitante_key = f"visitante_gol_{seq}_{i}"
-            form_key = f"form_{seq}_{i}"
+                    # Escudo Mandante
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
+                    
+                    with col2:
+                        mandante_key = f"mandante_gol_{seq}"
+                        mandante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state.get(mandante_key, ""),
+                            placeholder="",
+                            key=f"mandante_gol_{i}"
+                        )
 
-            # Inicializa campos vazios se ainda não estiverem no session_state
-            if mandante_key not in st.session_state:
-                st.session_state[mandante_key] = ""
-            if visitante_key not in st.session_state:
-                st.session_state[visitante_key] = ""
-
-            with st.form(key=form_key, clear_on_submit=False):
-                st.markdown("---")
-                col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
-
-                with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
-
-                with col2:
-                    mandante_input = st.text_input(
-                        label="",
-                        value=st.session_state[mandante_key],
-                        placeholder="Gols",
-                        key=f"{mandante_key}_input"
-                    )
-
-                with col3:
-                    visitante_input = st.text_input(
-                        label="",
-                        value=st.session_state[visitante_key],
-                        placeholder="Gols",
-                        key=f"{visitante_key}_input"
-                    )
-
-                with col4:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
-
-                with col5:
-                    submit = st.form_submit_button("Salvar")
-
-                # Processa o submit
-                if submit:
-                    if not mandante_input.strip() or not visitante_input.strip():
-                        st.error("⚠️ Preencha todos os campos de gols.")
-                    else:
-                        try:
-                            novo_mandante_gol = int(mandante_input)
-                            novo_visitante_gol = int(visitante_input)
-
-                            sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                            atualizar_placar_pendente_palpite()
-
-                            if sucesso:
-                                st.success("✅ Placar atualizado com sucesso!")
-
-                            # Limpa os campos no session_state
-                            st.session_state[mandante_key] = ""
-                            st.session_state[visitante_key] = ""
-
-                            st.rerun()
-
-                        except ValueError:
-                            st.error("⚠️ Os valores devem ser números inteiros.")
+                    # Gols Visitante (como texto, para permitir vazio)
+                    with col3:
+                        visitante_key = f"visitante_gol_{seq}"
+                        visitante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state.get(visitante_key, ""),
+                            placeholder="",
+                            key=f"visitante_gol_{i}"
+    )
 
 
+                    # Escudo Visitante
+                    with col4:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
+                        
+                    
+                    # Botão centralizado
+                    with col5:
+                        
+ 
+                                
+                        if st.button("Salvar", key=f"btn_{i}"):
+                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
+                                st.error("⚠️ Preencha todos os campos de gols.")
+                            else:
+                                try:
+                                    novo_mandante_gol = int(mandante_gol_str)
+                                    novo_visitante_gol = int(visitante_gol_str)
 
-                
-                
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+                                    
+                                    st.rerun() 
+                                    if sucesso:
+                                        st.success("✅ Placar atualizado com sucesso!")
+                                        
+
+
+                                except ValueError:
+                                    st.error("⚠️ Os valores devem ser números inteiros.")
+
+                                
+
+
+
+
+
+
+
+        
+        
+        
+        
         
     else:
         st.error("Não foi possível verificar seu status de participação.")
