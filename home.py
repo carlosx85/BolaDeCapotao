@@ -62,8 +62,11 @@ def home_page():
                 mandante_key  = f"mandante_gol_{seq}"
                 visitante_key = f"visitante_gol_{seq}"
                 # ■■■ FORÇA A LIMPEZA antes de exibir o input ■■■
-                st.session_state[mandante_key]  = ""
-                st.session_state[visitante_key] = ""
+                # Se a chave não existir, inicializa como string vazia
+                if mandante_key not in st.session_state:
+                    st.session_state[mandante_key] = ""
+                if visitante_key not in st.session_state:
+                    st.session_state[visitante_key] = ""
 
                 with st.container():
                     st.markdown("---")
