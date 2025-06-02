@@ -49,85 +49,85 @@ def home_page():
         
          
 
-                # Interface principal
-                
-        def home_page():
-            st.markdown(f"### Bem-vindo, {usuario['nome']}!")
+        # Interface principal
+            
+    
+        st.markdown(f"### Bem-vindo, {usuario['nome']}!")
 
-            jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
+        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
-            if not jogos:
-                st.warning("Nenhum jogo ativo encontrado.")
-                return
+        if not jogos:
+            st.warning("Nenhum jogo ativo encontrado.")
+            return
 
-            for i, jogo in enumerate(jogos):
-                seq = jogo["Seq"]
-                jogo_id = jogo["Id"]
-                mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"]
+        for i, jogo in enumerate(jogos):
+            seq = jogo["Seq"]
+            jogo_id = jogo["Id"]
+            mandante = jogo["Mandante"]
+            visitante = jogo["Visitante"]
 
-                mandante_key = f"mandante_gol_{seq}_{i}"
-                visitante_key = f"visitante_gol_{seq}_{i}"
-                form_key = f"form_{seq}_{i}"
+            mandante_key = f"mandante_gol_{seq}_{i}"
+            visitante_key = f"visitante_gol_{seq}_{i}"
+            form_key = f"form_{seq}_{i}"
 
-                # Inicializa campos vazios se ainda não estiverem no session_state
-                if mandante_key not in st.session_state:
-                    st.session_state[mandante_key] = ""
-                if visitante_key not in st.session_state:
-                    st.session_state[visitante_key] = ""
+            # Inicializa campos vazios se ainda não estiverem no session_state
+            if mandante_key not in st.session_state:
+                st.session_state[mandante_key] = ""
+            if visitante_key not in st.session_state:
+                st.session_state[visitante_key] = ""
 
-                with st.form(key=form_key, clear_on_submit=False):
-                    st.markdown("---")
-                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+            with st.form(key=form_key, clear_on_submit=False):
+                st.markdown("---")
+                col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-                    with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
+                with col1:
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
 
-                    with col2:
-                        mandante_input = st.text_input(
-                            label="",
-                            value=st.session_state[mandante_key],
-                            placeholder="Gols",
-                            key=f"{mandante_key}_input"
-                        )
+                with col2:
+                    mandante_input = st.text_input(
+                        label="",
+                        value=st.session_state[mandante_key],
+                        placeholder="Gols",
+                        key=f"{mandante_key}_input"
+                    )
 
-                    with col3:
-                        visitante_input = st.text_input(
-                            label="",
-                            value=st.session_state[visitante_key],
-                            placeholder="Gols",
-                            key=f"{visitante_key}_input"
-                        )
+                with col3:
+                    visitante_input = st.text_input(
+                        label="",
+                        value=st.session_state[visitante_key],
+                        placeholder="Gols",
+                        key=f"{visitante_key}_input"
+                    )
 
-                    with col4:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
+                with col4:
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
 
-                    with col5:
-                        submit = st.form_submit_button("Salvar")
+                with col5:
+                    submit = st.form_submit_button("Salvar")
 
-                    # Processa o submit
-                    if submit:
-                        if not mandante_input.strip() or not visitante_input.strip():
-                            st.error("⚠️ Preencha todos os campos de gols.")
-                        else:
-                            try:
-                                novo_mandante_gol = int(mandante_input)
-                                novo_visitante_gol = int(visitante_input)
+                # Processa o submit
+                if submit:
+                    if not mandante_input.strip() or not visitante_input.strip():
+                        st.error("⚠️ Preencha todos os campos de gols.")
+                    else:
+                        try:
+                            novo_mandante_gol = int(mandante_input)
+                            novo_visitante_gol = int(visitante_input)
 
-                                sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                atualizar_placar_pendente_palpite()
+                            sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                            atualizar_placar_pendente_palpite()
 
-                                if sucesso:
-                                    st.success("✅ Placar atualizado com sucesso!")
+                            if sucesso:
+                                st.success("✅ Placar atualizado com sucesso!")
 
-                                # Limpa os campos no session_state
-                                st.session_state[mandante_key] = ""
-                                st.session_state[visitante_key] = ""
+                            # Limpa os campos no session_state
+                            st.session_state[mandante_key] = ""
+                            st.session_state[visitante_key] = ""
 
-                                st.rerun()
+                            st.rerun()
 
-                            except ValueError:
-                                st.error("⚠️ Os valores devem ser números inteiros.")
+                        except ValueError:
+                            st.error("⚠️ Os valores devem ser números inteiros.")
 
 
 
