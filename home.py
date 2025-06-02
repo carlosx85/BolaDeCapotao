@@ -68,34 +68,40 @@ def home_page():
                 mandante_key = f"mandante_gol_{seq}"
                 visitante_key = f"visitante_gol_{seq}"
 
+                # Inicializa valores vazios se ainda não existem
+                st.session_state.setdefault(mandante_key, "")
+                st.session_state.setdefault(visitante_key, "")
+
                 with st.container():
                     st.markdown("---")
+                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-                    with st.form(key=f"form_{seq}", clear_on_submit=True):
-                        col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
 
-                        with col1:
-                            st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
+                    with col5:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
 
+                    # FORMULÁRIO
+                    with st.form(key=f"form_{i}", clear_on_submit=True):
                         with col2:
                             mandante_gol_str = st.text_input(
-                                label="Gols Mandante",
-                                key=mandante_key,
-                                placeholder="0"
+                                label="",
+                                value=st.session_state[mandante_key],
+                                placeholder="Gols",
+                                key=f"{mandante_key}_input"
                             )
 
                         with col4:
                             visitante_gol_str = st.text_input(
-                                label="Gols Visitante",
-                                key=visitante_key,
-                                placeholder="0"
+                                label="",
+                                value=st.session_state[visitante_key],
+                                placeholder="Gols",
+                                key=f"{visitante_key}_input"
                             )
 
-                        with col5:
-                            st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
-
-                        # Botão deve estar fora das colunas
-                        submit = st.form_submit_button("Salvar")
+                        with col3:
+                            submit = st.form_submit_button("Salvar")
 
                         if submit:
                             if not mandante_gol_str.strip() or not visitante_gol_str.strip():
@@ -108,14 +114,17 @@ def home_page():
                                     sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     atualizar_placar_pendente_palpite()
 
+                                    # Limpa os valores
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
-                                        st.session_state[mandante_key] = ""
-                                        st.session_state[visitante_key] = ""
                                         st.rerun()
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
+
 
                 
                 
