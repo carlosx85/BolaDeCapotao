@@ -116,9 +116,9 @@ def home_page():
                                     sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     sucessox = atualizar_placar_pendente_palpite()
                                     
-                                            # Redireciona para ?page=home
-                                    st.experimental_set_query_params(page="home")
+                                    st.session_state["pagina_atual"] = "jogos"
                                     st.rerun()
+                                                            
 
                                     
                                     
