@@ -51,25 +51,16 @@ def home_page():
 
         # Interface principal
         
-                
-                
-        
-
-        # ----------------------------
-        # 1) Se já foi clicado em "Salvar",
-        #    limpa todos os campos e reinicia o app
-        # ----------------------------
+        # No topo do seu arquivo/home_page, antes de buscar os jogos:
         if st.session_state.get("limpar_campos"):
             for jogo in buscar_jogos_ativos_Pendente(usuario["seq"]):
                 seq = jogo["Seq"]
-                st.session_state[f"mandante_gol_{seq}"] = ""   # zera o campo mandante
-                st.session_state[f"visitante_gol_{seq}"] = ""  # zera o campo visitante
+                st.session_state[f"mandante_gol_{seq}"] = ""
+                st.session_state[f"visitante_gol_{seq}"] = ""
             st.session_state["limpar_campos"] = False
             st.rerun()
 
-        # ----------------------------
-        # 2) Busca e exibe os jogos
-        # ----------------------------
+        # Depois, sua lógica original, ajustada:
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
@@ -77,75 +68,68 @@ def home_page():
         else:
             st.markdown("### Jogos Ativos")
 
-            for jogo in jogos:
-                seq       = jogo["Seq"]
-                jogo_id   = jogo["Id"]
-                mandante  = jogo["Mandante"]
+            for i, jogo in enumerate(jogos, start=1):
+                seq = jogo["Seq"]
+                jogo_id = jogo["Id"]
+                mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
-                # Chaves únicas baseadas em seq
-                mandante_key  = f"mandante_gol_{seq}"
+                mandante_key = f"mandante_gol_{seq}"
                 visitante_key = f"visitante_gol_{seq}"
 
                 with st.container():
                     st.markdown("---")
                     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-                    # 1) Escudo Mandante
+                    # Escudo Mandante
                     with col1:
                         st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
 
-                    # 2) Input Gols Mandante
+                    # Gols Mandante (texto)
                     with col2:
                         mandante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(mandante_key, ""),
-                            key=mandante_key,
-                            placeholder="Gols do mandante"
+                            key=mandante_key
                         )
 
-                    # 3) Input Gols Visitante
+                    # Gols Visitante (texto)
                     with col3:
                         visitante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(visitante_key, ""),
-                            key=visitante_key,
-                            placeholder="Gols do visitante"
+                            key=visitante_key
                         )
 
-                    # 4) Escudo Visitante
+                    # Escudo Visitante
                     with col4:
                         st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
 
-                    # 5) Botão “Salvar”
+                    # Botão Salvar
                     with col5:
                         if st.button("Salvar", key=f"btn_{seq}"):
-                            # Validação de campos não vazios
                             if not mandante_gol_str.strip() or not visitante_gol_str.strip():
                                 st.error("⚠️ Preencha todos os campos de gols.")
                             else:
                                 try:
-                                    novo_mandante_gol  = int(mandante_gol_str)
+                                    novo_mandante_gol = int(mandante_gol_str)
                                     novo_visitante_gol = int(visitante_gol_str)
 
-                                    sucesso1 = atualizar_placar_pendente(
+                                    sucesso = atualizar_placar_pendente(
                                         seq, jogo_id, novo_mandante_gol, novo_visitante_gol
                                     )
-                                    sucesso2 = atualizar_placar_pendente_palpite()
+                                    atualizar_placar_pendente_palpite()
 
-                                    if sucesso1:
-                                        st.success("✅ Placar atualizado com sucesso!")
-                                        # Agenda limpeza dos campos na próxima execução
+                                    if sucesso:
                                         st.session_state["limpar_campos"] = True
-                                    else:
-                                        st.error("❌ Falha ao atualizar o placar.")
+                                        st.success("✅ Placar atualizado com sucesso!")
 
-                                    # Reinicia para que a flag de limpeza seja aplicada
                                     st.rerun()
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
-
 
                                 
 
