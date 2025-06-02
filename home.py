@@ -83,7 +83,7 @@ def home_page():
                         mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
-                            
+                            value=st.session_state.get(mandante_key, ""),
                             placeholder="",
                             key=f"mandante_gol_{i}"
                         )
@@ -93,7 +93,7 @@ def home_page():
                         visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
-                            
+                            value=st.session_state.get(visitante_key, ""),
                             placeholder="",
                             key=f"visitante_gol_{i}"
     )
