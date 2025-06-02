@@ -48,7 +48,7 @@ def home_page():
     elif email_sn == "S":     
         
          
-
+        jogo = buscar_jogos_ativos_Pendente(usuario["seq"])
         # Interface principal
         
                 
