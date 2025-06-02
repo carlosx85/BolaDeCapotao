@@ -11,15 +11,7 @@ def home_page():
         return
 
     usuario = st.session_state["usuario_logado"]
-    st.title(f"Bem-vindo, {usuario['nome']}!")
-    
-    
-    
-    
-    
-    
-    
-    
+    st.title(f"Bem-vindo, {usuario['nome']}!")  
     
 
     email_sn = verificar_email_sn(usuario["seq"])
@@ -66,8 +58,9 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
+                # ■■■ FORÇA A LIMPEZA antes de exibir o input ■■■
+                st.session_state[mandante_key]  = ""
+                st.session_state[visitante_key] = ""
 
                 with st.container():
                     st.markdown("---")
@@ -83,7 +76,7 @@ def home_page():
                         mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
-                            
+                            value=st.session_state[mandante_key],
                             placeholder="",
                             key=f"mandante_gol_{i}"
                         )
@@ -93,7 +86,7 @@ def home_page():
                         visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
-                            
+                            value=st.session_state[visitante_key],
                             placeholder="",
                             key=f"visitante_gol_{i}"
     )
@@ -120,7 +113,9 @@ def home_page():
                                     sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     sucessox = atualizar_placar_pendente_palpite()
                                     
-               
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
                                     
                                     st.rerun() 
                                     if sucesso:
