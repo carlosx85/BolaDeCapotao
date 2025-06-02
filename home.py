@@ -72,6 +72,9 @@ def home_page():
                 with st.container():
                     st.markdown("---")
                     
+                    st.session_state[mandante_key] = ""
+                    st.session_state[visitante_key] = ""  
+                    
                     # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
                     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
