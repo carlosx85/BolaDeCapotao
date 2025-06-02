@@ -66,8 +66,7 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
+   
 
                 with st.container():
                     st.markdown("---")
@@ -117,17 +116,14 @@ def home_page():
                                     novo_mandante_gol = int(mandante_gol_str)
                                     novo_visitante_gol = int(visitante_gol_str)
 
-                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                    sucessox = atualizar_placar_pendente_palpite()
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol),atualizar_placar_pendente_palpite()
                                     
                                      # 🧹 Limpar campos após salvar
                                     st.session_state[mandante_key] = ""
                                     st.session_state[visitante_key] = ""
                                     
                                     st.rerun() 
-                                                                         # 🧹 Limpar campos após salvar
-                                    st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""
+
                                     
                                     
                                     if sucesso:
