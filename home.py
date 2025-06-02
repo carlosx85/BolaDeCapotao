@@ -70,9 +70,9 @@ def home_page():
                 mandante_gol = jogo["Mandante_Gol"] or 0
                 visitante_gol = jogo["Visitante_Gol"] or 0
                 
-                form = st.form(Key="Jogos", clear clear_on_submit=true)
+                form = st.form(Key="Jogos", clear_on_submit=True)
 
-                with  form:
+                with form:
                     st.markdown("---")
                     
                     # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
