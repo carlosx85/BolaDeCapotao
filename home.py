@@ -60,6 +60,16 @@ def home_page():
             # Cabeçalhos da "tabela"
             st.markdown(f"### Jogos Ativos")
             
+            # 🧹 Se clicou em salvar antes, limpar campos
+            if st.session_state.get("limpar_campos"):
+                for jogo in buscar_jogos_ativos_Pendente(usuario["seq"]):
+                    seq = jogo["Seq"]
+                    st.session_state[f"mandante_gol_{seq}"] = ""  # campo limpo
+                    st.session_state[f"visitante_gol_{seq}"] = ""  # campo limpo
+                st.session_state["limpar_campos"] = False
+                st.rerun()
+
+            
             for i, jogo in enumerate(jogos, start=1):
                     
                 seq = jogo["Seq"]
@@ -119,15 +129,13 @@ def home_page():
 
                                     sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                    
                                     st.rerun()  
                                     
                                      # 🧹 Limpar campos após salvar
                                     st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""                                    
-                                    
-                                    
-                                    
-                                    
+                                    st.session_state[visitante_key] = ""     
                                     
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
