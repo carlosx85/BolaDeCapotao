@@ -68,7 +68,7 @@ def home_page():
                 mandante_key = f"mandante_gol_{seq}"
                 visitante_key = f"visitante_gol_{seq}"
 
-                # Inicializa valores vazios se ainda não existem
+                # Inicializa valores em branco, se necessário
                 st.session_state.setdefault(mandante_key, "")
                 st.session_state.setdefault(visitante_key, "")
 
@@ -82,8 +82,8 @@ def home_page():
                     with col5:
                         st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
 
-                    # FORMULÁRIO
-                    with st.form(key=f"form_{i}", clear_on_submit=True):
+                    # Toda a entrada de dados e botão dentro do formulário
+                    with st.form(key=f"form_{seq}", clear_on_submit=True):
                         with col2:
                             mandante_gol_str = st.text_input(
                                 label="",
@@ -114,16 +114,19 @@ def home_page():
                                     sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     atualizar_placar_pendente_palpite()
 
-                                    # Limpa os valores
+                                    # Limpa os valores no session_state
                                     st.session_state[mandante_key] = ""
                                     st.session_state[visitante_key] = ""
 
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
-                                        st.rerun()
+
+                                    # Atualiza a tela
+                                    st.rerun()
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
+
 
 
                 
