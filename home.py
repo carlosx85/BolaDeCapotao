@@ -58,6 +58,9 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
+                
+                mandante_key  = f"mandante_gol_{seq}"
+                visitante_key = f"visitante_gol_{seq}"
                 # ■■■ FORÇA A LIMPEZA antes de exibir o input ■■■
                 st.session_state[mandante_key]  = ""
                 st.session_state[visitante_key] = ""
