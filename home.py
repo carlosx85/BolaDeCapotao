@@ -72,9 +72,6 @@ def home_page():
                 with st.container():
                     st.markdown("---")
                     
-                    st.session_state[mandante_key] = ""
-                    st.session_state[visitante_key] = ""  
-                    
                     # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
                     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
@@ -86,7 +83,7 @@ def home_page():
                         mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
-                            value=st.session_state.get(mandante_key, ""),
+                            
                             placeholder="",
                             key=f"mandante_gol_{i}"
                         )
@@ -96,7 +93,7 @@ def home_page():
                         visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
-                            value=st.session_state.get(visitante_key, ""),
+                            
                             placeholder="",
                             key=f"visitante_gol_{i}"
     )
@@ -127,8 +124,6 @@ def home_page():
                                     st.session_state[mandante_key] = ""
                                     st.session_state[visitante_key] = ""                                    
                                     st.rerun() 
-                                    
-                                    
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         st.rerun()  
