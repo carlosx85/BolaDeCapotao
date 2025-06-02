@@ -119,7 +119,7 @@ def home_page():
                         
  
                                 
-                        if st.button("Salvar", key=f"btn_{i}"):
+                        if st.button("Salvar", key=f"btn_{seq}"):
                             if not mandante_gol_str.strip() or not visitante_gol_str.strip():
                                 st.error("⚠️ Preencha todos os campos de gols.")
                             else:
@@ -127,19 +127,18 @@ def home_page():
                                     novo_mandante_gol = int(mandante_gol_str)
                                     novo_visitante_gol = int(visitante_gol_str)
 
-                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                    sucessox = atualizar_placar_pendente_palpite()
-                                    
-                                    
-                                    st.rerun()  
-                                    
-                                     # 🧹 Limpar campos após salvar
-                                    st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""     
-                                    
+                                    sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    atualizar_placar_pendente_palpite()
+
                                     if sucesso:
+                                        st.session_state["limpar_campos"] = True
                                         st.success("✅ Placar atualizado com sucesso!")
-                                        
+
+                                    st.rerun()
+
+                                except ValueError:
+                                    st.error("⚠️ Os valores devem ser números inteiros.")
+
                                          
                                         
 
