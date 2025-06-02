@@ -50,25 +50,18 @@ def home_page():
          
 
         # Interface principal
-        
-        # No topo do seu arquivo/home_page, antes de buscar os jogos:
-        if st.session_state.get("limpar_campos"):
-            for jogo in buscar_jogos_ativos_Pendente(usuario["seq"]):
-                seq = jogo["Seq"]
-                st.session_state[f"mandante_gol_{seq}"] = ""
-                st.session_state[f"visitante_gol_{seq}"] = ""
-            st.session_state["limpar_campos"] = False
-            st.rerun()
 
-        # Depois, sua lógica original, ajustada:
+
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
         else:
-            st.markdown("### Jogos Ativos")
-
+            # Cabeçalhos da "tabela"
+            st.markdown(f"### Jogos Ativos")
+            
             for i, jogo in enumerate(jogos, start=1):
+                    
                 seq = jogo["Seq"]
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
@@ -76,40 +69,47 @@ def home_page():
                 mandante_gol = jogo["Mandante_Gol"] or 0
                 visitante_gol = jogo["Visitante_Gol"] or 0
 
-                mandante_key = f"mandante_gol_{seq}"
-                visitante_key = f"visitante_gol_{seq}"
-
                 with st.container():
                     st.markdown("---")
+                    
+                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
                     col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
                     # Escudo Mandante
                     with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
-
-                    # Gols Mandante (texto)
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
+                    
                     with col2:
+                        mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(mandante_key, ""),
-                            key=mandante_key
+                            placeholder="",
+                            key=f"mandante_gol_{i}"
                         )
 
-                    # Gols Visitante (texto)
+                    # Gols Visitante (como texto, para permitir vazio)
                     with col3:
+                        visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(visitante_key, ""),
-                            key=visitante_key
-                        )
+                            placeholder="",
+                            key=f"visitante_gol_{i}"
+    )
+
 
                     # Escudo Visitante
                     with col4:
                         st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
-
-                    # Botão Salvar
+                        
+                    
+                    # Botão centralizado
                     with col5:
-                        if st.button("Salvar", key=f"btn_{seq}"):
+                        
+ 
+                                
+                        if st.button("Salvar", key=f"btn_{i}"):
                             if not mandante_gol_str.strip() or not visitante_gol_str.strip():
                                 st.error("⚠️ Preencha todos os campos de gols.")
                             else:
@@ -117,16 +117,18 @@ def home_page():
                                     novo_mandante_gol = int(mandante_gol_str)
                                     novo_visitante_gol = int(visitante_gol_str)
 
-                                    sucesso = atualizar_placar_pendente(
-                                        seq, jogo_id, novo_mandante_gol, novo_visitante_gol
-                                    )
-                                    atualizar_placar_pendente_palpite()
-
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+                                    
+                                    st.rerun() 
                                     if sucesso:
-                                        st.session_state["limpar_campos"] = True
                                         st.success("✅ Placar atualizado com sucesso!")
+                                        
 
-                                    st.rerun()
 
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
