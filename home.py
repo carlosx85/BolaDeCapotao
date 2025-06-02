@@ -127,6 +127,7 @@ def home_page():
                                     st.rerun() 
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
+                                        st.rerun()  
                                         
 
 
