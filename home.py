@@ -123,7 +123,11 @@ def home_page():
                                      # 🧹 Limpar campos após salvar
                                     st.session_state[mandante_key] = ""
                                     st.session_state[visitante_key] = ""                                    
-                                    st.rerun() 
+                                    
+                                    
+                                    
+                                    
+                                    
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         st.rerun()  
