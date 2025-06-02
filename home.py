@@ -121,8 +121,8 @@ def home_page():
                                     sucessox = atualizar_placar_pendente_palpite()
                                     
                                      # 🧹 Limpar campos após salvar
-                                    st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""
+                                    st.session_state[mandante_gol] = ""
+                                    st.session_state[visitante_gol] = ""
                                     
                                     st.rerun() 
                                     if sucesso:
