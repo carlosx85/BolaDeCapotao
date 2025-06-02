@@ -82,6 +82,11 @@ def home_page():
                         st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
                     
                     with col2:
+                        
+                        # Garante que vai começar limpo (por exemplo, se a flag de limpar foi ativada)
+                        if st.session_state.get("limpar_campos"):
+                            st.session_state[mandante_key] = ""
+                        
                         mandante_key = f"mandante_gol_{seq}"
                         mandante_gol_str = st.text_input(
                             label="",
