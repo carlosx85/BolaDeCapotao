@@ -48,74 +48,86 @@ def home_page():
     elif email_sn == "S":     
         
          
-        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
-        # Interface principal
-        
+
+                # Interface principal
                 
-        for i, jogo in enumerate(jogos, start=1):
-            seq = jogo["Seq"]
-            jogo_id = jogo["Id"]
-            mandante = jogo["Mandante"]
-            visitante = jogo["Visitante"]
+        def home_page():
+            st.markdown(f"### Bem-vindo, {usuario['nome']}!")
 
-            mandante_key = f"mandante_gol_{seq}"
-            visitante_key = f"visitante_gol_{seq}"
+            jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
-            st.session_state.setdefault(mandante_key, "")
-            st.session_state.setdefault(visitante_key, "")
+            if not jogos:
+                st.warning("Nenhum jogo ativo encontrado.")
+                return
 
-            st.markdown("---")
+            for i, jogo in enumerate(jogos):
+                seq = jogo["Seq"]
+                jogo_id = jogo["Id"]
+                mandante = jogo["Mandante"]
+                visitante = jogo["Visitante"]
 
-            # ✅ Chave única no form
-            with st.form(key=f"form_{seq}_{i}", clear_on_submit=True):
-                col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+                mandante_key = f"mandante_gol_{seq}_{i}"
+                visitante_key = f"visitante_gol_{seq}_{i}"
+                form_key = f"form_{seq}_{i}"
 
-                with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
+                # Inicializa campos vazios se ainda não estiverem no session_state
+                if mandante_key not in st.session_state:
+                    st.session_state[mandante_key] = ""
+                if visitante_key not in st.session_state:
+                    st.session_state[visitante_key] = ""
 
-                with col2:
-                    mandante_gol_str = st.text_input(
-                        label="",
-                        value=st.session_state[mandante_key],
-                        placeholder="Gols",
-                        key=f"{mandante_key}_input"
-                    )
+                with st.form(key=form_key, clear_on_submit=False):
+                    st.markdown("---")
+                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-                with col4:
-                    visitante_gol_str = st.text_input(
-                        label="",
-                        value=st.session_state[visitante_key],
-                        placeholder="Gols",
-                        key=f"{visitante_key}_input"
-                    )
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
 
-                with col5:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
+                    with col2:
+                        mandante_input = st.text_input(
+                            label="",
+                            value=st.session_state[mandante_key],
+                            placeholder="Gols",
+                            key=f"{mandante_key}_input"
+                        )
 
-                submit = st.form_submit_button("Salvar")
+                    with col3:
+                        visitante_input = st.text_input(
+                            label="",
+                            value=st.session_state[visitante_key],
+                            placeholder="Gols",
+                            key=f"{visitante_key}_input"
+                        )
 
-                if submit:
-                    if not mandante_gol_str.strip() or not visitante_gol_str.strip():
-                        st.error("⚠️ Preencha todos os campos de gols.")
-                    else:
-                        try:
-                            novo_mandante_gol = int(mandante_gol_str)
-                            novo_visitante_gol = int(visitante_gol_str)
+                    with col4:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
 
-                            sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                            atualizar_placar_pendente_palpite()
+                    with col5:
+                        submit = st.form_submit_button("Salvar")
 
-                            # Limpa os inputs
-                            st.session_state[mandante_key] = ""
-                            st.session_state[visitante_key] = ""
+                    # Processa o submit
+                    if submit:
+                        if not mandante_input.strip() or not visitante_input.strip():
+                            st.error("⚠️ Preencha todos os campos de gols.")
+                        else:
+                            try:
+                                novo_mandante_gol = int(mandante_input)
+                                novo_visitante_gol = int(visitante_input)
 
-                            if sucesso:
-                                st.success("✅ Placar atualizado com sucesso!")
+                                sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                atualizar_placar_pendente_palpite()
 
-                            st.rerun()
+                                if sucesso:
+                                    st.success("✅ Placar atualizado com sucesso!")
 
-                        except ValueError:
-                            st.error("⚠️ Os valores devem ser números inteiros.")
+                                # Limpa os campos no session_state
+                                st.session_state[mandante_key] = ""
+                                st.session_state[visitante_key] = ""
+
+                                st.rerun()
+
+                            except ValueError:
+                                st.error("⚠️ Os valores devem ser números inteiros.")
 
 
 
