@@ -11,7 +11,7 @@ def home_page():
         return
 
     usuario = st.session_state["usuario_logado"]
-    st.title(f"Bem-vindo, {usuario['nome']}!")
+
     
     
     
@@ -58,7 +58,8 @@ def home_page():
             st.warning("Nenhum jogo ativo encontrado.")
         else:
             # Cabeçalhos da "tabela"
-            st.markdown(f"### Jogos Ativos")
+            st.markdown(f"Bem-vindo, {usuario['nome']}!")
+    
             
             for i, jogo in enumerate(jogos, start=1):
                     
