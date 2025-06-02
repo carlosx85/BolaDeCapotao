@@ -125,6 +125,11 @@ def home_page():
                                     st.session_state[visitante_key] = ""
                                     
                                     st.rerun() 
+                                                                         # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+                                    
+                                    
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         
