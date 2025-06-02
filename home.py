@@ -97,7 +97,7 @@ def home_page():
                         visitante_key = f"visitante_gol_{seq}"
                         visitante_gol_str = st.text_input(
                             label="",
-                            value=st.session_state.get(visitante_key, ""),
+                            value= "",
                             placeholder="",
                             key=f"visitante_gol_{i}"
     )
