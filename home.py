@@ -60,15 +60,7 @@ def home_page():
             # Cabeçalhos da "tabela"
             st.markdown(f"### Jogos Ativos")
             
-            # 🧹 Se clicou em salvar antes, limpar campos
-            if st.session_state.get("limpar_campos"):
-                for jogo in buscar_jogos_ativos_Pendente(usuario["seq"]):
-                    seq = jogo["Seq"]
-                    st.session_state[f"mandante_gol_{seq}"] = ""  # campo limpo
-                    st.session_state[f"visitante_gol_{seq}"] = ""  # campo limpo
-                st.session_state["limpar_campos"] = False
-                st.rerun()
-
+            
             
             for i, jogo in enumerate(jogos, start=1):
                     
@@ -119,7 +111,7 @@ def home_page():
                         
  
                                 
-                        if st.button("Salvar", key=f"btn_{seq}"):
+                        if st.button("Salvar", key=f"btn_{i}"):
                             if not mandante_gol_str.strip() or not visitante_gol_str.strip():
                                 st.error("⚠️ Preencha todos os campos de gols.")
                             else:
@@ -127,18 +119,19 @@ def home_page():
                                     novo_mandante_gol = int(mandante_gol_str)
                                     novo_visitante_gol = int(visitante_gol_str)
 
-                                    sucesso = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                    atualizar_placar_pendente_palpite()
-
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                    
+                                    st.rerun()  
+                                    
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""     
+                                    
                                     if sucesso:
-                                        st.session_state["limpar_campos"] = True
                                         st.success("✅ Placar atualizado com sucesso!")
-
-                                    st.rerun()
-
-                                except ValueError:
-                                    st.error("⚠️ Os valores devem ser números inteiros.")
-
+                                        
                                          
                                         
 
