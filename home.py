@@ -50,6 +50,8 @@ def home_page():
          
 
         # Interface principal
+        
+                
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
@@ -68,10 +70,10 @@ def home_page():
 
                 with st.container():
                     st.markdown("---")
-                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-                    # Formulário para cada jogo
-                    with col3.form(key=f"form_{seq}", clear_on_submit=True):
+                    with st.form(key=f"form_{seq}", clear_on_submit=True):
+                        col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+
                         with col1:
                             st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)
 
@@ -90,7 +92,10 @@ def home_page():
                             )
 
                         with col5:
-                            submit = st.form_submit_button("Salvar")
+                            st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
+
+                        # Botão deve estar fora das colunas
+                        submit = st.form_submit_button("Salvar")
 
                         if submit:
                             if not mandante_gol_str.strip() or not visitante_gol_str.strip():
@@ -105,7 +110,6 @@ def home_page():
 
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
-                                        # Limpa manualmente para garantir
                                         st.session_state[mandante_key] = ""
                                         st.session_state[visitante_key] = ""
                                         st.rerun()
@@ -113,16 +117,8 @@ def home_page():
                                 except ValueError:
                                     st.error("⚠️ Os valores devem ser números inteiros.")
 
-
-
-
-
-
-
-        
-        
-        
-        
+                
+                
         
     else:
         st.error("Não foi possível verificar seu status de participação.")
