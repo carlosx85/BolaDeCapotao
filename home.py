@@ -81,7 +81,7 @@ def home_page():
                         st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
                     
                     with col2:
-                        mandante_key = f"mandante_gol_{seq}"
+                        mandante_key = f"mandante_gol_{jogo_id}"
                         mandante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(mandante_key, ""),
@@ -91,7 +91,7 @@ def home_page():
 
                     # Gols Visitante (como texto, para permitir vazio)
                     with col3:
-                        visitante_key = f"visitante_gol_{seq}"
+                        visitante_key = f"visitante_gol_{jogo_id}"
                         visitante_gol_str = st.text_input(
                             label="",
                             value=st.session_state.get(visitante_key, ""),
