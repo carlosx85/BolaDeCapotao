@@ -1,9 +1,8 @@
 import streamlit as st
 import time
-import pandas as pd
-import urllib.parse
+
 from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
-from db import buscar_jogos_ativos_Pendente
+
 def home_page():
     if "usuario_logado" not in st.session_state:
         st.warning("Você precisa estar logado.")
@@ -53,39 +52,87 @@ def home_page():
         # Interface principal
 
 
-        st.title("Formulário de Resultados dos Jogos")
+        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
-        df_jogos =    buscar_jogos_ativos_Pendente(usuario["seq"])
+        if not jogos:
+            st.warning("Nenhum jogo ativo encontrado.")
+        else:
+            # Cabeçalhos da "tabela"
+            st.markdown(f"Bem-vindo, {usuario['nome']}!")
+    
+            
+            for i, jogo in enumerate(jogos, start=1):
+                    
+                seq = jogo["Seq"]
+                jogo_id = jogo["Id"]
+                mandante = jogo["Mandante"]
+                visitante = jogo["Visitante"]
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
-        for idx, row in df_jogos.iterrows(usuario["seq"]):
-            with st.form(key=f"form_{row['ID']}"):
-                st.markdown(f"### Jogo ID {row['ID']}")
+                with st.container():
+                    st.markdown("---")
+                    
+                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
+                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
-                cols = st.columns([2, 1, 2])
+                    # Escudo Mandante
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
+                    
+                    with col2:
+                        mandante_key = f"mandante_gol_{seq}"
+                        mandante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state.get(mandante_key, ""),
+                            placeholder="",
+                            key=f"mandante_gol_{i}"
+                        )
 
-                mandante_img_url = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Mandante'].lower())}.png"
-                visitante_img_url = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Visitante'].lower())}.png"
+                    # Gols Visitante (como texto, para permitir vazio)
+                    with col3:
+                        visitante_key = f"visitante_gol_{seq}"
+                        visitante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state.get(visitante_key, ""),
+                            placeholder="",
+                            key=f"visitante_gol_{i}"
+    )
 
-                # Coluna 1: Mandante
-                with cols[0]:
-                    st.image(mandante_img_url, width=100, caption=row['Mandante'])
-                    gols_mandante = st.number_input("Gols Mandante", min_value=0, value=row['Mandante_Gol'], key=f"mandante_{row['ID']}")
 
-                # Coluna 2: "X"
-                with cols[1]:
-                    st.markdown("<h3 style='text-align: center;'>X</h3>", unsafe_allow_html=True)
+                    # Escudo Visitante
+                    with col4:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
+                        
+                    
+                    # Botão centralizado
+                    with col5:
+                        
+ 
+                                
+                        if st.button("Salvar", key=f"btn_{i}"):
+                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
+                                st.error("⚠️ Preencha todos os campos de gols.")
+                            else:
+                                try:
+                                    novo_mandante_gol = int(mandante_gol_str)
+                                    novo_visitante_gol = int(visitante_gol_str)
 
-                # Coluna 3: Visitante
-                with cols[2]:
-                    st.image(visitante_img_url, width=100, caption=row['Visitante'])
-                    gols_visitante = st.number_input("Gols Visitante", min_value=0, value=row['Visitante_Gol'], key=f"visitante_{row['ID']}")
+                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
+                                    sucessox = atualizar_placar_pendente_palpite()
+                                    
+                                     # 🧹 Limpar campos após salvar
+                                    st.session_state[mandante_key] = ""
+                                    st.session_state[visitante_key] = ""
+                                    
+                                    st.rerun() 
+                                    if sucesso:
+                                        st.success("✅ Placar atualizado com sucesso!")
+                                        
 
-                # Botão de salvar
-                if st.form_submit_button("Salvar"):
-                    atualizar_placar_pendente(row['ID'], gols_mandante, gols_visitante)
-                    atualizar_placar_pendente_palpite(row['ID'], gols_mandante, gols_visitante)
-                    st.success("Resultado salvo com sucesso!")
 
+                                except ValueError:
+                                    st.error("⚠️ Os valores devem ser números inteiros.")
 
                                 
 
