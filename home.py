@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import buscar_jogos_pendentes,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -50,103 +50,56 @@ def home_page():
          
 
         # Interface principal
+        
+        
+        
+        
 
+        st.title("Atualizar Resultados dos Jogos")
 
-        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
+        df_jogos = buscar_jogos_pendentes(usuario["seq"])
 
-        if not jogos:
-            st.warning("Nenhum jogo ativo encontrado.")
-        else:
-            # Cabeçalhos da "tabela"
-            st.markdown(f"Bem-vindo, {usuario['nome']}!")
-    
+        if df_jogos.empty:
+            st.info("Nenhum jogo pendente.")
+            return
+
+        for _, row in df_jogos.iterrows():
+            with st.form(key=f"form_{row['ID']}"):
+                # Layout em linha com 5 colunas: escudo, input, input, escudo, botão
+                cols = st.columns([1, 0.5, 0.5, 1, 0.5])
+
+                mandante_img = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Mandante'].lower())}.png"
+                visitante_img = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Visitante'].lower())}.png"
+
+                with cols[0]:
+                    st.image(mandante_img, width=80)
+
+                with cols[1]:
+                    gols_mandante = st.number_input(
+                        "", min_value=0, value=row["Mandante_Gol"],
+                        key=f"gm_{row['ID']}"
+                    )
+
+                with cols[2]:
+                    gols_visitante = st.number_input(
+                        "", min_value=0, value=row["Visitante_Gol"],
+                        key=f"gv_{row['ID']}"
+                    )
+
+                with cols[3]:
+                    st.image(visitante_img, width=80)
+
+                with cols[4]:
+                    salvar = st.form_submit_button("Salvar")
+
+                if salvar:
+                    atualizar_placar_pendente_palpite(row["ID"], gols_mandante, gols_visitante)
+                    buscar_jogos_ativos_Pendente(row["ID"], gols_mandante, gols_visitante)
+                    st.success("Resultado salvo com sucesso!")
+
             
-            for i, jogo in enumerate(jogos, start=1):
-                    
-                seq = jogo["Seq"]
-                jogo_id = jogo["Id"]
-                mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
-
-                with st.container():
-                    st.markdown("---")
-                    
-                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
-                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
-
-                    # Escudo Mandante
-                    with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
-                    
-                    with col2:
-                        mandante_key = f"mandante_gol_{seq}"
-                        mandante_gol_str = st.text_input(
-                            label="",
-                            value=st.session_state.get(mandante_key, ""),
-                            placeholder="",
-                            key=f"mandante_gol_{i}"
-                        )
-
-                    # Gols Visitante (como texto, para permitir vazio)
-                    with col3:
-                        visitante_key = f"visitante_gol_{seq}"
-                        visitante_gol_str = st.text_input(
-                            label="",
-                            value=st.session_state.get(visitante_key, ""),
-                            placeholder="",
-                            key=f"visitante_gol_{i}"
-    )
-
-
-                    # Escudo Visitante
-                    with col4:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
-                        
-                    
-                    # Botão centralizado
-                    with col5:
-                        
- 
-                                
-                        if st.button("Salvar", key=f"btn_{i}"):
-                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
-                                st.error("⚠️ Preencha todos os campos de gols.")
-                            else:
-                                try:
-                                    novo_mandante_gol = int(mandante_gol_str)
-                                    novo_visitante_gol = int(visitante_gol_str)
-
-                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                    sucessox = atualizar_placar_pendente_palpite()
-                                    
-                                     # 🧹 Limpar campos após salvar
-                                    st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""
-                                    
-                                    st.rerun() 
-                                    if sucesso:
-                                        st.success("✅ Placar atualizado com sucesso!")
-                                        
-
-
-                                except ValueError:
-                                    st.error("⚠️ Os valores devem ser números inteiros.")
-
-                                
-
-
-
-
-
-
-
-        
-        
-        
-        
-        
+            
+            
     else:
         st.error("Não foi possível verificar seu status de participação.")
         
