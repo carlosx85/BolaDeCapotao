@@ -141,21 +141,21 @@ def home_page():
         # Interface principal
 
 
-        jogos = buscar_jogos_ativos_Pendente_OK(usuario["seq"])
+        jogosx = buscar_jogos_ativos_Pendente_OK(usuario["seq"])
 
-        if not jogos:
+        if not jogosx:
             st.warning("Nenhum jogo ativo encontrado.")
         else:
             # Cabeçalhos da "tabela"
             st.markdown(f"Bem-vindo, {usuario['nome']}!")
     
             
-            for i, jogo in enumerate(jogos, start=1):
+            for i, jogo in enumerate(jogosx, start=1):
                     
-                seq = jogo["Seq"]
-                jogo_id = jogo["Id"]
-                mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"]
+                seq = jogosx["Seq"]
+                jogo_id = jogosx["Id"]
+                mandante = jogosx["Mandante"]
+                visitante = jogosx["Visitante"]
                 mandante_key = [] 
                 visitante_key = []
 
