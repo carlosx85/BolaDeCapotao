@@ -83,6 +83,22 @@ def buscar_jogos_ativos_Pendente(seq):
     return resultados
 
 
+def buscar_jogos_ativos_Pendente_OK(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    query = """
+        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s  AND  Palpite <> 'Pendente'        
+    """
+    cursor.execute(query, (seq, ))
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return resultados
+
+
+
+
 
 def atualizar_mandante_gol(seq,id):
     conexao = conectar()
