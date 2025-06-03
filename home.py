@@ -57,7 +57,7 @@ def home_page():
 
         st.title("Atualizar Resultados dos Jogos")
 
-        df_jogos = buscar_jogos_pendentes(usuario["seq"])
+        df_jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if df_jogos.empty:
             st.info("Nenhum jogo pendente.")
