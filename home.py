@@ -57,7 +57,7 @@ def home_page():
 
         df_jogos =    buscar_jogos_ativos_Pendente(usuario["seq"])
 
-        for idx, row in df_jogos.iterrows():
+        for idx, row in df_jogos.iterrows(usuario["seq"]):
             with st.form(key=f"form_{row['ID']}"):
                 st.markdown(f"### Jogo ID {row['ID']}")
 
