@@ -1,6 +1,7 @@
 import streamlit as st
 import time
-
+import pandas as pd
+import urllib.parse
 from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
