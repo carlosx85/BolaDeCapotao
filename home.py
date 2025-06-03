@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import buscar_jogos_ativos_Pendente_OK,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -67,8 +67,8 @@ def home_page():
                 jogo_id = jogo["Id"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_key = [] 
-                visitante_key = []
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
 
                 with st.container():
                     st.markdown("---")
@@ -121,79 +121,21 @@ def home_page():
                                     sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
                                     sucessox = atualizar_placar_pendente_palpite()
                                     
-
-                                    
-                                    st.rerun() 
-                                    
-                                    
                                      # 🧹 Limpar campos após salvar
                                     st.session_state[mandante_key] = ""
                                     st.session_state[visitante_key] = ""
                                     
+                                    st.rerun() 
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
                                         
-                                        
-                                        
-                                        
-                                        
- 
-        # Interface principal
 
 
-        jogosx = buscar_jogos_ativos_Pendente_OK(usuario["seq"])
+                                except ValueError:
+                                    st.error("⚠️ Os valores devem ser números inteiros.")
 
-        if not jogosx:
-            st.warning("Nenhum jogo ativo encontrado.")
-        else:
-            # Cabeçalhos da "tabela"
-            st.markdown(f"Bem-vindo, {usuario['nome']}!")
-    
-            
-            for i, jogo in enumerate(jogosx, start=1):
-                    
-                seq = jogosx["Seq"]
-                jogo_id = jogosx["Id"]
-                mandante = jogosx["Mandante"]
-                visitante = jogosx["Visitante"]
-                mandante_key = [] 
-                visitante_key = []
+                                
 
-                with st.container():
-                    st.markdown("---")
-                    
-                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
-                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
-
-                    # Escudo Mandante
-                    with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
-                    
-                    with col2:
-                        mandante_key = f"mandante_gol_{seq}"
-                        mandante_gol_str = st.text_input(
-                            label="",
-                            value=st.session_state.get(mandante_key, ""),
-                            placeholder="",
-                            key=f"mandante_gol_{i}"
-                        )
-
-                    # Gols Visitante (como texto, para permitir vazio)
-                    with col3:
-                        visitante_key = f"visitante_gol_{seq}"
-                        visitante_gol_str = st.text_input(
-                            label="",
-                            value=st.session_state.get(visitante_key, ""),
-                            placeholder="",
-                            key=f"visitante_gol_{i}"
-    )
-
-
-                    # Escudo Visitante
-                    with col4:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
-                        
- 
 
 
 
