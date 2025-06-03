@@ -55,7 +55,7 @@ def home_page():
 
         st.title("Formulário de Resultados dos Jogos")
 
-        df_jogos = buscar_jogos_ativos_Pendente()
+        df_jogos =    buscar_jogos_ativos_Pendente(usuario["seq"])
 
         for idx, row in df_jogos.iterrows():
             with st.form(key=f"form_{row['ID']}"):
