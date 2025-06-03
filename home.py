@@ -94,7 +94,7 @@ def home_page():
 
                 if salvar:
                     atualizar_placar_pendente_palpite(row["ID"], gols_mandante, gols_visitante)
-                    buscar_jogos_ativos_Pendente(row["ID"], gols_mandante, gols_visitante)
+                    atualizar_placar_pendente(row["ID"], gols_mandante, gols_visitante)
                     st.success("Resultado salvo com sucesso!")
 
             
