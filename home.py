@@ -54,7 +54,7 @@ def home_page():
 
         st.title("Formulário de Resultados dos Jogos")
 
-        df_jogos = carregar_jogos()
+        df_jogos = buscar_jogos_ativos_Pendente()
 
         for idx, row in df_jogos.iterrows():
             with st.form(key=f"form_{row['ID']}"):
@@ -81,7 +81,8 @@ def home_page():
 
                 # Botão de salvar
                 if st.form_submit_button("Salvar"):
-                    salvar_gols(row['ID'], gols_mandante, gols_visitante)
+                    atualizar_placar_pendente(row['ID'], gols_mandante, gols_visitante)
+                    atualizar_placar_pendente_palpite(row['ID'], gols_mandante, gols_visitante)
                     st.success("Resultado salvo com sucesso!")
 
 
