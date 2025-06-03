@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import buscar_jogos_ativos_Pendente_ok,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import buscar_jogos_ativos_Pendente_OK,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -141,7 +141,7 @@ def home_page():
         # Interface principal
 
 
-        jogos = buscar_jogos_ativos_Pendente_ok(usuario["seq"])
+        jogos = buscar_jogos_ativos_Pendente_OK(usuario["seq"])
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
