@@ -124,12 +124,81 @@ def home_page():
 
                                     
                                     st.rerun() 
-                                                                         # 🧹 Limpar campos após salvar
+                                    
+                                    
+                                     # 🧹 Limpar campos após salvar
                                     st.session_state[mandante_key] = ""
                                     st.session_state[visitante_key] = ""
                                     
                                     if sucesso:
                                         st.success("✅ Placar atualizado com sucesso!")
+                                        
+                                        
+                                        
+                                        
+                                        
+ 
+        # Interface principal
+
+
+        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
+
+        if not jogos:
+            st.warning("Nenhum jogo ativo encontrado.")
+        else:
+            # Cabeçalhos da "tabela"
+            st.markdown(f"Bem-vindo, {usuario['nome']}!")
+    
+            
+            for i, jogo in enumerate(jogos, start=1):
+                    
+                seq = jogo["Seq"]
+                jogo_id = jogo["Id"]
+                mandante = jogo["Mandante"]
+                visitante = jogo["Visitante"]
+                mandante_key = [] 
+                visitante_key = []
+
+                with st.container():
+                    st.markdown("---")
+                    
+                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
+                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
+
+                    # Escudo Mandante
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
+                    
+                    with col2:
+                        mandante_key = f"mandante_gol_{seq}"
+                        mandante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state.get(mandante_key, ""),
+                            placeholder="",
+                            key=f"mandante_gol_{i}"
+                        )
+
+                    # Gols Visitante (como texto, para permitir vazio)
+                    with col3:
+                        visitante_key = f"visitante_gol_{seq}"
+                        visitante_gol_str = st.text_input(
+                            label="",
+                            value=st.session_state.get(visitante_key, ""),
+                            placeholder="",
+                            key=f"visitante_gol_{i}"
+    )
+
+
+                    # Escudo Visitante
+                    with col4:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
+                        
+                    
+                    # Botão centralizado
+                    with col5:
+                        
+ 
+                                  
                                         
 
 
