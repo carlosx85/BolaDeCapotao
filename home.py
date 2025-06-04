@@ -72,26 +72,26 @@ def home_page():
                 visitante_gol = jogo["Visitante_Gol"] or 0
                 visitante = jogo["Visitante"]
 
-                col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 2.5, 0.5, 0.5, 1.5])
-                col1.write(jogo_id)
-                col2.write(seq)
-                col3.write(mandante)
+                col1, col2, col3, col4 = st.columns([ 2.5, 0.5, 0.5, 1.5])
+                #col1.write(jogo_id)
+                #col2.write(seq)
+                col1.write(mandante)
 
 
-                novo_mandante = col4.number_input(
+                novo_mandante = col2.number_input(
                     label="",
                     min_value=0,
                     value=int(mandante_gol),
                     key=f"mandante_gol_{jogo_id}"
                 )
-                novo_visitante = col5.number_input(
+                novo_visitante = col3.number_input(
                     label="",
                     min_value=0,
                     value=int(visitante_gol),
                     key=f"visitante_gol_{jogo_id}"
                 )
                 
-                col6.write(visitante)
+                col4.write(visitante)
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
