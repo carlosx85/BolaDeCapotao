@@ -73,11 +73,10 @@ def home_page():
                 visitante = jogo["Visitante"]
 
                 col1, col2, col3, col4 = st.columns([ 1, 0.5, 0.5, 1])
-                #col1.write(jogo_id)
-                #col2.write(seq)
+
                 
                 with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=30)# Gols Mandante (como texto, para permitir vazio)
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
                     
                 novo_mandante = col2.number_input(
                     label="",
@@ -93,7 +92,7 @@ def home_page():
                 )
                 
                 with col4:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=30)
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
