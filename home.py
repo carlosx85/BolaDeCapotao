@@ -51,7 +51,7 @@ def home_page():
 
         # Interface principal
 
-        st.write(f"Rodada: {rodada}")
+        st.markdown(f"Rodada {rodada} Preenchida pelo usuário")
 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
