@@ -143,7 +143,7 @@ def verificar_rodada_ativa(seq):
     resultado = cursor.fetchone()
     cursor.close()
     conexao.close()
-    return resultado
+    
 
     
 
