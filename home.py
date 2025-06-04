@@ -113,8 +113,7 @@ def home_page():
                 for jogo_id, placar in st.session_state.placares_temp.items():
                     atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
                     atualizadox = atualizar_placar_pendente_palpite()
-                    
-                    st.balloons()
+
                     st.rerun() 
                     
                     if atualizado:
