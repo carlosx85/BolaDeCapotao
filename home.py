@@ -104,20 +104,20 @@ def home_page():
                         "visitante": visitante
                     }
 
-                if st.button("Atualizar Todos"):
-                    sucesso_total = True
-                    for jogo_id, placar in st.session_state.placares_temp.items():
-                        atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
-                        atualizadox = atualizar_placar_pendente_palpite()
-                        
-                        if atualizado:
-                            st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+                    if st.button("Atualizar Todos"):
+                        sucesso_total = True
+                        for jogo_id, placar in st.session_state.placares_temp.items():
+                            atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
+                            atualizadox = atualizar_placar_pendente_palpite()
+                            
+                            if atualizado:
+                                st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+                            else:
+                                sucesso_total = False
+                        if sucesso_total:
+                            st.info("Todos os placares foram atualizados com sucesso.")
                         else:
-                            sucesso_total = False
-                    if sucesso_total:
-                        st.info("Todos os placares foram atualizados com sucesso.")
-                    else:
-                        st.info("Todos os placares foram atualizados com sucesso.")
+                            st.info("Todos os placares foram atualizados com sucesso.")
 
                                     
 
