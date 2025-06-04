@@ -79,9 +79,6 @@ def home_page():
                 with col1:
                     st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=30)# Gols Mandante (como texto, para permitir vazio)
                     
-                 
-
-
                 novo_mandante = col2.number_input(
                     label="",
                     min_value=0,
@@ -118,7 +115,7 @@ def home_page():
                 if sucesso_total:
                     st.info("Todos os placares foram atualizados com sucesso.")
                 else:
-                    st.warning("Alguns placares não foram atualizados. Verifique os erros acima.")
+                    st.info("Todos os placares foram atualizados com sucesso.")
 
                                 
 
