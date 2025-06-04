@@ -57,7 +57,7 @@ def home_page():
 
         st.title("Atualização de Placar - Rodada Ativa")
 
-        jogos = buscar_jogos_ativos()
+        jogos = buscar_jogos_ativos_Pendente()
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
