@@ -1,5 +1,7 @@
 import streamlit as st
 import time
+from streamlit_extras.switch_page_button import switch_page  # Certifique-se de ter instalado esse extra
+
 
 from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
@@ -107,21 +109,30 @@ def home_page():
                     "mandante": mandante,
                     "visitante": visitante
                 }
+ 
 
-            if st.button("Atualizar Todos"):
-                sucesso_total = True
-                for jogo_id, placar in st.session_state.placares_temp.items():
-                    atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
-                    atualizadox = atualizar_placar_pendente_palpite()
-                    
-                    if atualizado:
-                        st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+ 
+
+                if st.button("Atualizar Todos"):
+                    sucesso_total = True
+
+                    for jogo_id, placar in st.session_state.placares_temp.items():
+                        atualizado = atualizar_placar_pendente(seq, jogo_id, placar["mandante_gol"], placar["visitante_gol"])
+                        atualizadox = atualizar_placar_pendente_palpite()
+
+                        if atualizado:
+                            st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+                        else:
+                            sucesso_total = False
+
+                    if sucesso_total:
+                        st.success("Todos os placares foram atualizados com sucesso.")
+                        st.info("Redirecionando para a página inicial em 2 segundos...")
+                        time.sleep(2)  # Espera 2 segundos
+                        switch_page("home")  # Use o nome exato da página como aparece na sidebar
                     else:
-                        sucesso_total = False
-                if sucesso_total:
-                    st.info("Todos os placares foram atualizados com sucesso.")
-                else:
-                    st.info("Todos os placares foram atualizados com sucesso.")
+                        st.warning("Nem todos os placares foram atualizados com sucesso.")
+
 
                                 
 
