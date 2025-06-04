@@ -113,7 +113,7 @@ def home_page():
                 sucesso_total = True
                 for jogo_id, placar in st.session_state.placares_temp.items():
                     atualizado = atualizar_placar_pendente(placar["seq"],jogo_id, placar["mandante_gol"], placar["visitante_gol"])
-                    atualizar_placar_pendente_palpite()
+                    atualizadox = atualizar_placar_pendente_palpite()
                     
                     if atualizado:
                         st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
