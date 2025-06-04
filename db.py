@@ -138,7 +138,7 @@ def normalizar_nome(nome):
 def verificar_rodada_ativa(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
-    consulta = "SELECT Nome,Rodada,StatusRodada FROM  Jogos WHERE Seq = %s AND  StatusRodada = 'Ativo' GROUP BY Nome,Rodada,StatusRodada"
+    consulta = "SELECT Rodada FROM  Jogos WHERE Seq = %s AND  StatusRodada = 'Ativo' GROUP BY Rodada"
     cursor.execute(consulta, (seq,))
     resultado = cursor.fetchone()
     cursor.close()

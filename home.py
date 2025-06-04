@@ -14,7 +14,7 @@ def home_page():
     
 
     email_sn = verificar_email_sn(usuario["seq"])
-    rodada = verificar_rodada_ativa(usuario["rodada"])
+    rodada = verificar_rodada_ativa(usuario["seq"])
     
     
     
