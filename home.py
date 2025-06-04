@@ -74,52 +74,52 @@ def home_page():
                 
                 with st.container():
 
-                col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
-                #col1.write(jogo_id)
-                #col2.write(seq)
-                
-                with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
+                    col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
+                    #col1.write(jogo_id)
+                    #col2.write(seq)
                     
-                novo_mandante = col2.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(mandante_gol),
-                    key=f"mandante_gol_{jogo_id}"
-                )
-                novo_visitante = col3.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(visitante_gol),
-                    key=f"visitante_gol_{jogo_id}"
-                )
-                
-                with col4:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
-
-                st.session_state.placares_temp[jogo_id] = {
-                    "mandante_gol": novo_mandante,
-                    "visitante_gol": novo_visitante,
-                    "mandante": mandante,
-                    "visitante": visitante
-                }
-
-            if st.button("Atualizar Todos"):
-                sucesso_total = True
-                for jogo_id, placar in st.session_state.placares_temp.items():
-                    atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
-                    atualizadox = atualizar_placar_pendente_palpite()
+                    with col1:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
+                        
+                    novo_mandante = col2.number_input(
+                        label="",
+                        min_value=0,
+                        value=int(mandante_gol),
+                        key=f"mandante_gol_{jogo_id}"
+                    )
+                    novo_visitante = col3.number_input(
+                        label="",
+                        min_value=0,
+                        value=int(visitante_gol),
+                        key=f"visitante_gol_{jogo_id}"
+                    )
                     
-                    if atualizado:
-                        st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+                    with col4:
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+
+                    st.session_state.placares_temp[jogo_id] = {
+                        "mandante_gol": novo_mandante,
+                        "visitante_gol": novo_visitante,
+                        "mandante": mandante,
+                        "visitante": visitante
+                    }
+
+                if st.button("Atualizar Todos"):
+                    sucesso_total = True
+                    for jogo_id, placar in st.session_state.placares_temp.items():
+                        atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
+                        atualizadox = atualizar_placar_pendente_palpite()
+                        
+                        if atualizado:
+                            st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+                        else:
+                            sucesso_total = False
+                    if sucesso_total:
+                        st.info("Todos os placares foram atualizados com sucesso.")
                     else:
-                        sucesso_total = False
-                if sucesso_total:
-                    st.info("Todos os placares foram atualizados com sucesso.")
-                else:
-                    st.info("Todos os placares foram atualizados com sucesso.")
+                        st.info("Todos os placares foram atualizados com sucesso.")
 
-                                
+                                    
 
 
 
