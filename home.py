@@ -45,15 +45,10 @@ def home_page():
             st.rerun()          
             
             
-    elif email_sn == "S":     
-        
+    elif email_sn == "S":            
          
 
         # Interface principal
- 
-
-
-
 
         st.title("Atualização de Placar - Rodada Ativa")
 
@@ -63,13 +58,7 @@ def home_page():
             st.warning("Nenhum jogo ativo encontrado.")
         else:
             st.markdown("### Jogos Ativos")
-            header = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5])
-            header[0].markdown("**ID**")
-            header[1].markdown("**Seq**")
-            header[2].markdown("**Mandante**")
-            header[3].markdown("**Visitante**")
-            header[4].markdown("**Gols Mandante**")
-            header[5].markdown("**Gols Visitante**")
+ 
 
             # Armazenar alterações temporárias
             if "placares_temp" not in st.session_state:
@@ -79,9 +68,9 @@ def home_page():
                 jogo_id = jogo["Id"]
                 seq = jogo["Seq"]
                 mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"]
                 mandante_gol = jogo["Mandante_Gol"] or 0
                 visitante_gol = jogo["Visitante_Gol"] or 0
+                visitante = jogo["Visitante"]
 
                 col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5])
                 col1.write(jogo_id)
