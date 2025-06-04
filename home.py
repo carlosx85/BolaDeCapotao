@@ -72,8 +72,9 @@ def home_page():
                 visitante_gol = jogo["Visitante_Gol"] or 0
                 visitante = jogo["Visitante"]
 
-                col1, col2, col3, col4 = st.columns([ 1, 0.5, 0.5, 1])
-
+                col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
+                #col1.write(jogo_id)
+                #col2.write(seq)
                 
                 with col1:
                     st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
