@@ -111,11 +111,8 @@ def home_page():
                 }
  
 
- 
-
                 if st.button("Atualizar Todos"):
                     sucesso_total = True
-
                     for jogo_id, placar in st.session_state.placares_temp.items():
                         atualizado = atualizar_placar_pendente(seq, jogo_id, placar["mandante_gol"], placar["visitante_gol"])
                         atualizadox = atualizar_placar_pendente_palpite()
@@ -126,10 +123,9 @@ def home_page():
                             sucesso_total = False
 
                     if sucesso_total:
-                        st.success("Todos os placares foram atualizados com sucesso.")
-                        st.info("Redirecionando para a página inicial em 2 segundos...")
-                        time.sleep(2)  # Espera 2 segundos
-                        switch_page("home")  # Use o nome exato da página como aparece na sidebar
+                        st.info("Todos os placares foram atualizados com sucesso.")
+                        st.success("Redirecionando para a página inicial...")
+                         
                     else:
                         st.warning("Nem todos os placares foram atualizados com sucesso.")
 
