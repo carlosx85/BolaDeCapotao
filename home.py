@@ -50,89 +50,79 @@ def home_page():
          
 
         # Interface principal
+ 
 
 
-        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
+
+
+        st.title("Atualização de Placar - Rodada Ativa")
+
+        jogos = buscar_jogos_ativos()
 
         if not jogos:
             st.warning("Nenhum jogo ativo encontrado.")
         else:
-            # Cabeçalhos da "tabela"
-            st.markdown(f"Bem-vindo, {usuario['nome']}!")
-    
-            
+            st.markdown("### Jogos Ativos")
+            header = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5])
+            header[0].markdown("**ID**")
+            header[1].markdown("**Seq**")
+            header[2].markdown("**Mandante**")
+            header[3].markdown("**Visitante**")
+            header[4].markdown("**Gols Mandante**")
+            header[5].markdown("**Gols Visitante**")
+
+            # Armazenar alterações temporárias
+            if "placares_temp" not in st.session_state:
+                st.session_state.placares_temp = {}
+
             for i, jogo in enumerate(jogos, start=1):
-                    
-                seq = jogo["Seq"]
                 jogo_id = jogo["Id"]
+                seq = jogo["Seq"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
                 mandante_gol = jogo["Mandante_Gol"] or 0
                 visitante_gol = jogo["Visitante_Gol"] or 0
 
-                with st.container():
-                    st.markdown("---")
+                col1, col2, col3, col4, col5, col6 = st.columns([1, 1, 2.5, 2.5, 1.5, 1.5])
+                col1.write(jogo_id)
+                col2.write(seq)
+                col3.write(mandante)
+                col4.write(visitante)
+
+                novo_mandante = col5.number_input(
+                    label="",
+                    min_value=0,
+                    value=int(mandante_gol),
+                    key=f"mandante_gol_{jogo_id}"
+                )
+                novo_visitante = col6.number_input(
+                    label="",
+                    min_value=0,
+                    value=int(visitante_gol),
+                    key=f"visitante_gol_{jogo_id}"
+                )
+
+                st.session_state.placares_temp[jogo_id] = {
+                    "mandante_gol": novo_mandante,
+                    "visitante_gol": novo_visitante,
+                    "mandante": mandante,
+                    "visitante": visitante
+                }
+
+            if st.button("Atualizar Todos"):
+                sucesso_total = True
+                for jogo_id, placar in st.session_state.placares_temp.items():
+                    atualizado = atualizar_placar_pendente(placar["seq"],jogo_id, placar["mandante_gol"], placar["visitante_gol"])
+                    atualizar_placar_pendente_palpite()
                     
-                    # Colunas horizontais: escudo1 | gol1 | botão | gol2 | escudo2
-                    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
-
-                    # Escudo Mandante
-                    with col1:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
-                    
-                    with col2:
-                        mandante_key = f"mandante_gol_{seq}"
-                        mandante_gol_str = st.text_input(
-                            label="",
-                            value=st.session_state.get(mandante_key, ""),
-                            placeholder="",
-                            key=f"mandante_gol_{i}"
-                        )
-
-                    # Gols Visitante (como texto, para permitir vazio)
-                    with col3:
-                        visitante_key = f"visitante_gol_{seq}"
-                        visitante_gol_str = st.text_input(
-                            label="",
-                            value=st.session_state.get(visitante_key, ""),
-                            placeholder="",
-                            key=f"visitante_gol_{i}"
-    )
-
-
-                    # Escudo Visitante
-                    with col4:
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=100)
-                        
-                    
-                    # Botão centralizado
-                    with col5:
-                        
- 
-                                
-                        if st.button("Salvar", key=f"btn_{i}"):
-                            if not mandante_gol_str.strip() or not visitante_gol_str.strip():
-                                st.error("⚠️ Preencha todos os campos de gols.")
-                            else:
-                                try:
-                                    novo_mandante_gol = int(mandante_gol_str)
-                                    novo_visitante_gol = int(visitante_gol_str)
-
-                                    sucesso  = atualizar_placar_pendente(seq, jogo_id, novo_mandante_gol, novo_visitante_gol)
-                                    sucessox = atualizar_placar_pendente_palpite()
-                                    
-                                     # 🧹 Limpar campos após salvar
-                                    st.session_state[mandante_key] = ""
-                                    st.session_state[visitante_key] = ""
-                                    
-                                    st.rerun() 
-                                    if sucesso:
-                                        st.success("✅ Placar atualizado com sucesso!")
-                                        
-
-
-                                except ValueError:
-                                    st.error("⚠️ Os valores devem ser números inteiros.")
+                    if atualizado:
+                        st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
+                    else:
+                        sucesso_total = False
+                if sucesso_total:
+                    st.info("Todos os placares foram atualizados com sucesso.")
+                else:
+                    st.warning("Alguns placares não foram atualizados. Verifique os erros acima.")
 
                                 
 
