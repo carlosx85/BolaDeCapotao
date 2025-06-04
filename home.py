@@ -40,7 +40,7 @@ def home_page():
                 time.sleep(2)
                 
                 my_bar.empty()
-            st.success("Agora você está participando!")
+            st.success(f"Agora você está participando!" {usuario["seq"]})
             st.balloons()            
             st.rerun()          
             
