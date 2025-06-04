@@ -65,12 +65,13 @@ def home_page():
                 st.session_state.placares_temp = {}
 
             for i, jogo in enumerate(jogos, start=1):
-                jogo_id = jogo["Id"]
-                seq = jogo["Seq"]
+
                 mandante = jogo["Mandante"]
                 mandante_gol = jogo["Mandante_Gol"] or 0
                 visitante_gol = jogo["Visitante_Gol"] or 0
                 visitante = jogo["Visitante"]
+                jogo_id = jogo["Id"]
+                seq = jogo["Seq"]
                 
                 
 
