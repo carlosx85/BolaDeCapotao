@@ -74,7 +74,7 @@ def home_page():
                 
                 
 
-                col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+                col1, col2, col3, col4 = st.columns([1, 0.5, 0.5, 1])
                 #col1.write(jogo_id)
                 #col2.write(seq)
                 
