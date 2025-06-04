@@ -114,6 +114,9 @@ def home_page():
                     atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
                     atualizadox = atualizar_placar_pendente_palpite()
                     
+                    st.Ballons
+                    st.rerun() 
+                    
                     if atualizado:
                         st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
                     else:
