@@ -77,7 +77,7 @@ def home_page():
                 #col2.write(seq)
                 
                 with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=100)# Gols Mandante (como texto, para permitir vazio)
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=30)# Gols Mandante (como texto, para permitir vazio)
                     
                  
 
@@ -95,7 +95,8 @@ def home_page():
                     key=f"visitante_gol_{jogo_id}"
                 )
                 
-                col4.write(visitante)
+                with col4:
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=30)
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
