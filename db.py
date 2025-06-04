@@ -134,6 +134,17 @@ def normalizar_nome(nome):
     nome = unicodedata.normalize('NFKD', nome).encode('ASCII', 'ignore').decode('utf-8')
     return nome.lower().replace(" ", "-")
 
+
+def verificar_rodada_ativa(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT Nome,Rodada,StatusRodada FROM  Jogos WHERE Seq = %s AND  StatusRodada = 'Ativo' GROUP BY Nome,Rodada,StatusRodada"
+    cursor.execute(consulta, (seq,))
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    return resultado
+
     
 
 

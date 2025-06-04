@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -10,19 +10,13 @@ def home_page():
         st.rerun()
         return
 
-    usuario = st.session_state["usuario_logado"]
-
-    
-    
-    
-    
-    
-    
-    
-    
+    usuario = st.session_state["usuario_logado"]  
     
 
     email_sn = verificar_email_sn(usuario["seq"])
+    rodada = verificar_rodada_ativa(usuario["seq"])
+    
+        
 
     if email_sn == "N":
         st.info("Você ainda não está participando.")
@@ -40,7 +34,7 @@ def home_page():
                 time.sleep(2)
                 
                 my_bar.empty()
-            st.success(f"Agora você está participando!" {usuario["seq"]})
+            st.success("Agora você está participando!" )
             st.balloons()            
             st.rerun()          
             
@@ -50,7 +44,7 @@ def home_page():
 
         # Interface principal
 
-        st.title("Atualização de Placar - Rodada Ativa")
+        st.title(f"Atualização de Placar - Rodada Ativa"{rodada})
 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
