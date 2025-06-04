@@ -49,13 +49,14 @@ def home_page():
     elif email_sn == "S":            
          
 
-        # Interface principal
-        st.title(f"Rodada {rodada} Preenchida pelo usuário :sunglasses:")
          
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
-            st.warning("Nenhum jogo ativo encontrado.")
+            
+        # Interface principal
+            st.title(f"Rodada {rodada} Preenchida pelo usuário :sunglasses:")
+          
         else:
             st.markdown("### Jogos Ativos")
  
