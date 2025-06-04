@@ -45,7 +45,7 @@ def home_page():
 
         # Interface principal
 
-        st.title("Atualização de Placar - Rodada Ativa")
+        st.title(f"Atualização de Placar - Rodada Ativa"{usuario["seq"]})
 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
