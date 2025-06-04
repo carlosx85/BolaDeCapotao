@@ -16,7 +16,8 @@ def home_page():
     email_sn = verificar_email_sn(usuario["seq"])
     rodada = verificar_rodada_ativa(usuario["seq"])
     
-        
+    
+    
 
     if email_sn == "N":
         st.info("Você ainda não está participando.")
@@ -44,7 +45,7 @@ def home_page():
 
         # Interface principal
 
-        st.title(f"Atualização de Placar - Rodada Ativa"{rodada})
+        st.title("Atualização de Placar - Rodada Ativa")
 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
