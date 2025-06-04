@@ -117,10 +117,7 @@ def home_page():
                         atualizado = atualizar_placar_pendente(seq, jogo_id, placar["mandante_gol"], placar["visitante_gol"])
                         atualizadox = atualizar_placar_pendente_palpite()
 
-                        if atualizado:
-                            st.success(f"{placar['mandante']} {placar['mandante_gol']} x {placar['visitante_gol']} {placar['visitante']}")
-                        else:
-                            sucesso_total = False
+ 
 
                     if sucesso_total:
                         st.info("Todos os placares foram atualizados com sucesso.")
