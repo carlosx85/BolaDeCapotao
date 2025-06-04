@@ -74,7 +74,7 @@ def home_page():
                 
                 
 
-                col1, col2, col3, col4 = st.columns([1.5, 1, 1, 1.5])
+                col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
                 #col1.write(jogo_id)
                 #col2.write(seq)
                 
@@ -87,6 +87,9 @@ def home_page():
                     value=int(mandante_gol),
                     key=f"mandante_gol_{jogo_id}"
                 )
+                
+                
+                
                 novo_visitante = col3.number_input(
                     label="",
                     min_value=0,
