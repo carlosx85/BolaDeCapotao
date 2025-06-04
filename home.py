@@ -13,8 +13,14 @@ def home_page():
     usuario = st.session_state["usuario_logado"]  
     
 
-    email_sn = verificar_email_sn(usuario["seq"])
-    rodada = verificar_rodada_ativa(usuario["seq"])
+    email_sn = verificar_email_sn(usuario["seq"])   
+   
+    
+    dados_rodada = verificar_rodada_ativa(seq) 
+    rodada = dados_rodada["Rodada"]
+ 
+ 
+ 
     
     
     
@@ -45,7 +51,7 @@ def home_page():
 
         # Interface principal
 
-        st.title(f"Atualização de Placar - Rodada Ativa {rodada}")
+        st.write(f"Rodada: {rodada}")
 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
