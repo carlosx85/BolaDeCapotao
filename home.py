@@ -50,9 +50,8 @@ def home_page():
          
 
         # Interface principal
-
-        st.markdown(f"Rodada {rodada} Preenchida pelo usuário")
-
+        st.title(f"Rodada {rodada} Preenchida pelo usuário :sunglasses:")
+         
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
 
         if not jogos:
