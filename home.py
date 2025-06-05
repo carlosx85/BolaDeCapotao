@@ -3,7 +3,7 @@ import time
 import pandas as pd
 import urllib.parse
 
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import buscar_jogos_ativos_preenchido,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -56,7 +56,96 @@ def home_page():
             
             
         # Página Principal
-            st.title("Rodada Preenchida pelo usuário :sunglasses:")            
+            st.title("Rodada Preenchida pelo usuário :sunglasses:")     
+            
+            
+            
+     
+            st.markdown("### Jogos Ativos")
+            
+            
+            jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
+
+            # Armazenar alterações temporárias
+            if "placares_temp" not in st.session_state:
+                st.session_state.placares_temp = {}
+
+            for i, jogo in enumerate(jogosx, start=1):
+
+                mandante = jogo["Mandante"]
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
+                visitante = jogo["Visitante"]
+                jogo_id = jogo["Id"]
+                seq = jogo["Seq"]
+                
+                
+
+                col1, col2, col3, col4 = st.columns([1, 0.5, 0.5, 1])
+                #col1.write(jogo_id)
+                #col2.write(seq)
+                
+                with col1:
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
+                    
+                novo_mandante = col2.number_input(
+                    label="",
+                    min_value=0,
+                    value=int(mandante_gol),
+                    key=f"mandante_gol_{jogo_id}"
+                )
+                
+                
+                
+                novo_visitante = col3.number_input(
+                    label="",
+                    min_value=0,
+                    value=int(visitante_gol),
+                    key=f"visitante_gol_{jogo_id}"
+                )
+                
+                with col4:
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+
+                st.session_state.placares_temp[jogo_id] = {
+                    "mandante_gol": novo_mandante,
+                    "visitante_gol": novo_visitante,
+                    "mandante": mandante,
+                    "visitante": visitante
+                }
+
+
+
+                                
+       
+            
+            
+            
+            
+            
+            
+                   
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
           
         else:
             st.markdown("### Jogos Ativos")
