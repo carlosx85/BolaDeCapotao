@@ -54,7 +54,7 @@ def home_page():
         if not jogos:
             
         # Página Principal
-            st.title(f"Rodada {rodada} Preenchida pelo usuário :sunglasses:")      
+            #st.title(f"Rodada {rodada} Preenchida pelo usuário :sunglasses:")      
             
             
             
