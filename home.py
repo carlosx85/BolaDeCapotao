@@ -70,33 +70,22 @@ def home_page():
             if "placares_temp" not in st.session_state:
                 st.session_state.placares_temp = {}
 
-            for i, jogo in enumerate(jogosx, start=1):
+            jogos_por_linha = 3
+            linhas = [jogosx[i:i+jogos_por_linha] for i in range(0, len(jogosx), jogos_por_linha)]
 
-                mandante = jogo["Mandante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
-                visitante = jogo["Visitante"]
-                jogo_id = jogo["Id"]
-                seq = jogo["Seq"]
+            for linha in linhas:
+                colunas = st.columns(jogos_por_linha)
                 
-                
+                for i, jogo in enumerate(linha):
+                    mandante = jogo["Mandante"]
+                    mandante_gol = jogo["Mandante_Gol"] or 0
+                    visitante_gol = jogo["Visitante_Gol"] or 0
+                    visitante = jogo["Visitante"]
 
-                col1, col2, col3, col4 = st.columns([1, 0.5, 0.5, 1])
-                #col1.write(jogo_id)
-                #col2.write(seq)
-                
-                with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
-                    
-                with col2:
-                    st.write(mandante_gol)
-                
-                
-                with col3:
-                    st.write(visitante_gol)
-                
-                with col4:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
+                    with colunas[i]:
+                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=40)
+                        st.write(f"{mandante_gol} x {visitante_gol}")
+                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=40)
 
 
 
