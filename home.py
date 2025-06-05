@@ -60,7 +60,7 @@ def home_page():
             
 
 
-            df_jogos = buscar_jogos_ativos_preenchido()
+            df_jogos = buscar_jogos_ativos_preenchido(usuario["seq"])
 
             if df_jogos.empty:
                 st.info("Nenhum jogo pendente.")
