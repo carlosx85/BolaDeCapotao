@@ -1,4 +1,7 @@
 import streamlit as st
+ 
+import pandas as pd
+import urllib.parse
 import time
 
 from db import buscar_jogos_ativos_preenchido,verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
