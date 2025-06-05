@@ -144,6 +144,19 @@ def verificar_rodada_ativa(seq):
     cursor.close()
     conexao.close()
     return resultado
+
+def buscar_jogos_ativos_oreenchido(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    query = """
+        SELECT  * FROM Jogos WHERE StatusRodada LIKE 'Ativo' AND Seq =  %s  AND  Palpite <> 'Pendente'        
+    """
+    cursor.execute(query, (seq, ))
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return resultados
     
 
     

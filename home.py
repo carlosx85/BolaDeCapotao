@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-from db import verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import buscar_jogos_ativos_preenchido,verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -54,8 +54,67 @@ def home_page():
 
         if not jogos:
             
-        # Interface principal
+        # Página Principal
             st.title(f"Rodada {rodada} Preenchida pelo usuário :sunglasses:")
+            
+            
+
+
+            df_jogos = buscar_jogos_ativos_preenchido()
+
+            if df_jogos.empty:
+                st.info("Nenhum jogo pendente.")
+                return
+
+            for _, row in df_jogos.iterrows():
+                with st.form(key=f"form_{row['ID']}"):
+                    # Layout em linha com 5 colunas: escudo, input, input, escudo, botão
+                    cols = st.columns([1, 1])
+
+                    mandante_img = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Mandante'].lower())}.png"
+                    visitante_img = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Visitante'].lower())}.png"
+
+                    with cols[0]:
+                        st.image(mandante_img, width=80)
+
+                    with cols[1]:
+                        st.image(visitante_img, width=80)
+
+  
+
+ 
+                    
+                    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
           
         else:
             st.markdown("### Jogos Ativos")
