@@ -56,12 +56,8 @@ def home_page():
             
             
         # Página Principal
-            st.markdown("Rodada Preenchida pelo usuário :sunglasses:")     
-            
-            
-            
      
-            st.markdown("### Jogos Ativos")
+            st.markdown("### Rodada  Ativa")
             
             
             jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
