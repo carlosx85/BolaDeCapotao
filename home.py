@@ -1,7 +1,9 @@
 import streamlit as st
 import time
+import pandas as pd
+import urllib.parse
 
-from db import verificar_rodada_ativa,buscar_jogos_ativos_preenchido,verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import buscar_jogos_pendentes,verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -60,7 +62,7 @@ def home_page():
             
 
 
-            df_jogos = buscar_jogos_ativos_preenchido(usuario["seq"])
+            df_jogos = buscar_jogos_pendentes()
 
             if df_jogos.empty:
                 st.info("Nenhum jogo pendente.")
@@ -69,7 +71,7 @@ def home_page():
             for _, row in df_jogos.iterrows():
                 with st.form(key=f"form_{row['ID']}"):
                     # Layout em linha com 5 colunas: escudo, input, input, escudo, botão
-                    cols = st.columns([1, 1])
+                    cols = st.columns([1, 0.5, 0.5, 1, 0.5])
 
                     mandante_img = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Mandante'].lower())}.png"
                     visitante_img = f"https://boladecapotao.com/times/{urllib.parse.quote(row['Visitante'].lower())}.png"
@@ -78,11 +80,26 @@ def home_page():
                         st.image(mandante_img, width=80)
 
                     with cols[1]:
+                        gols_mandante = st.number_input(
+                            "", min_value=0, value=row["Mandante_Gol"],
+                            key=f"gm_{row['ID']}"
+                        )
+
+                    with cols[2]:
+                        gols_visitante = st.number_input(
+                            "", min_value=0, value=row["Visitante_Gol"],
+                            key=f"gv_{row['ID']}"
+                        )
+
+                    with cols[3]:
                         st.image(visitante_img, width=80)
 
-  
+                    with cols[4]:
+                        salvar = st.form_submit_button("Salvar")
 
- 
+                    if salvar:
+                        salvar_gols(row["ID"], gols_mandante, gols_visitante)
+                        st.success("Resultado salvo com sucesso!")
                     
                     
             
