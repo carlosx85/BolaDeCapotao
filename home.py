@@ -68,7 +68,7 @@ def home_page():
 
             for jogo in jogosx:
                 mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"]
+                visitante = jogo["Visitante"] 
                 palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
                 palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
                 mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
