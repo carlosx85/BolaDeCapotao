@@ -75,18 +75,20 @@ def home_page():
                 col1, col2, col3 = st.columns([1, 2, 1])  # Ajusta as larguras das colunas
 
                 with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=40)
+                   
 
                 with col2:
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=40)
                     st.markdown(
                         f"<div style='text-align:center; font-size:18px; font-weight:bold;'>"
                         f"({mandante_gol}) x ({visitante_gol})"
                         f"</div>",
                         unsafe_allow_html=True
                     )
+                st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=40)
 
                 with col3:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=40)
+        
 
 
 
