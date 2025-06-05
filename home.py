@@ -88,21 +88,12 @@ def home_page():
                 with col1:
                     st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
                     
-                novo_mandante = col2.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(mandante_gol),
-                    key=f"mandante_gol_{jogo_id}"
-                )
+                with col2:
+                    st.write(mandante_gol)
                 
                 
-                
-                novo_visitante = col3.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(visitante_gol),
-                    key=f"visitante_gol_{jogo_id}"
-                )
+                with col3:
+                    st.write(visitante_gol)
                 
                 with col4:
                     st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
