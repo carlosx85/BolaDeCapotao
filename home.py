@@ -56,7 +56,7 @@ def home_page():
             
             
         # Página Principal
-            st.title("Rodada Preenchida pelo usuário :sunglasses:")     
+            st.markdown("Rodada Preenchida pelo usuário :sunglasses:")     
             
             
             
