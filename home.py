@@ -17,7 +17,7 @@ def home_page():
    
     
     dados_rodada = verificar_rodada_ativa(usuario["seq"]) 
-    rodada = dados_rodada["Rodada"]
+    rodada = dados_rodada["rodada"]
  
  
  
