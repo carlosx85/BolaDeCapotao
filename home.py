@@ -51,7 +51,6 @@ def home_page():
 
          
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
-        jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
 
         if not jogos:
             
@@ -65,13 +64,13 @@ def home_page():
             st.markdown("### Jogos Ativos")
             
             
-            
+            jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
 
             for jogo in jogosx:
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else "-"
-                visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else "-"
+                mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
+                visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
 
                 st.markdown(
                     f"""
