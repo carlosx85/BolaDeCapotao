@@ -69,14 +69,16 @@ def home_page():
             for jogo in jogosx:
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"]
-                mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
-                visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
-
+                palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
+                palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
+                mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
+                visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
                 st.markdown(
                     f"""
                     <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                        <span style="font-size: 24px; font-weight: bold;">{mandante_gol} x {visitante_gol}</span>
                         <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="40" />
-                        <span style="font-size: 18px; font-weight: bold;">({mandante_gol}) x ({visitante_gol})</span>
+                        <span style="font-size: 24px; font-weight: bold;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
                         <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="40" />
                     </div>
                     """,
