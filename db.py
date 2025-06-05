@@ -145,7 +145,7 @@ def verificar_rodada_ativa(seq):
     conexao.close()
     return resultado
 
-def buscar_jogos_ativos_oreenchido(seq):
+def buscar_jogos_ativos_preenchido(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
 
