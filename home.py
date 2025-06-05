@@ -68,9 +68,9 @@ def home_page():
 
             for jogo in jogosx:
                 mandante = jogo["Mandante"]
-                mandante_gol = jogo["Mandante_Gol"] 
-                visitante_gol = jogo["Visitante_Gol"]  
                 visitante = jogo["Visitante"]
+                mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else "-"
+                visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else "-"
 
                 st.markdown(
                     f"""
@@ -81,7 +81,7 @@ def home_page():
                     </div>
                     """,
                     unsafe_allow_html=True
-                )
+    )
 
 
 
