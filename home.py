@@ -68,8 +68,8 @@ def home_page():
 
             for jogo in jogosx:
                 mandante = jogo["Mandante"]
-                mandante_gol = jogo["Mandante_Gol"] or 0
-                visitante_gol = jogo["Visitante_Gol"] or 0
+                mandante_gol = jogo["Mandante_Gol"] 
+                visitante_gol = jogo["Visitante_Gol"]  
                 visitante = jogo["Visitante"]
 
                 st.markdown(
@@ -175,7 +175,6 @@ def home_page():
                 }
 
             if st.button("Atualizar Todos"):
-                st.cache_data.clear()
                 sucesso_total = True
                 for jogo_id, placar in st.session_state.placares_temp.items():
                     atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
