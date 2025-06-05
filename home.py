@@ -64,7 +64,7 @@ def home_page():
             st.markdown("### Jogos Ativos")
             
             
-            jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
+            jogosx = buscar_jogos_ativos_preenchido(6) 
 
             for jogo in jogosx:
                 mandante = jogo["Mandante"]
