@@ -67,25 +67,28 @@ def home_page():
             jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
 
             # Armazenar alterações temporárias
-            if "placares_temp" not in st.session_state:
-                st.session_state.placares_temp = {}
+            for jogo in jogosx:
+                mandante = jogo["Mandante"]
+                mandante_gol = jogo["Mandante_Gol"] or 0
+                visitante_gol = jogo["Visitante_Gol"] or 0
+                visitante = jogo["Visitante"]
 
-            jogos_por_linha = 3
-            linhas = [jogosx[i:i+jogos_por_linha] for i in range(0, len(jogosx), jogos_por_linha)]
+                col1, col2, col3 = st.columns([1, 3, 1])  # Ajuste proporcional das larguras
 
-            for linha in linhas:
-                colunas = st.columns(jogos_por_linha)
-                
-                for i, jogo in enumerate(linha):
-                    mandante = jogo["Mandante"]
-                    mandante_gol = jogo["Mandante_Gol"] or 0
-                    visitante_gol = jogo["Visitante_Gol"] or 0
-                    visitante = jogo["Visitante"]
+                with col1:
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=40)
 
-                    with colunas[i]:
-                        st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=40)
-                        st.write(f"{mandante_gol} x {visitante_gol}")
-                        st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=40)
+                with col2:
+                    st.markdown(
+                        f"<div style='text-align:center; font-size:16px;'>"
+                        f"{mandante} ({mandante_gol}) x ({visitante_gol}) {visitante}"
+                        f"</div>",
+                        unsafe_allow_html=True
+                    )
+
+                with col3:
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=40)
+
 
 
 
