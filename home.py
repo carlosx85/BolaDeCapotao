@@ -67,6 +67,7 @@ def home_page():
             jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
 
             for jogo in jogosx:
+                pontos = jogo["Pontos"]
                 mandante = jogo["Mandante"]
                 visitante = jogo["Visitante"] 
                 palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
@@ -80,6 +81,7 @@ def home_page():
                         <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="40" />
                         <span style="font-size: 26px; font-weight: bold;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
                         <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="40" />
+                         <span style="font-size: 26px; font-weight: bold;">  {pontos}</span>
                     </div>
                     """,
                     unsafe_allow_html=True
