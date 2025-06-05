@@ -3,7 +3,7 @@ import time
 import pandas as pd
 import urllib.parse
 
-from db import verificar_rodada_ativa,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
