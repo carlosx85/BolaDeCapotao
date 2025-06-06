@@ -63,18 +63,13 @@ def home_page():
             rodadaativa = verificar_rodada_ativa(usuario["seq"])
             rodada_ativa = rodadaativa["Rodada"]
             
-            redadainicio = rodada_inicio(usuario["seq"],rodada_ativa)               
+            
+            redadainicio = rodada_inicio(usuario["seq"],rodada_ativa)   
+            rodada_ativa = redadainicio["Rodada"]            
            
             
 
             st.markdown(f"### Rodada  Ativaxx{rodada_ativa}")  
-            
-            
-             
- 
-                
-                
-                      
             
             jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])               
 
