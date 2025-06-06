@@ -66,13 +66,13 @@ def home_page():
             
             rodadainicio = rodada_inicio(usuario["seq"],rodada_ativa) 
         
-            
+            rodada_inicio = rodadainicio["Rodada"] 
               
                    
            
             
 
-            st.markdown(f"### Rodada  Ativaxx{rodada_ativa}")  
+            st.markdown(f"### Rodada  Ativa{rodada_ativa}")  
             
             jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])               
 
