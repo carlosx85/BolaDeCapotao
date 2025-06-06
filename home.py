@@ -69,7 +69,7 @@ def home_page():
             st.markdown(f"### Rodada  Ativaxx{rodada_ativa}")  
             
             
-            mandante_gol = rodadaativa['Mandante_Gol']
+             
 
             # Verificação
             if mandante_gol is None or pd.isna(mandante_gol):
