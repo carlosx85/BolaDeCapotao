@@ -67,7 +67,7 @@ def home_page():
                 
                 
                             
-            st.markdown(f"### Rodada  Ativaxx{rodada_ativa}{(usuario["Nome"])}")  
+            st.markdown(f"### Rodada  Ativaxx{rodada_ativa}{(usuario["nome"])}")  
                 
                 
                       
