@@ -167,7 +167,7 @@ def rodada_inicio(seq,rodada_ativa):
         SELECT Mandante_Gol,Rodada,Seq,StatusRodada FROM Jogos_Inicio  WHERE Mandante_Gol > =0 AND Seq =%s AND Rodada = %s        
     """
     cursor.execute(query, (seq,rodada_ativa ))
-    resultados = cursor.fetchall()
+    resultados = cursor.fetchone()
     cursor.close()
     conexao.close()
     return resultados    
