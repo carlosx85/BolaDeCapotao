@@ -62,6 +62,7 @@ def home_page():
         
             rodadaativa = verificar_rodada_ativa(usuario["seq"])
             rodada_ativa = rodadaativa["Rodada"]
+            seqx = rodadaativa["seq"]
             
             redadainicio = rodada_inicio(usuario["seq"],rodada_ativa)   
              
@@ -72,7 +73,7 @@ def home_page():
                 
                 
                             
-            st.markdown(f"### Rodada  Ativaxx{rodada_ativa} - {mandante_gol}")  
+            st.markdown(f"### Rodada  Ativaxx{rodada_ativa} - {seqx}")  
                 
                 
                       
