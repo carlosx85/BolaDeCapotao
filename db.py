@@ -159,14 +159,14 @@ def buscar_jogos_ativos_preenchido(seq):
     return resultados
     
 
-def rodada_inicio(seq,rodada):
+def rodada_inicio(seq,rodada_ativa):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
 
     query = """
         SELECT * FROM Jogos_Inicio  WHERE Mandante_Gol > =0 AND Seq =%s AND Rodada = %s        
     """
-    cursor.execute(query, (seq,rodada, ))
+    cursor.execute(query, (seq,rodada_ativa, ))
     resultados = cursor.fetchall()
     cursor.close()
     conexao.close()
