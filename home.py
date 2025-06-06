@@ -62,10 +62,24 @@ def home_page():
         
             rodadaativa = verificar_rodada_ativa(usuario["seq"])
             rodada_ativa = rodadaativa["Rodada"]
+            mandante_gol = rodadaativa["Mandante_Gol"]
             
             
 
-            st.markdown(f"### Rodada  Ativaxx{rodada_ativa}")            
+            st.markdown(f"### Rodada  Ativaxx{rodada_ativa}")  
+            
+            
+            mandante_gol = rodadaativa['Mandante_Gol']
+
+            # Verificação
+            if mandante_gol is None or pd.isna(mandante_gol):
+                st.write("Fim de Arquivo")
+            else:
+                st.write("Início de Arquivo")    
+                
+                
+                
+                      
             
             jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])               
 
