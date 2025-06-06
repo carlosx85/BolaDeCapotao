@@ -65,7 +65,7 @@ def home_page():
             
             
             redadainicio = rodada_inicio(usuario["seq"],rodada_ativa)   
-            rodada_ativa = redadainicio["Rodada"]            
+            status_rodada = redadainicio["statusrodada"]            
            
             
 
