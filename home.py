@@ -3,7 +3,7 @@ import time
 import pandas as pd
 import urllib.parse
 
-from db import buscar_jogos_ativos_preenchido,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import verificar_rodada_ativa,buscar_jogos_ativos_preenchido,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
 def home_page():
     if "usuario_logado" not in st.session_state:
@@ -56,11 +56,18 @@ def home_page():
             
             
         # Página Principal
-     
-            st.markdown("### Rodada  Ativa")
+        
+        
+        
+        
+            rodadaativa = verificar_rodada_ativa(usuario["seq"])
+            rodada_ativa = rodadaativa["Rodada"]
             
             
-            jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
+
+            st.markdown(f"### Rodada  Ativa{rodada_ativa}")            
+            
+            jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])               
 
             for jogo in jogosx:
                 pontos = jogo["Pontos"]
@@ -74,9 +81,9 @@ def home_page():
                     f"""
                     <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
                         <span style="font-size: 26px; font-weight: ;">{mandante_gol} x {visitante_gol}</span>
-                        <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="40" />
+                        <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
                         <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
-                        <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="40" />
+                        <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
                          <span style="font-size: 26px; font-weight: ;">  {pontos}</span>
                     </div>
                     """,
