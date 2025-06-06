@@ -63,7 +63,7 @@ def home_page():
             rodadaativa = verificar_rodada_ativa(usuario["seq"])
             rodada_ativa = rodadaativa["Rodada"]
             
-            rodadaativa = rodada_inicio(6,1)               
+            rodadaativa = rodada_inicio(seq,rodada_ativa)               
             mandante_gol = rodada_inicio["Mandante_Gol"]
             
             
@@ -72,12 +72,7 @@ def home_page():
             
             
              
-
-            # Verificação
-            if mandante_gol is None or pd.isna(mandante_gol):
-                st.write("Fim de Arquivo")
-            else:
-                st.write("Início de Arquivo")    
+ 
                 
                 
                 
