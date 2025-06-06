@@ -70,12 +70,7 @@ def home_page():
 
             
             
-             
-            mandante_gol = redadainicio["Mandante_Gol"]
- 
-                            
-
-                
+       
                 
                       
             
