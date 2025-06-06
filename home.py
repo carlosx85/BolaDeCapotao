@@ -65,7 +65,7 @@ def home_page():
             
             redadainicio = rodada_inicio(usuario["seq"],rodada_ativa)   
              
-            mandante_gol = rodada_inicio["Mandante_Gol"]
+            mandante_gol = redadainicio["Mandante_Gol"]
 
  
                 
