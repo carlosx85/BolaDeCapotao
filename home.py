@@ -71,10 +71,14 @@ def home_page():
             if redadainicio["Mandante_Gol"] is None or pd.isna(redadainicio["Mandante_Gol"]):
                 st.write("Fim de Arquivo")
             else:
+                st.write("Início de Arquivo")
+                
+                
+                
                             
                 st.markdown(f"### Rodada  Ativaxx{rodada_ativa}")  
-                
-                
+                    
+                    
                         
                 
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])               
