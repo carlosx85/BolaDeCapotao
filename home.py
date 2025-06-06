@@ -72,12 +72,7 @@ def home_page():
             
              
             mandante_gol = redadainicio["Mandante_Gol"]
-
-            # Verificação
-            if mandante_gol is None or pd.isna(mandante_gol):
-                st.write("Fim de Arquivo")
-            else:
-                st.write("Início de Arquivo")
+ 
                             
 
                 
