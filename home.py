@@ -71,7 +71,7 @@ def home_page():
  
     
             # Verificação
-            if rodadainiciox["Rodada_Ativa_SN"] == 'N':
+            if rodadaativa == 'N':
                 st.write("Fim de Arquivo")
             else:
                 st.write("Início de Arquivo")
