@@ -164,7 +164,7 @@ def rodada_inicio(seq,rodada_ativa):
     cursor = conexao.cursor(dictionary=True)
 
     query = """
-        SELECT Seq,Mandante_Gol,Rodada,Seq,StatusRodada FROM Jogos_Inicio  WHERE Mandante_Gol >=0 AND Seq =%s AND Rodada = %s  and Rodada_ATiva_SN = 'S'       
+        SELECT Seq,Mandante_Gol,Rodada,Seq,StatusRodada,Rodada_Ativa_SN FROM Jogos_Inicio  WHERE  Seq =%s AND Rodada = %s          
     """
     cursor.execute(query, (seq,rodada_ativa))
     resultados = cursor.fetchone()
