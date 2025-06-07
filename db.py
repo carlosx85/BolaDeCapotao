@@ -164,7 +164,7 @@ def rodada_inicio(seq,rodada_ativa):
     cursor = conexao.cursor(dictionary=True)
 
     query = """
-        SELECT Seq,Mandante_Gol,Rodada,Seq,StatusRodada,Rodada_Ativa_SN FROM Jogos_Inicio  WHERE  Seq =%s AND Rodada = %s          
+        SELECT Seq,Mandante_Gol,Rodada,Seq,StatusRodada,MAX(Rodada_Ativa_SN) AS Rodada_Ativa_SN FROM Jogos_Inicio  WHERE  Seq =%s AND Rodada = %s          
     """
     cursor.execute(query, (seq,rodada_ativa))
     resultados = cursor.fetchone()
