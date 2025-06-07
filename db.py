@@ -164,13 +164,23 @@ def rodada_inicio(seq,rodada_ativa):
     cursor = conexao.cursor(dictionary=True)
 
     query = """
-        SELECT Mandante_Gol,Rodada,Seq,StatusRodada FROM Jogos_Inicio  WHERE Mandante_Gol >=0 AND Seq =%s AND Rodada = %s        
+        SELECT Seq,Mandante_Gol,Rodada,Seq,StatusRodada FROM Jogos_Inicio  WHERE Mandante_Gol >=0 AND Seq =%s AND Rodada = %s  and Rodada_ATiva_SN = 'S'       
     """
     cursor.execute(query, (seq,rodada_ativa))
     resultados = cursor.fetchone()
     cursor.close()
     conexao.close()
     return resultados    
+
+
+def rodada_inicio_ativar():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Jogos SET Rodada_ATiva_SN = 'S'  WHERE StatusRodada = 'Ativo' AND Mandante_Gol >=0 and Rodada_ATiva_SN = 'N';"
+    cursor.execute(atualiza, ())
+    conexao.commit()
+    cursor.close()
+    conexao.close()
 
 
 
