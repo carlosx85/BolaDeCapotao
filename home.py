@@ -72,42 +72,64 @@ def home_page():
     
             # Verificação
             if rodadaativa == 'N':
-                st.write("Fim de Arquivo")
-            else:
-                st.write("Início de Arquivo")
-      
-                
-        
-         
-              
-                   
+                st.write("Fim de Arquivo")               
+            
+
+                st.markdown(f"### Rodada  Ativa{rodada_ativa} {rodadaativa}")              
+                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
+
+                for jogo in jogosx:
+                    pontos = jogo["Pontos"]
+                    mandante = jogo["Mandante"]
+                    visitante = jogo["Visitante"] 
+                    palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
+                    palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
+                    mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
+                    visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
+                    st.markdown(
+                        f"""
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
            
-            
+                            <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
+                            <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
+                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
+               
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+        )
 
-            st.markdown(f"### Rodada  Ativa{rodada_ativa} {rodadaativa}")  
-            
-            jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])               
 
-            for jogo in jogosx:
-                pontos = jogo["Pontos"]
-                mandante = jogo["Mandante"]
-                visitante = jogo["Visitante"] 
-                palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
-                palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
-                mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
-                visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
-                st.markdown(
-                    f"""
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
-                        <span style="font-size: 26px; font-weight: ;">{mandante_gol} x {visitante_gol}</span>
-                        <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
-                        <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
-                        <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
-                         <span style="font-size: 26px; font-weight: ;">  {pontos}</span>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-    )
+
+            else:
+                
+                
+                
+                st.write("Início de Arquivo")               
+
+                st.markdown(f"### Rodada  Ativa{rodada_ativa} {rodadaativa}")              
+                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
+
+                for jogo in jogosx:
+                    pontos = jogo["Pontos"]
+                    mandante = jogo["Mandante"]
+                    visitante = jogo["Visitante"] 
+                    palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
+                    palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
+                    mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
+                    visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
+                    st.markdown(
+                        f"""
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                            <span style="font-size: 26px; font-weight: ;">{mandante_gol} x {visitante_gol}</span>
+                            <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
+                            <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
+                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
+                            <span style="font-size: 26px; font-weight: ;">  {pontos}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+        )
 
 
 
