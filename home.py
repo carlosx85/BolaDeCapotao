@@ -70,6 +70,16 @@ def home_page():
 
  
     
+ 
+            if rodadaativa:
+                rodadaativa = 'N'  # índice depende da ordem do SELECT
+                if mandante_gol is None:
+                    st.write("Fim de Arquivo")
+                else:
+                    st.write("Início de Arquivo")
+            else:
+                st.write("Nenhum registro encontrado")   
+                
         
          
               
