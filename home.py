@@ -18,12 +18,7 @@ def home_page():
     
     
     
-def home_page():
-    if "usuario_logado" not in st.session_state:
-        st.warning("Você precisa estar logado.")
-        st.session_state["pagina"] = "login"
-        st.rerun()
-        return
+ 
 
     usuario = st.session_state["usuario_logado"]  
     
