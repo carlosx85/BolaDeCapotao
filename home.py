@@ -16,14 +16,7 @@ def home_page():
         st.rerun()
         return
     
-    
-    
  
-
-    usuario = st.session_state["usuario_logado"]  
-    
-
-    email_sn = verificar_email_sn(usuario["seq"])   
    
  
  
