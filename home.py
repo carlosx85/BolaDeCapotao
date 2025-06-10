@@ -2,9 +2,22 @@ import streamlit as st
 import time
 import pandas as pd
 import urllib.parse
-
+from layout import mostrar_cabecalho_publico
 from db import rodada_inicio_ativar,rodada_inicio,verificar_rodada_ativa,buscar_jogos_ativos_preenchido,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
 
+
+
+def home_page():
+    mostrar_cabecalho_publico()  # Mostra o cabeçalho público
+
+    if "usuario_logado" not in st.session_state:
+        st.warning("Você precisa estar logado.")
+        st.session_state["pagina"] = "login"
+        st.rerun()
+        return
+    
+    
+    
 def home_page():
     if "usuario_logado" not in st.session_state:
         st.warning("Você precisa estar logado.")
