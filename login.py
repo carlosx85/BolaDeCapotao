@@ -9,7 +9,7 @@ def login_page():
         return
 
     mostrar_cabecalho_publico()
-    email = st.text_input("Email", Value="carlos.santosx85@hotmail.com")
+    email = st.text_input("Email", value="carlos.santosx85@hotmail.com")
     senha = st.text_input("Senha", type="password" , value="3")
 
     if st.button("Entrar"):
