@@ -36,7 +36,7 @@ def home_page():
                 time.sleep(2)
                 
                 my_bar.empty()
-            st.success("Agora você está participando!" )           
-            st.rerun()          
+            st.success("Agora você está participando, aguarde!!!" )           
+                    
             
             
