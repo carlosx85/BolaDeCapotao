@@ -1,9 +1,7 @@
 import streamlit as st
 import time
-import pandas as pd
-import urllib.parse
 from layout import mostrar_cabecalho_publico
-from db import rodada_inicio_ativar,rodada_inicio,verificar_rodada_ativa,buscar_jogos_ativos_preenchido,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1,atualizar_placar_pendente_palpite,buscar_jogos_ativos_Pendente,atualizar_placar_pendente
+from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 
 
     

@@ -1,7 +1,6 @@
 import streamlit as st
 
-def mostrar_cabecalho_publico():
-    if "usuario_logado" not in st.session_state:
+def mostrar_cabecalho_publico():    
         st.markdown(
             """
             <div style="text-align: center;">
