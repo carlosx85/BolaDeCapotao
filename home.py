@@ -7,6 +7,7 @@ from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_
     
 def home_page():
     mostrar_cabecalho_publico()  # Mostra o cabeçalho público
+ 
 
     if "usuario_logado" not in st.session_state:
         st.warning("Você precisa estar logado.")
@@ -34,7 +35,16 @@ def home_page():
                 time.sleep(2)
                 
                 my_bar.empty()
-            st.success("Agora você está participando!" )           
-            st.rerun()          
+                     
+            st.rerun() 
+            st.success("Agora você está participando!" )  
+            
+    elif email_sn == "S": 
+        st.title("Página Principal")  # Título aparece somente após participação confirmada
+        st.success("Agora você está participando!") 
+        
+        
+ 
+            
             
             

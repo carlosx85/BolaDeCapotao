@@ -1,5 +1,4 @@
 import streamlit as st
-from layout import mostrar_cabecalho_publico
 from db import validar_login
 
 def login_page():
