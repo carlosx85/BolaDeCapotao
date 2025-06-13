@@ -20,8 +20,8 @@ def home_page():
     
 
     if email_sn == "N":
-        st.info("Você ainda não está participando, deseja participar?")
-        if st.button("Eu quero participar do Palpitrômito do Bola de Capotão."):
+        st.info("Você ainda não está participando, deseja participar,do Palpitrômito do Bola de Capotão.?")
+        if st.button("Eu quero participar."):
             with st.spinner("Processando..."):
                 atualizar_email_sn_para_s(usuario["seq"])   
                   
