@@ -8,7 +8,18 @@ def login_page():
         st.rerun()
         return
 
-    mostrar_cabecalho_publico()
+        # Só mostra o cabeçalho quando NÃO está logado
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="150">
+            <p style="font-size: 12px; margin-top: 5px;">Bola de Capotão</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
     email = st.text_input("Email", value="carlos.santosx85@hotmail.com")
     senha = st.text_input("Senha", type="password" , value="3")
 
