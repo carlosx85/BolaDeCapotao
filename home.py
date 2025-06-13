@@ -40,7 +40,7 @@ def home_page():
             st.success("Agora você está participando!" )  
             
     elif email_sn == "S": 
-        st.title("Página Principal")  # Título aparece somente após participação confirmada
+        st.title("Bola de Capotão - BR26")  # Título aparece somente após participação confirmada
         st.success("Agora você está participando!") 
         
         
