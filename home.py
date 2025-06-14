@@ -18,6 +18,8 @@ def home_page():
     usuario = st.session_state["usuario_logado"] 
     email_sn = verificar_email_sn(usuario["seq"]) 
     
+st.write("Nome da tabela:", {st.session_state.usuario})
+    
 
     
 
