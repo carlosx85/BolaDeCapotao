@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
-from db import verificar_email_sn, A_01_verificar_email_sn
+from db import verificar_email_sn 
 
 
     
@@ -18,7 +18,7 @@ def home_page():
     usuario = st.session_state["usuario_logado"] 
     email_sn = verificar_email_sn(usuario["seq"]) 
     
-def A_01_verificar_email_sn(email_sn, usuario["seq"]):
+
     
 
 
