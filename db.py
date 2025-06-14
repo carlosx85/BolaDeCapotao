@@ -2,6 +2,7 @@ import mysql.connector
 import streamlit as st
 import pandas as pd
 import unicodedata
+import time
 
 
 def conectar():
@@ -33,15 +34,7 @@ def validar_login(email, senha):
     return False
 
 
-def verificar_email_sn(seq):
-    conexao = conectar()
-    cursor = conexao.cursor(dictionary=True)
-    consulta = "SELECT email_SN FROM Usuario WHERE Seq = %s"
-    cursor.execute(consulta, (seq,))
-    resultado = cursor.fetchone()
-    cursor.close()
-    conexao.close()
-    return resultado["email_SN"] if resultado else None
+
 
 
 def atualizar_email_sn_para_s(seq):
@@ -181,6 +174,49 @@ def rodada_inicio_ativar():
     conexao.commit()
     cursor.close()
     conexao.close()
+    
+    
+def verificar_email_sn(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT email_SN FROM Usuario WHERE Seq = %s"
+    cursor.execute(consulta, (seq,))
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    return resultado["email_SN"] if resultado else None
+
+
+def A_01_verificar_email_sn(email_sn, seq):
+    if email_sn == "N":
+        st.info("Você ainda não está participando, deseja participar,do Palpitrômito do Bola de Capotão.?")
+        if st.button("Eu quero participar."):
+            with st.spinner("Processando..."):
+                atualizar_email_sn_para_s(seq)                    
+                atualizar_email_sn_para_s1(seq)
+                progress_text = "Operação em Atualização!!! Aguarde"
+                my_bar = st.progress(0, text=progress_text)
+
+                for percent_complete in range(100):
+                    time.sleep(0.02)
+                    my_bar.progress(percent_complete + 1, text=progress_text)
+                time.sleep(2)
+                
+                my_bar.empty()
+                     
+            st.rerun() 
+            st.success("Agora você está participando!" )  
+            
+    elif email_sn == "S": 
+        st.title("Bola de Capotão - BR26")  # Título aparece somente após participação confirmada
+        st.success("Agora você está participando do Palpitrômito do Bola de Capotão! boa sorte!!!!") 
+        st.balloons()
+    
+    
+
+    
+    
+
 
 
 
