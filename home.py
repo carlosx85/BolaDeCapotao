@@ -37,15 +37,17 @@ def home_page():
                 my_bar.empty()
                      
             st.rerun() 
-            st.success("Agora você está participando!" )  
+            st.title("Bola de Capotão - BR26")  # Título aparece somente após participação confirmada
+            st.success("Agora você está participando do Palpitrômito do Bola de Capotão! boa sorte!!!!")  
+            st.balloons()
             
     elif email_sn == "S": 
-        st.title("Bola de Capotão - BR26")  # Título aparece somente após participação confirmada
-        st.success("Agora você está participando do Palpitrômito do Bola de Capotão! boa sorte!!!!") 
-        st.balloons()
+
+
         
         
-        
+ 
+       
         
         
  
