@@ -17,6 +17,7 @@ def home_page():
 
     usuario = st.session_state["usuario_logado"] 
     email_sn = verificar_email_sn(usuario["seq"]) 
+    nome = verificar_email_sn(usuario["nome"]) 
      
     
 
@@ -44,7 +45,7 @@ def home_page():
             
     elif email_sn == "S": 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
-        st.title(f"Bola de Capotão - BR26g{usuario["seq"]}")  # Título aparece somente após participação confirmada
+        st.title(f"Bola de Capotão - BR26{usuario["seq"]}{nome}")  # Título aparece somente após participação confirmada
         
 
         
