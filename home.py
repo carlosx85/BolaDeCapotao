@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
-from db import verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
+from db import buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 
 
     
@@ -37,12 +37,14 @@ def home_page():
                 my_bar.empty()
                      
             st.rerun() 
-            st.success("Agora você está participando!" )  
             st.balloons()
+            st.success("Agora você está participando do Palpitrômito do Bola de Capotão! boa sorte!!!!")  
+            
             
     elif email_sn == "S": 
-        st.title("Bola de Capotão - BR26")  # Título aparece somente após participação confirmada
-        st.success("Agora você está participando do Palpitrômito do Bola de Capotão! boa sorte!!!!") 
+        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
+        st.title(f"Bola de Capotão - BR26{jogos}")  # Título aparece somente após participação confirmada
+        
 
         
  
