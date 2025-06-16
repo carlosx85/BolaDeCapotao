@@ -19,6 +19,8 @@ def home_page():
     usuario = st.session_state["usuario_logado"] 
     email_sn = verificar_email_sn(usuario["seq"]) 
     nome = verificar_email_sn(usuario["nome"]) 
+    evento = verificar_email_sn(usuario["evento"]) 
+    evento_abreviado = verificar_email_sn(usuario["evento_abreviado"]) 
      
     
 

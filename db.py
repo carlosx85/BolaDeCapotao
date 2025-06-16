@@ -26,6 +26,8 @@ def validar_login(email, senha):
         st.session_state["usuario_logado"] = {
             "seq": resultado["Seq"],
             "nome": resultado["Nome"],
+            "evento": resultado["Evento"],
+            "eventoabreviado": resultado["Evento_Abreviado"],
             "email": resultado["email"]
         }
         st.session_state["pagina"] = "home"  # Troca para página home
@@ -36,7 +38,7 @@ def validar_login(email, senha):
 def verificar_email_sn(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
-    consulta = "SELECT nome,email,telefone,email_SN FROM Usuario WHERE Seq = %s"
+    consulta = "SELECT evento,evento_abreviado,nome,email,telefone,email_SN FROM Usuario WHERE Seq = %s"
     cursor.execute(consulta, (seq,))
     resultado = cursor.fetchone()
     cursor.close()
