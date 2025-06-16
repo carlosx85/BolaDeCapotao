@@ -1,7 +1,7 @@
 import streamlit as st
 
  
-def mostrar_cabecalho_publico(usuario):
+def mostrar_cabecalho_publico(usuario["nome"]):
      
     
     header_html = f"""
