@@ -6,7 +6,8 @@ from db import buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_
 
     
 def home_page():
-    mostrar_cabecalho_publico(usuario["nome"])  # Mostra o cabeçalho público
+    usuario = st.session_state.get("usuario_logado", {"nome": "Visitante"})  # ou onde estiver o dicionário do usuário
+    mostrar_cabecalho_publico(usuario)
  
 
     if "usuario_logado" not in st.session_state:
