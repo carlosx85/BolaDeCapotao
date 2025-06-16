@@ -46,8 +46,6 @@ def home_page():
             
     elif email_sn == "S": 
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
-        st.title(f"Bola de Capotão - BR26 - Rodda{usuario["seq"]} - {usuario["nome"]}")  # Título aparece somente após participação confirmada
-        
 
         
  
