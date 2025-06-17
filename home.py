@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
-from db import  rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
+from db import  ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 
 
     
@@ -27,14 +27,18 @@ def home_page():
         st.info("Deseja participar do Palpitrômito do Bola de Capotão.?")
         if st.button("Eu quero participar."):
             with st.spinner("Processando..."):
-                atualizar_email_sn_para_s(usuario["seq"])   
-                  
+                atualizar_email_sn_para_s(usuario["seq"]) 
                 atualizar_email_sn_para_s1(usuario["seq"])
+                
                 progress_text = "Operação em Atualização!!! Aguarde"
+                
                 my_bar = st.progress(0, text=progress_text)
 
                 for percent_complete in range(100):
-                    time.sleep(0.02)
+                    
+                    time.sleep(0.02) 
+                    ativar_rodada_01() 
+                                      
                     my_bar.progress(percent_complete + 1, text=progress_text)
                 time.sleep(2)
                 
@@ -46,14 +50,9 @@ def home_page():
             
             
     elif email_sn == "S": 
-        jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
-        
-        
-
-
          
         jogos = buscar_jogos_ativos_Pendente(usuario["seq"])
-
+        
         if not jogos:
             
             
