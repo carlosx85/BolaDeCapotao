@@ -29,7 +29,7 @@ def home_page():
             with st.spinner("Processando..."):
                 atualizar_email_sn_para_s(usuario["seq"]) 
                 atualizar_email_sn_para_s1(usuario["seq"])
-                ativar_rodada_01() 
+                
                 progress_text = "Operação em Atualização!!! Aguarde"
                 
                 my_bar = st.progress(0, text=progress_text)
@@ -43,7 +43,7 @@ def home_page():
                 time.sleep(2)
                 
                 my_bar.empty()
-                     
+            ativar_rodada_01()          
             st.rerun() 
             st.balloons()
             st.success("Agora você está participando do Palpitrômito do Bola de Capotão! boa sorte!!!!")  
