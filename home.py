@@ -91,10 +91,12 @@ def home_page():
                     visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
                     st.markdown(
                         f"""
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">                          
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                            <span style="font-size: 26px; font-weight: ;"> </span>
                             <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
                             <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
-                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />                          
+                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
+                            <span style="font-size: 26px; font-weight: ;"> </span>
                         </div>
                         """,
                         unsafe_allow_html=True
@@ -223,7 +225,7 @@ def home_page():
                     "visitante": visitante
                 }
 
-            if st.button("Atualizar Todos"):
+            if st.button("OK"):
                 sucesso_total = True
                 for jogo_id, placar in st.session_state.placares_temp.items():
                     atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
