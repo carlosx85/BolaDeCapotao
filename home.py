@@ -225,7 +225,7 @@ def home_page():
                     "visitante": visitante
                 }
 
-            if st.button("OK"):
+            if st.button("Atualizar Todos"):
                 sucesso_total = True
                 for jogo_id, placar in st.session_state.placares_temp.items():
                     atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
