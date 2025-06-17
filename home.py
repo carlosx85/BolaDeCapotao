@@ -75,7 +75,7 @@ def home_page():
             # Verificação
             if rodadaativa == 'N':  
 
-                st.badge(f"Rodada Ativa #{rodada_ativa}", icon=":material/check:", color="green")
+                st.badge(f"Rodada Ativa **# {rodada_ativa}**", icon=":material/check:", color="green")
                       
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
 
