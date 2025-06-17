@@ -60,7 +60,7 @@ def ativar_rodada_01():
     conexao = conectar()
     cursor = conexao.cursor()
     atualizax = "UPDATE Jogos SET StatusRodada = 'Ativo' WHERE Rodada LIKE '1'" 
-    cursor.execute(atualizax,))
+    cursor.execute(atualizax,)
     conexao.commit()
     cursor.close()
     conexao.close()    
