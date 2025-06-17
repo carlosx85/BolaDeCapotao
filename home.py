@@ -73,12 +73,9 @@ def home_page():
  
     
             # Verificação
-            if rodadaativa == 'N':
-                st.write("Fim de Arquivo")
-                
-            
+            if rodadaativa == 'N':  
 
-                st.markdown(f"### Rodada  Ativa{rodada_ativa} {rodadaativa}")              
+                st.write(f"### Rodada  Ativa #{rodada_ativa}  ")              
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
 
                 for jogo in jogosx:
