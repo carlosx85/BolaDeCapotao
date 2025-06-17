@@ -29,7 +29,7 @@ def home_page():
             with st.spinner("Processando..."):
                 atualizar_email_sn_para_s(usuario["seq"]) 
                 atualizar_email_sn_para_s1(usuario["seq"])
-                
+                ativar_rodada_01() 
                 progress_text = "Operação em Atualização!!! Aguarde"
                 
                 my_bar = st.progress(0, text=progress_text)
@@ -37,7 +37,7 @@ def home_page():
                 for percent_complete in range(100):
                     
                     time.sleep(0.02) 
-                    ativar_rodada_01() 
+                    
                                       
                     my_bar.progress(percent_complete + 1, text=progress_text)
                 time.sleep(2)
