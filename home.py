@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
-from db import  atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
+from db import  rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 
 
     
