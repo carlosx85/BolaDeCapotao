@@ -76,7 +76,7 @@ def home_page():
             if rodadaativa == 'N':  
 
             
-                st.header(f"### Rodada  Ativa #{rodada_ativa}", divider=True)             
+                st.text(f"Rodada Ativa #{rodada_ativa}", divider=True)             
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
 
                 for jogo in jogosx:
