@@ -105,9 +105,9 @@ def home_page():
                 
                 
                 
-                st.write("Início de Arquivo")               
+                st.badge(f"Rodada Ativa **# {rodada_ativa}**", icon=":material/check:", color="green")              
 
-                st.markdown(f"### Rodada  Ativa{rodada_ativa} {rodadaativa}")              
+                           
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
 
                 for jogo in jogosx:
