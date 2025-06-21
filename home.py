@@ -121,9 +121,9 @@ def home_page():
                     st.markdown(
                         f"""
                         <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
-                            <span style="font-size: 26px; font-weight: ;">{mandante_gol} x {visitante_gol}</span>
+                            <span style="font-size: 26px; font-weight: ;">{mandante_gol} xx {visitante_gol}</span>
                             <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
-                            <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
+                            <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} xx {palpite_visitante_gol}</span>
                             <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
                             <span style="font-size: 26px; font-weight: ;">  {pontos}</span>
                         </div>
