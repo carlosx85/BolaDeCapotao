@@ -135,7 +135,7 @@ def home_page():
                     visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
                     st.markdown(
                         f"""
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1px; margin-bottom: 1px;">
                             <span style="font-size: 26px; font-weight: ; text-align: left;">{mandante_gol} x {visitante_gol}</span>
                             <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30"  />
                             <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
