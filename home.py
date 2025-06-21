@@ -105,7 +105,22 @@ def home_page():
                 
                 
                 
-                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**", icon=":material/check:", color="green")              
+                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**", icon=":material/check:", color="green")   
+                
+                
+                # Cabeçalho
+                st.markdown(
+                    """
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
+                        <span style="font-size: 18px; font-weight: bold; width: 80px; text-align: center;">Placar</span>
+                        <span style="font-size: 18px; font-weight: bold; width: 30px;"></span>
+                        <span style="font-size: 18px; font-weight: bold; width: 80px; text-align: center;">Resultado</span>
+                        <span style="font-size: 18px; font-weight: bold; width: 30px;"></span>
+                        <span style="font-size: 18px; font-weight: bold; width: 60px; text-align: center;">Pontos</span>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )           
 
                            
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
