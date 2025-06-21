@@ -118,30 +118,37 @@ def home_page():
                     palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
                     mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
                     visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
-                    # Cabeçalho
-                    cabecalho_html = """
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 5px; font-weight: bold; font-size: 18px;">
-                        <span>Placar</span>
-                        <span>Mandante</span>
-                        <span>Palpite</span>
-                        <span>Visitante</span>
-                        <span>Pontos</span>
-                    </div>
+                    
+                    
+                    st.markdown(
                     """
-
-                    # Linha com dados
-                    linha_html = f"""
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 40px; margin-bottom: 10px;">
-                        <span style="font-size: 26px;">{mandante_gol if mandante_gol is not None else ""} x {visitante_gol if visitante_gol is not None else ""}</span>
-                        <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
-                        <span style="font-size: 26px;">{palpite_mandante_gol if palpite_mandante_gol is not None else ""} x {palpite_visitante_gol if palpite_visitante_gol is not None else ""}</span>
-                        <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
-                        <span style="font-size: 26px;">{pontos if pontos is not None else ""}</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
+                        <span style="font-size: 18px; font-weight: bold;">Placar</span>
+                        <span style="font-size: 18px; font-weight: bold;">Mandante</span>
+                        <span style="font-size: 18px; font-weight: bold;">Palpite</span>
+                        <span style="font-size: 18px; font-weight: bold;">Visitante</span>
+                        <span style="font-size: 18px; font-weight: bold;">Pontos</span>
                     </div>
-                    """
+                    """,
+                    unsafe_allow_html=True
+)
+                    
+                    
+                    
+                    st.markdown(
+                        f"""
+                        
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                            <span style="font-size: 26px; font-weight: ;">{mandante_gol} x {visitante_gol}</span>
+                            <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
+                            <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
+                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
+                            <span style="font-size: 26px; font-weight: ;">  {pontos if pontos is not None else ""} </span> 
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+        )
 
-                    # Exibir no Streamlit
-                    st.markdown(cabecalho_html + linha_html, unsafe_allow_html=True)
 
 
 
