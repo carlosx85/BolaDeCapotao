@@ -118,13 +118,8 @@ def home_page():
                     palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
                     mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
                     visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
-                    
-                    
-                    
-                    
                     st.markdown(
                         f"""
-                        
                         <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
                             <span style="font-size: 26px; font-weight: ;">{mandante_gol} x {visitante_gol}</span>
                             <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
