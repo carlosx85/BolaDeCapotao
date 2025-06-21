@@ -114,7 +114,7 @@ def home_page():
                     <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
                         <span style="font-size: 18px; font-weight: bold; width: 80px; text-align: center;">Placar</span>
                         <span style="font-size: 18px; font-weight: bold; width: 30px;"></span>
-                        <span style="font-size: 18px; font-weight: bold; width: 80px; text-align: center;">Resultado</span>
+                        <span style="font-size: 18px; font-weight: bold; width: 80px; text-align: center;">Palpite</span>
                         <span style="font-size: 18px; font-weight: bold; width: 30px;"></span>
                         <span style="font-size: 18px; font-weight: bold; width: 60px; text-align: center;">Pontos</span>
                     </div>
