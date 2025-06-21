@@ -108,7 +108,20 @@ def home_page():
                 st.badge(f"Rodada Ativaxx **# {rodada_ativa}**", icon=":material/check:", color="green")              
 
                            
-                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
+                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])   
+                
+                
+                st.markdown(
+                    """
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
+                        <span style="font-size: 18px; font-weight: bold;">Placar</span>
+                        <span style="font-size: 18px; font-weight: bold;">Mandante</span>
+                        <span style="font-size: 18px; font-weight: bold;">Palpite</span>
+                        <span style="font-size: 18px; font-weight: bold;">Visitante</span>
+                        <span style="font-size: 18px; font-weight: bold;">Pontos</span>
+                    </div>
+                    """,
+                    unsafe_allow_html=True          
 
                 for jogo in jogosx:
                     pontos = jogo["Pontos"]
@@ -120,17 +133,7 @@ def home_page():
                     visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
                     
                     
-                    st.markdown(
-                    """
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
-                        <span style="font-size: 18px; font-weight: bold;">Placar</span>
-                        <span style="font-size: 18px; font-weight: bold;">Mandante</span>
-                        <span style="font-size: 18px; font-weight: bold;">Palpite</span>
-                        <span style="font-size: 18px; font-weight: bold;">Visitante</span>
-                        <span style="font-size: 18px; font-weight: bold;">Pontos</span>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
+
 )
                     
                     
