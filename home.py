@@ -3,6 +3,46 @@ import time
 from layout import mostrar_cabecalho_publico
 from db import  ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 
+import streamlit as st
+from layout import mostrar_cabecalho_publico
+
+def mostrar_perfil():
+    st.subheader("👤 Perfil")
+    st.write("Informações do usuário.")
+
+def mostrar_rodada():
+    st.subheader("⚽ Rodada")
+    st.write("Informações da rodada atual.")
+
+def mostrar_dashboard():
+    st.subheader("📊 DashBoard")
+    st.write("Gráficos e estatísticas.")
+
+def sair():
+    st.session_state.clear()
+    st.success("Você saiu com sucesso.")
+    st.stop()
+
+def home_page():
+    mostrar_cabecalho_publico()  # Mostra o cabeçalho público
+
+    if "usuario_logado" not in st.session_state:
+        st.warning("Você precisa estar logado para acessar esta página.")
+        st.stop()
+
+    # Sidebar com opções
+    st.sidebar.title("Menu")
+    opcao = st.sidebar.radio("Navegação", ["Perfil", "Rodada", "DashBoard", "Sair"])
+
+    # Navegação entre páginas
+    if opcao == "Perfil":
+        mostrar_perfil()
+    elif opcao == "Rodada":
+        mostrar_rodada()
+    elif opcao == "DashBoard":
+        mostrar_dashboard()
+    elif opcao == "Sair":
+        sair()
 
     
 def home_page():
