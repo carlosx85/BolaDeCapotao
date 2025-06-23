@@ -147,7 +147,10 @@ def home_page():
         )
 
 
-
+def mostrar_perfil(usuario):
+    st.subheader("👤 Perfil")
+    st.write(f"Nome: **{usuario.get('nome', '')}**")
+    st.write(f"ID: {usuario.get('seq', '')}")
 
 
 def mostrar_dashboard():
