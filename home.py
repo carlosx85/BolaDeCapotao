@@ -147,46 +147,6 @@ def home_page():
         )
 
 
-def mostrar_perfil(usuario):
-    st.subheader("👤 Perfil")
-    st.write(f"Nome: **{usuario.get('nome', '')}**")
-    st.write(f"ID: {usuario.get('seq', '')}")
-
-
-def mostrar_dashboard():
-    st.subheader("📊 DashBoard")
-    st.info("Em construção...")
-
-
-def sair():
-    st.session_state.clear()
-    st.success("Sessão encerrada.")
-    st.stop()
-
-
-def home_page():
-    if "usuario_logado" not in st.session_state:
-        st.warning("Você precisa estar logado.")
-        st.session_state["pagina"] = "login"
-        st.rerun()
-        return
-
-    usuario = st.session_state["usuario_logado"]
-    mostrar_cabecalho_publico(usuario)
-
-    st.sidebar.title("Menu")
-    pagina = st.sidebar.radio("Ir para:", ["Perfil", "Rodada", "DashBoard", "Sair"])
-
-    if pagina == "Perfil":
-        mostrar_perfil(usuario)
-    elif pagina == "Rodada":
-        mostrar_rodada(usuario)
-    elif pagina == "DashBoard":
-        mostrar_dashboard()
-    elif pagina == "Sair":
-        sair()
-
-
 
 
 
