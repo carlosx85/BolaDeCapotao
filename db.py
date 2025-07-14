@@ -196,6 +196,8 @@ def rodada_inicio_ativar():
 
 
 def atualizar_online():
+    conexao = conectar()
+    cursor = conexao.cursor()
     st.write("xxxx")
     
     Rodada_Atual=1
@@ -236,6 +238,9 @@ def atualizar_online():
 
     # Criar um DataFrame com as informações
     df = pd.DataFrame(data)
+    
+    apagar = f'TRUNCATE TABLE Jogos_Resultado'
+    cursor.execute(apagar)
 
 
 
