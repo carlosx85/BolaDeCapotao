@@ -14,5 +14,7 @@ def mostrar_cabecalho_publico(usuario):
     """
     st.markdown(header_html, unsafe_allow_html=True)
     
+
+    
     
  

@@ -1,9 +1,7 @@
 import mysql.connector
 import streamlit as st
 import pandas as pd
-import unicodedata 
-import requests
-from bs4 import BeautifulSoup
+import unicodedata
 
 
 def conectar():
@@ -66,8 +64,6 @@ def ativar_rodada_01():
     conexao.commit()
     cursor.close()
     conexao.close()    
-    
-    
     
 def atualizar_email_sn_para_s1(seq):
     conexao = conectar()
@@ -195,8 +191,6 @@ def rodada_inicio_ativar():
     conexao.commit()
     cursor.close()
     conexao.close()
-    
-def atualizar_rodada_online():
 
 
 

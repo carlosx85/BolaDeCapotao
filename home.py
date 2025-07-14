@@ -2,15 +2,12 @@ import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
 from db import  ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
-import requests
-from bs4 import BeautifulSoup
+
 
     
 def home_page():
     usuario = st.session_state.get("usuario_logado", {"nome": "Visitante"})  # ou onde estiver o dicionário do usuário
     mostrar_cabecalho_publico(usuario)
-
-
  
 
     if "usuario_logado" not in st.session_state:
