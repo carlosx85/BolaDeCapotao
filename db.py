@@ -252,6 +252,65 @@ def atualizar_online():
         cursor.execute(sqlx, valx)
 
     conexao.commit()
+    
+    
+        
+        #Inserir Rodada
+    comando1 = f'DELETE FROM Jogos_Resultado WHERE LENGTH(Placar) <=1 ;'
+    cursor.execute(comando1)
+    conexao.commit()
+
+    #Inserir Rodada
+    comando21 = f'UPDATE Jogos_Resultado SET Jogos_Resultado.Casa_Gol = LEFT(Placar,1), Jogos_Resultado.Fora_Gol = RIGHT(Placar,1); ;'
+    cursor.execute(comando21)
+    conexao.commit()
+
+
+    #Inserir Rodada
+    comando2 = f'UPDATE Jogos INNER JOIN Jogos_Resultado ON Jogos.Visitante = Jogos_Resultado.Visitante AND Jogos.Mandante = Jogos_Resultado.Mandante SET Jogos.Mandante_Gol = Jogos_Resultado.Casa_Gol, Jogos.Visitante_Gol = Jogos_Resultado.Fora_Gol ;'
+    cursor.execute(comando2)
+    conexao.commit()
+
+
+    #Inserir Rodada
+    comando3 = f'UPDATE Jogos SET Pontos = CASE      WHEN Mandante_Gol  = Palpite_Mandante_Gol  AND Visitante_Gol = Palpite_Visitante_Gol THEN 4     WHEN Visitante_Gol = Palpite_Visitante_Gol THEN 1     WHEN Mandante_Gol  = Palpite_Mandante_Gol  THEN 1     WHEN Resultado     = Palpite     THEN 2     ELSE 0 END WHERE StatusRodada = "Ativo";'
+    cursor.execute(comando3)
+    conexao.commit()
+
+
+    #Inserir Rodada
+    comando4 = f'UPDATE Jogos SET Palpite = CASE     WHEN Palpite_Mandante_Gol = Palpite_Visitante_Gol THEN "Empate"     WHEN Palpite_Mandante_Gol > Palpite_Visitante_Gol THEN Mandante  WHEN Palpite_Mandante_Gol < Palpite_Visitante_Gol THEN Visitante     ELSE "Pendente" END WHERE StatusRodada LIKE "Ativo";'
+    cursor.execute(comando4)
+    conexao.commit()
+
+
+
+    #Inserir Rodada
+    comando5 = f'UPDATE Jogos SET Resultado = CASE     WHEN Mandante_Gol = Visitante_Gol THEN "Empate"     WHEN Mandante_Gol > Visitante_Gol THEN Mandante  WHEN Mandante_Gol < Visitante_Gol THEN Visitante     ELSE "Pendente" END WHERE StatusRodada LIKE "Ativo";'
+    cursor.execute(comando5)
+    conexao.commit()
+
+
+    #Inserir Rodada
+    comando6 = f' UPDATE   Jogos SET Pontos = 2 WHERE Resultado = Palpite AND StatusRodada LIKE "Ativo" AND Pontos < 3   ;'
+    cursor.execute(comando6)
+    conexao.commit()
+
+    #Inserir Rodada
+    comando61 = f' UPDATE   Jogos SET  Placar = 0   ;'
+    cursor.execute(comando61)
+    conexao.commit()
+
+    #Inserir Rodada
+    comando62 = f' UPDATE   Jogos SET  Placar = 1 WHERE Pontos = 4 ;'
+    cursor.execute(comando62)
+    conexao.commit()
+
+
+
+    # 8. Fechar o cursor e a conexão
+    cursor.close()
+    conexao.close()
 
 
 
