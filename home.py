@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 def home_page():
     usuario = st.session_state.get("usuario_logado", {"nome": "Visitante"})  # ou onde estiver o dicionário do usuário
     mostrar_cabecalho_publico(usuario)
-    atualizar_online()
+
  
 
     if "usuario_logado" not in st.session_state:
@@ -125,7 +125,8 @@ def home_page():
                 )           
 
                            
-                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])             
+                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
+                atualizar_online()            
 
                 for jogo in jogosx:
                     pontos = jogo["Pontos"]
