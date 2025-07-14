@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 def home_page():
     usuario = st.session_state.get("usuario_logado", {"nome": "Visitante"})  # ou onde estiver o dicionário do usuário
     mostrar_cabecalho_publico(usuario)
-    atualizar_rodada_online()
+
 
  
 
