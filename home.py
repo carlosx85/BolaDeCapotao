@@ -143,7 +143,7 @@ def home_page():
                             <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30"  />
                             <span style="font-size: 26px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
                             <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
-                            <span style="font-size: 26px; font-weight: ; text-align: right;">  {pontos if pontos is not None else ""} </span> 
+                            <span style="font-size: 26px; font-weight: ; text-align: center;">  {pontos if pontos is not None else ""} </span> 
                         </div>
                         """,
                         unsafe_allow_html=True
