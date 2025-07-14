@@ -198,8 +198,7 @@ def rodada_inicio_ativar():
 def atualizar_online():
     conexao = conectar()
     cursor = conexao.cursor()
-    st.write("xxxx")
-    
+
     Rodada_Atual=1
 
     urlx= f'https://www.api-futebol.com.br/campeonato/campeonato-brasileiro/2025'
@@ -276,14 +275,6 @@ def atualizar_online():
     comando3 = f'UPDATE Jogos SET Pontos = CASE      WHEN Mandante_Gol  = Palpite_Mandante_Gol  AND Visitante_Gol = Palpite_Visitante_Gol THEN 4     WHEN Visitante_Gol = Palpite_Visitante_Gol THEN 1     WHEN Mandante_Gol  = Palpite_Mandante_Gol  THEN 1     WHEN Resultado     = Palpite     THEN 2     ELSE 0 END WHERE StatusRodada = "Ativo";'
     cursor.execute(comando3)
     conexao.commit()
-
-
-    #Inserir Rodada
-    comando4 = f'UPDATE Jogos SET Palpite = CASE     WHEN Palpite_Mandante_Gol = Palpite_Visitante_Gol THEN "Empate"     WHEN Palpite_Mandante_Gol > Palpite_Visitante_Gol THEN Mandante  WHEN Palpite_Mandante_Gol < Palpite_Visitante_Gol THEN Visitante     ELSE "Pendente" END WHERE StatusRodada LIKE "Ativo";'
-    cursor.execute(comando4)
-    conexao.commit()
-
-
 
     #Inserir Rodada
     comando5 = f'UPDATE Jogos SET Resultado = CASE     WHEN Mandante_Gol = Visitante_Gol THEN "Empate"     WHEN Mandante_Gol > Visitante_Gol THEN Mandante  WHEN Mandante_Gol < Visitante_Gol THEN Visitante     ELSE "Pendente" END WHERE StatusRodada LIKE "Ativo";'
