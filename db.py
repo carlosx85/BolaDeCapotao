@@ -243,13 +243,15 @@ def atualizar_online():
     cursor.execute(apagar)
     
 
-    for row in df.iterrows():
+    for _, row in df.iterrows():
         sqlx = '''
             INSERT INTO Jogos_Resultado (Mandante, Placar, Visitante, Data)
             VALUES (%s, %s, %s, NOW())
         '''
         valx = (row['Mandante'], row['Placar'], row['Visitante'])
         cursor.execute(sqlx, valx)
+
+    conexao.commit()
 
 
 
