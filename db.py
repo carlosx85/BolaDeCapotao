@@ -193,7 +193,8 @@ def rodada_inicio_ativar():
     conexao.close()
 
 
-
+def atualizar_online():
+    st.write("xxxx")
 
 
 
