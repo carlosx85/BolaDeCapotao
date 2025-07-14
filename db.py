@@ -241,6 +241,12 @@ def atualizar_online():
     
     apagar = f'TRUNCATE TABLE Jogos_Resultado'
     cursor.execute(apagar)
+    
+    for index, row in df.iterrows():
+    sqlx= f'INSERT INTO Jogos_Resultado ( Mandante,Placar,Visitante,Data) VALUES (%s,%s,%s,Now())'
+    valx=(row['Mandante'],row['Placar'],row['Visitante'])
+    cursor.execute(sqlx,valx)
+    conexao.commit()
 
 
 
