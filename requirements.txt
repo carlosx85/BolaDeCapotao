@@ -3,7 +3,6 @@ mysql-connector-python==8.0.31
 altair==4.2.2
 bcrypt==4.0.1
 streamlit_extras
-BeautifulSoup
 requests
-bs4
+beautifulsoup4
 

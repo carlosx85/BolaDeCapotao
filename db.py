@@ -1,7 +1,7 @@
 import mysql.connector
 import streamlit as st
 import pandas as pd
-import unicodedata
+import unicodedata 
 import requests
 from bs4 import BeautifulSoup
 
