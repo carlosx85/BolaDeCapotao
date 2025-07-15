@@ -255,7 +255,7 @@ def home_page():
                     st.info("Todos os placares foram atualizados com sucesso.")
                     
                     
-    atualizar_online() 
+        atualizar_online() 
                     
                     
                     
