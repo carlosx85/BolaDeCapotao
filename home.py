@@ -11,6 +11,7 @@ import time
 def home_page():
     usuario = st.session_state.get("usuario_logado", {"nome": "Visitante"})  # ou onde estiver o dicionário do usuário
     mostrar_cabecalho_publico(usuario)
+    atualizar_online(rodada_ativa) 
 
  
 
@@ -111,7 +112,7 @@ def home_page():
                 
                 
                 st.badge(f"Rodada Ativaxx **# {rodada_ativa}**", icon=":material/check:", color="green")   
-                atualizar_online(rodada_ativa) 
+                
                 
                 # Cabeçalho
                 st.markdown(
