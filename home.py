@@ -127,7 +127,7 @@ def home_page():
 
                            
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
-                atualizar_online()             
+                            
 
                 for jogo in jogosx:
                     pontos = jogo["Pontos"]
@@ -253,6 +253,9 @@ def home_page():
                     st.info("Todos os placares foram atualizados com sucesso.")
                 else:
                     st.info("Todos os placares foram atualizados com sucesso.")
+                    
+                    
+atualizar_online() 
                     
                     
                     
