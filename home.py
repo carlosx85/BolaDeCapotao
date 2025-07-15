@@ -79,7 +79,7 @@ def home_page():
                 st.badge(f"Rodada Ativax **# {rodada_ativa}**", icon=":material/check:", color="green")
                       
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"])      
-                atualizar_online()        
+                      
 
                 for jogo in jogosx:
                     pontos = jogo["Pontos"]
@@ -127,7 +127,7 @@ def home_page():
 
                            
                 jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
-                           
+                atualizar_online()             
 
                 for jogo in jogosx:
                     pontos = jogo["Pontos"]
