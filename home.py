@@ -109,7 +109,7 @@ def home_page():
                 
                 
                 st.badge(f"Rodada Ativaxx **# {rodada_ativa}**", icon=":material/check:", color="green")   
-                atualizar_online() 
+                atualizar_online(rodada_ativa) 
                 
                 # Cabeçalho
                 st.markdown(

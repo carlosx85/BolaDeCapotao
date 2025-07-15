@@ -195,14 +195,14 @@ def rodada_inicio_ativar():
     conexao.close()
 
 
-def atualizar_online():
+def atualizar_online(rodada_ativa):
     conexao = conectar()
     cursor = conexao.cursor()
 
-    Rodada_Atual=13
+    Rodada_Atual={rodada_ativa}
 
     urlx= f'https://www.api-futebol.com.br/campeonato/campeonato-brasileiro/2025'
-    url= f'https://www.api-futebol.com.br/campeonato/campeonato-brasileiro/2025/rodada/{Rodada_Atual}'
+    url= f'https://www.api-futebol.com.br/campeonato/campeonato-brasileiro/2025/rodada/{rodada_ativa}'
 
     headers ={}
     response = requests.get(url,headers=headers)
