@@ -11,7 +11,7 @@ import time
 def home_page():
     usuario = st.session_state.get("usuario_logado", {"nome": "Visitante"})  # ou onde estiver o dicionário do usuário
     mostrar_cabecalho_publico(usuario)
-    atualizar_online(rodada_ativa) 
+    
 
  
 
@@ -72,7 +72,7 @@ def home_page():
             
             rodadainiciox = rodada_inicio(usuario["seq"],rodada_ativa) 
             rodadaativa = rodadainiciox["Rodada_Ativa_SN"]
-           
+            atualizar_online(rodada_ativa) 
 
  
     
