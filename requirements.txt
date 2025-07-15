@@ -5,4 +5,5 @@ bcrypt==4.0.1
 streamlit_extras
 requests
 beautifulsoup4
+streamlit-autorefresh
 

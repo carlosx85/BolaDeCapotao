@@ -4,6 +4,8 @@ import pandas as pd
 import unicodedata
 import requests
 from bs4 import BeautifulSoup
+from streamlit_autorefresh import st_autorefresh
+import time
 
 
 def conectar():
@@ -196,6 +198,7 @@ def rodada_inicio_ativar():
 
 
 def atualizar_online(rodada_ativa):
+    st_autorefresh(interval=300000, key="auto_refresh_5min", limit=None)
     conexao = conectar()
     cursor = conexao.cursor()
 
