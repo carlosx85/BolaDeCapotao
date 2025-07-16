@@ -198,7 +198,7 @@ def rodada_inicio_ativar():
 
 
 def atualizar_online(rodada_ativa):
-    st_autorefresh(interval=180.000, key="auto_refresh_5min", limit=None)
+    st_autorefresh(interval=180000, key="auto_refresh_5min", limit=None)
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -291,7 +291,7 @@ def atualizar_online(rodada_ativa):
     conexao.commit()
 
     #Inserir Rodada
-    comando61 = f' UPDATE   Jogos SET  Placar = 0 , Data_Atualizacao = NOW() Where StatusRodada LIKE "Ativo"   ;'
+    comando61 = f' UPDATE   Jogos SET  Placar = 0 , Data_Atualizacao = NOW() Where StatusRodada LIKE "Ativo"  ;'
     cursor.execute(comando61)
     conexao.commit()
 
