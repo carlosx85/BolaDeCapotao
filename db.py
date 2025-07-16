@@ -53,13 +53,22 @@ def verificar_email_sn(seq):
 def Info_Cabecalho(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
-    consulta = "SELECT Nome,Seq,Data_Atu,Pontos,Placar,Rank FROM  ClassificacaoGeral WHERE Seq = %s"
+
+    consulta = """
+        SELECT 
+            seq, nome, email, telefone, evento, evento_abreviado 
+        FROM Usuario 
+        WHERE seq = %s
+    """
+    
     cursor.execute(consulta, (seq,))
     resultado = cursor.fetchone()
+
     cursor.close()
     conexao.close()
-    return resultado
-    
+
+    return resultado  # Já é um dicionário se encontrado, senão retorna None
+
 
 
 
