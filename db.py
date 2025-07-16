@@ -198,7 +198,7 @@ def rodada_inicio_ativar():
 
 
 def atualizar_online(rodada_ativa):
-    st_autorefresh(interval=300000, key="auto_refresh_5min", limit=None)
+    st_autorefresh(interval=180000, key="auto_refresh_3min", limit=None)
     conexao = conectar()
     cursor = conexao.cursor()
 
