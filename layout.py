@@ -12,7 +12,11 @@ from db import  Info_Cabecalho
  
 def mostrar_cabecalho_publico(usuario):
     
- 
+    # Supondo que você já tem o dicionário `usuario`
+    seq_usuario = usuario["seq"]
+
+    # Busca os dados completos do usuário com base no seq
+    info = Info_Cabecalho(seq_usuario)
  
        
     
