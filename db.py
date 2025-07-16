@@ -56,9 +56,9 @@ def Info_Cabecalho(seq):
 
     consulta = """
         SELECT 
-            seq, nome, email, telefone, evento, evento_abreviado 
-        FROM Usuario 
-        WHERE seq = %s
+            Nome,Seq,Data_Atu,Pontos,Placar,Rank  
+        FROM ClassificacaoGeral 
+        WHERE Seq = %s
     """
     
     cursor.execute(consulta, (seq,))
