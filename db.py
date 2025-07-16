@@ -58,6 +58,7 @@ def Info_Cabecalho(seq):
     resultado = cursor.fetchone()
     cursor.close()
     conexao.close()
+    return resultado
     
 
 
