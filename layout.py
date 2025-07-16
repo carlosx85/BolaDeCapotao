@@ -3,6 +3,8 @@ from db import  Info_Cabecalho
 
  
 
+ 
+
 
 
  
@@ -11,7 +13,8 @@ from db import  Info_Cabecalho
 def mostrar_cabecalho_publico(usuario):
     
  
-    
+    usuario_seq = st.session_state["usuario_logado"]
+    info = Info_Cabecalho(usuario_seq) 
        
     
     header_html = f"""
