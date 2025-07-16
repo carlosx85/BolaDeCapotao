@@ -50,6 +50,20 @@ def verificar_email_sn(seq):
     return resultado["email_SN"] if resultado else None
 
 
+def Info_Cabecalho(seq):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT Nome,Seq,Data_Atu,Pontos,Placar,Rank FROM  ClassificacaoGeral WHERE Seq = %s"
+    cursor.execute(consulta, (seq,))
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    
+
+
+
+
+
 def atualizar_email_sn_para_s(seq):
     conexao = conectar()
     cursor = conexao.cursor()
