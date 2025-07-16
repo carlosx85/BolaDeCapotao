@@ -18,9 +18,8 @@ def mostrar_cabecalho_publico(usuario):
     # Busca as informações completas do usuário
     info = Info_Cabecalho(seq_usuario)
 
-    # Exemplo: Rank e Pontos (você deve ajustar isso se quiser valores reais)
-    rank = info.get("Rank", "?")     # se não existir, mostra "?"
-    pontos = info.get("Pontos", "???")  # idem
+    rank = info["rank"]
+    pontos = info["pontos"]
  
        
     
