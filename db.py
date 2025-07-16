@@ -291,12 +291,12 @@ def atualizar_online(rodada_ativa):
     conexao.commit()
 
     #Inserir Rodada
-    comando61 = f' UPDATE   Jogos SET  Placar = 0   ;'
+    comando61 = f' UPDATE   Jogos SET  Placar = 0  Where StatusRodada LIKE "Ativo"  , Data_Atualizacao = NOW();'
     cursor.execute(comando61)
     conexao.commit()
 
     #Inserir Rodada
-    comando62 = f' UPDATE   Jogos SET  Placar = 1 WHERE Pontos = 4 ;'
+    comando62 = f' UPDATE   Jogos SET  Placar = 1 WHERE Pontos = 4 and   StatusRodada LIKE "Ativo";'
     cursor.execute(comando62)
     conexao.commit()
 
