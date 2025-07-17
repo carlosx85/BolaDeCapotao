@@ -1,5 +1,5 @@
 import streamlit as st
-from db import  Info_Cabecalho
+from db import  Info_Cabecalho,inserir_zero
 
  
 
@@ -16,6 +16,7 @@ def mostrar_cabecalho_publico(usuario):
     seq_usuario = usuario["seq"]
 
     # Busca as informações completas do usuário
+    inserir_zero(seq_usuario)
     info = Info_Cabecalho(seq_usuario)
 
     rank = info.get("Rank", 0) or 0
