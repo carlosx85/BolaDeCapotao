@@ -71,7 +71,14 @@ def Info_Cabecalho(seq):
 
 
 
-
+def inserir_zero(seq):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "INSERT INTO Jogos (Seq,Pontos) VALUES ('%s','0') "
+    cursor.execute(atualiza, (seq,))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
 
 
 def atualizar_email_sn_para_s(seq):
