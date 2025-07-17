@@ -19,8 +19,7 @@ def mostrar_cabecalho_publico(usuario):
     
     info = Info_Cabecalho(seq_usuario)
 
-    rank = info.get("Rank", 0) or 0
-    pontos = info.get("Pontos", 0) or 0
+
      
  
        
