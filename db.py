@@ -56,7 +56,7 @@ def Info_Cabecalho(seq):
 
     consulta = """
         SELECT 
-            Nome,Seq,Data_Atu,Pontos,Placar,Rank  
+            Nome, Seq, Data_Atu, Pontos, Placar, Rank  
         FROM ClassificacaoGeral 
         WHERE Seq = %s
     """
@@ -67,7 +67,14 @@ def Info_Cabecalho(seq):
     cursor.close()
     conexao.close()
 
-    return resultado  # Já é um dicionário se encontrado, senão retorna None
+    if resultado:
+        # Substitui valores nulos por 0 nos campos desejados
+        resultado["Pontos"] = resultado["Pontos"] or 0
+        resultado["Placar"] = resultado["Placar"] or 0
+        resultado["Rank"] = resultado["Rank"] or 0
+
+    return resultado
+
 
 
 
