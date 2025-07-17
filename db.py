@@ -317,7 +317,7 @@ def atualizar_online(rodada_ativa):
 
 
     #Inserir Rodada
-    comando6 = f' UPDATE   Jogos SET Pontos = 2 WHERE Resultado =  AND StatusRodada LIKE "AtiPalpitevo" AND Pontos < 3   AND Palpite <> "Pendente" ;'
+    comando6 = f' UPDATE   Jogos SET Pontos = 2 WHERE Resultado = Palpite AND StatusRodada LIKE "Ativo" AND Pontos < 3   AND Palpite <> "Pendente" ;'
     cursor.execute(comando6)
     conexao.commit()
 
