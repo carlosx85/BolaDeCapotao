@@ -58,7 +58,7 @@ def Info_Rodada():
     resultado = cursor.fetchone()
     cursor.close()
     conexao.close()
- 
+    return resultado
 
 
 
