@@ -66,7 +66,7 @@ def Info_Cabecalho(seq_usuario):
     LEFT JOIN ClassificacaoGeral c ON c.Seq = %s;
     """
     
-    cursor.execute(consulta, (seq,))
+    cursor.execute(consulta, (seq_usuario,))
     resultado = cursor.fetchone()
 
     cursor.close()
