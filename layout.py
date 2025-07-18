@@ -1,5 +1,5 @@
 import streamlit as st
-from db import  Info_Cabecalho,Info_Rodada
+from db import  Info_Cabecalho,Info_Rodada,Info_Rodada_Ativa
 
  
 def mostrar_cabecalho_publico(usuario):
@@ -18,7 +18,8 @@ def mostrar_cabecalho_publico(usuario):
     rodada = Info_Rodada()
     rodadax = rodada["Rodada"]
 
-     
+    rodada_ativa = Info_Rodada_Ativa()
+    rodadax_Ativa = rodada_ativa["Rodada"]    
  
        
      
@@ -26,7 +27,7 @@ def mostrar_cabecalho_publico(usuario):
     <div style="display: flex; align-items: center; padding: 10px 0 5px 0;">
         <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="50" style="margin-right: 15px;">
         <p style="margin: 0; font-size: 20px;">{usuario["evento"]} - {usuario["nome"]}   </p>
-          <h2 style="margin: 0; font-size: 20px;">       🏆 #{rank}º [{pontos}] pts   {rodadax}</h2>
+          <h2 style="margin: 0; font-size: 20px;">       🏆 #{rank}º [{pontos}] pts > {rodadax_Ativa}/{rodadax}</h2>
     </div>
     <hr style="margin-top: 5px; margin-bottom: 15px;">
     """

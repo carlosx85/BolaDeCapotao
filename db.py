@@ -61,6 +61,17 @@ def Info_Rodada():
     return resultado
 
 
+def Info_Rodada_Ativa():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT Rodada FROM  `Jogos_Rodada_Ativa`"
+    cursor.execute(consulta)
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    return resultado
+
+
 
 def Info_Cabecalho(seq_usuario):
     conexao = conectar()
