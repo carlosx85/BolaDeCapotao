@@ -15,8 +15,8 @@ def mostrar_cabecalho_publico(usuario):
     pontos = info["Pontos"] or 0
     
     
-    rodadax = Info_Rodada()
-    rodada = rodadax["Rodada"] 
+    rodada = Info_Rodada()
+
      
  
        
