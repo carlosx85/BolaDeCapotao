@@ -50,6 +50,18 @@ def verificar_email_sn(seq):
     return resultado["email_SN"] if resultado else None
 
 
+def Info_Rodada():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT Rodada  FROM Jogos_Rodada"
+    cursor.execute(consulta)
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+ 
+
+
+
 def Info_Cabecalho(seq_usuario):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
