@@ -50,7 +50,7 @@ def verificar_email_sn(seq):
     return resultado["email_SN"] if resultado else None
 
 
-def Info_Cabecalho(seq):
+def Info_Cabecalho(seq_usuario):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
 
