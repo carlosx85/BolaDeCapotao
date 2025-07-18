@@ -56,9 +56,14 @@ def Info_Cabecalho(seq):
 
     consulta = """
         SELECT 
-            Nome,Seq,Data_Atu,Pontos,Placar,Rank  
-        FROM ClassificacaoGeral 
-        WHERE Seq = %s
+        IFNULL(c.Nome, 'Desconhecido') AS Nome,
+        6 AS Seq,
+        IFNULL(c.Data_Atu, CURRENT_DATE()) AS Data_Atu,
+        IFNULL(c.Pontos, 0) AS Pontos,
+        IFNULL(c.Placar, 0) AS Placar,
+        IFNULL(c.Rank, 0) AS Rank
+    FROM (SELECT 1) AS dummy
+    LEFT JOIN ClassificacaoGeral c ON c.Seq = %s;
     """
     
     cursor.execute(consulta, (seq,))
