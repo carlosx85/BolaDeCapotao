@@ -16,6 +16,7 @@ def mostrar_cabecalho_publico(usuario):
     
     
     rodada = Info_Rodada()
+    rodadax = rodada["Rodada"]
 
      
  
@@ -25,7 +26,7 @@ def mostrar_cabecalho_publico(usuario):
     <div style="display: flex; align-items: center; padding: 10px 0 5px 0;">
         <img src="https://boladecapotao.com/bet/images/BolaDeCapotao.png" width="50" style="margin-right: 15px;">
         <p style="margin: 0; font-size: 20px;">{usuario["evento"]} - {usuario["nome"]}   </p>
-          <h2 style="margin: 0; font-size: 20px;">       🏆 #{rank}º [{pontos}] pts   {rodada}</h2>
+          <h2 style="margin: 0; font-size: 20px;">       🏆 #{rank}º [{pontos}] pts   {rodadax}</h2>
     </div>
     <hr style="margin-top: 5px; margin-bottom: 15px;">
     """
