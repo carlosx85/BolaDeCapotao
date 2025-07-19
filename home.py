@@ -218,7 +218,7 @@ def home_page():
                 
                 with col1:
                     st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
-                    st.markdown(f"<p style='text-align: center; margin-top: 4px'>{mandante}", unsafe_allow_html=True)
+                    st.markdown(f"<p style='text-align: left; margin-top: 0px'>{mandante}", unsafe_allow_html=True)
                 novo_mandante = col2.number_input(
                     label="",
                     min_value=0,
@@ -237,7 +237,7 @@ def home_page():
                 
                 with col4:
                     st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
-                    st.markdown(f"<p style='text-align: center; margin-top: 4px'>{visitante}", unsafe_allow_html=True)
+                    st.markdown(f"<p style='text-align: left; margin-top: 0px'>{visitante}", unsafe_allow_html=True)
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
