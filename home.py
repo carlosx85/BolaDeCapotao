@@ -194,50 +194,42 @@ def home_page():
          
           
         else:
-            st.markdown("### Jogos Ativos")
- 
-
-            # Armazenar alterações temporárias
-            if "placares_temp" not in st.session_state:
-                st.session_state.placares_temp = {}
-
+                        
+                        
+                        
             for i, jogo in enumerate(jogos, start=1):
-
                 mandante = jogo["Mandante"]
                 mandante_gol = jogo["Mandante_Gol"] or 0
                 visitante_gol = jogo["Visitante_Gol"] or 0
                 visitante = jogo["Visitante"]
                 jogo_id = jogo["Id"]
                 seq = jogo["Seq"]
-                
-                
 
-                col1, col2, col3, col4 = st.columns([1, 0.5, 0.5, 1])
-                #col1.write(jogo_id)
-                #col2.write(seq)
-                
+                col1, col2, col3, col4, col5 = st.columns([1, 1, 0.7, 0.7, 1])
+
                 with col1:
-                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
-                    st.write({jogo["Mandante"]})
-                novo_mandante = col2.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(mandante_gol),
-                    key=f"mandante_gol_{jogo_id}"
-                )
-                
-                
-                
-                novo_visitante = col3.number_input(
-                    label="",
-                    min_value=0,
-                    value=int(visitante_gol),
-                    key=f"visitante_gol_{jogo_id}"
-                )
-                
+                    st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=40)
+                    st.markdown(f"<p style='text-align: center; margin-top: 4px'>{mandante}</p>", unsafe_allow_html=True)
+
+                with col2:
+                    novo_mandante = st.number_input(
+                        label="",
+                        min_value=0,
+                        value=int(mandante_gol),
+                        key=f"mandante_gol_{jogo_id}"
+                    )
+
+                with col3:
+                    novo_visitante = st.number_input(
+                        label="",
+                        min_value=0,
+                        value=int(visitante_gol),
+                        key=f"visitante_gol_{jogo_id}"
+                    )
+
                 with col4:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)                  
-                    st.write({jogo["Visitante"]})
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=40)
+                    st.markdown(f"<p style='text-align: center; margin-top: 4px'>{visitante}</p>", unsafe_allow_html=True)
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
@@ -245,29 +237,8 @@ def home_page():
                     "mandante": mandante,
                     "visitante": visitante
                 }
-                st.divider() 
 
-            if st.button("Atualizar Todos"):
-                sucesso_total = True
-                for jogo_id, placar in st.session_state.placares_temp.items():
-                    atualizado = atualizar_placar_pendente(seq,jogo_id, placar["mandante_gol"], placar["visitante_gol"])
-
-
-                if sucesso_total:
-                    atualizadox = atualizar_placar_pendente_palpite()
-                    st.rerun() 
-                    st.info("Todos os placares foram atualizados com sucesso.")
-                else:
-                    st.info("Todos os placares foram atualizados com sucesso.")
-                    
-                    
-            
-                    
-                    
-                    
-                   
-
-                                
+                st.divider()
 
 
 
