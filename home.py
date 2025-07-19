@@ -218,7 +218,7 @@ def home_page():
                 
                 with col1:
                     st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
-                    st.write(mandante.pop())
+                    st.write({jogo["Mandante"]})
                 novo_mandante = col2.number_input(
                     label="",
                     min_value=0,
@@ -236,9 +236,8 @@ def home_page():
                 )
                 
                 with col4:
-                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
-                    st.write(visitante.pop())
-                    
+                    st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)                  
+                    st.write({jogo["Visitante"]})
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
