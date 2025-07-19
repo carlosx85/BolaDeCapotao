@@ -244,7 +244,7 @@ def home_page():
                     "mandante": mandante,
                     "visitante": visitante
                 }
-
+                st.divider() 
             if st.button("Atualizar Todos"):
                 sucesso_total = True
                 for jogo_id, placar in st.session_state.placares_temp.items():
