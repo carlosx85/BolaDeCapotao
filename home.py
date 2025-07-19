@@ -218,7 +218,7 @@ def home_page():
                 
                 with col1:
                     st.image(f"https://boladecapotao.com/times/{mandante.lower()}.png", width=50)# Gols Mandante (como texto, para permitir vazio)
-                    {mandante}
+                    st.write({mandante})
                 novo_mandante = col2.number_input(
                     label="",
                     min_value=0,
