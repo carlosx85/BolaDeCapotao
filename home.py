@@ -244,7 +244,7 @@ def home_page():
                     "mandante": mandante,
                     "visitante": visitante
                 }
-                st.divider(1) 
+                st.divider() 
 
             if st.button("Atualizar Todos"):
                 sucesso_total = True
