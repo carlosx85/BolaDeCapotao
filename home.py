@@ -237,7 +237,7 @@ def home_page():
                 
                 with col4:
                     st.image(f"https://boladecapotao.com/times/{visitante.lower()}.png", width=50)
-                    st.write({jogo["Mandante"]})
+                    st.write({jogo["Visitante"]})
 
                 st.session_state.placares_temp[jogo_id] = {
                     "mandante_gol": novo_mandante,
