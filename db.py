@@ -61,6 +61,19 @@ def Info_Rodada():
     return resultado
 
 
+def Info_Rank():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT Nome, Data_Atu, Pontos, Placar, Rank FROM ClassificacaoGeral"
+    cursor.execute(consulta)
+    resultado = cursor.fetchall()  # <- pega todos os registros
+    cursor.close()
+    conexao.close()
+    return resultado
+
+
+
+
 def Info_Rodada_Ativa():
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)

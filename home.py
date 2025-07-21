@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
-from db import  atualizar_online,ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
+from db import  Info_Rank,atualizar_online,ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 import requests
 from bs4 import BeautifulSoup
 from streamlit_autorefresh import st_autorefresh
@@ -264,7 +264,30 @@ def home_page():
             
                     
                     
-                    
+             
+# Função de cor para o Rank
+def cor_rank(rank):
+    if rank == 1:
+        return "background-color: green; color: white"
+    elif rank == 2:
+        return "background-color: yellow; color: black"
+    elif rank == 3:
+        return "background-color: blue; color: white"
+    else:
+        return "background-color: red; color: white"
+
+# Função para aplicar estilos
+def aplicar_estilo(df):
+    return df.style.applymap(cor_rank, subset=["Rank"])
+
+# Streamlit
+st.title("🏅 Ranking de Classificação")
+
+dados = Info_Rank()
+df = pd.DataFrame(dados)
+
+# Mostra o DataFrame com destaque por rank
+st.dataframe(aplicar_estilo(df), use_container_width=True)       
                    
 
                                 
