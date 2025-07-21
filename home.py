@@ -288,8 +288,14 @@ def home_page():
         dados = Info_Rank()
         df = pd.DataFrame(dados)
 
-        # Mostra o DataFrame com destaque por rank
-        st.dataframe(aplicar_estilo(df), use_container_width=True)       
+        # Remove a coluna Data_Atu
+        df = df.drop(columns=["Data_Atu"])
+
+        # Converte Rank para inteiro se necessário
+        df["Rank"] = pd.to_numeric(df["Rank"], errors="coerce")
+
+        # Exibe a tabela com estilo e sem índice
+        st.dataframe(aplicar_estilo(df), use_container_width=True)  
                    
 
                                 
