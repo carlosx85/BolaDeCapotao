@@ -265,29 +265,29 @@ def home_page():
                     
                     
              
-# Função de cor para o Rank
-def cor_rank(rank):
-    if rank == 1:
-        return "background-color: green; color: white"
-    elif rank == 2:
-        return "background-color: yellow; color: black"
-    elif rank == 3:
-        return "background-color: blue; color: white"
-    else:
-        return "background-color: red; color: white"
+        # Função de cor para o Rank
+        def cor_rank(rank):
+            if rank == 1:
+                return "background-color: green; color: white"
+            elif rank == 2:
+                return "background-color: yellow; color: black"
+            elif rank == 3:
+                return "background-color: blue; color: white"
+            else:
+                return "background-color: red; color: white"
 
-# Função para aplicar estilos
-def aplicar_estilo(df):
-    return df.style.applymap(cor_rank, subset=["Rank"])
+        # Função para aplicar estilos
+        def aplicar_estilo(df):
+            return df.style.applymap(cor_rank, subset=["Rank"])
 
-# Streamlit
-st.title("🏅 Ranking de Classificação")
+        # Streamlit
+        st.title("🏅 Ranking de Classificação")
 
-dados = Info_Rank()
-df = pd.DataFrame(dados)
+        dados = Info_Rank()
+        df = pd.DataFrame(dados)
 
-# Mostra o DataFrame com destaque por rank
-st.dataframe(aplicar_estilo(df), use_container_width=True)       
+        # Mostra o DataFrame com destaque por rank
+        st.dataframe(aplicar_estilo(df), use_container_width=True)       
                    
 
                                 
