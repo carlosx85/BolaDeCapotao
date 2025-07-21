@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from streamlit_autorefresh import st_autorefresh
 import time
+import pandas as pd
 
     
 def home_page():
