@@ -277,19 +277,25 @@ def home_page():
             else:
                 return "background-color: red; color: white"
 
-        # Função para aplicar estilos
-        def aplicar_estilo(df):
-            return df.style.applymap(cor_rank, subset=["Rank"]).hide(axis="index")  # remove o índice
+    # Função para aplicar estilos
+    def aplicar_estilo(df):
+        return df.style.applymap(cor_rank, subset=["Rank"]).hide(axis="index")
 
+    # Streamlit
+    st.write("🏅 Ranking de Classificação")
 
-        # Streamlit
-        st.title("🏅 Ranking de Classificação")
+    dados = Info_Rank()
+    df = pd.DataFrame(dados)
 
-        dados = Info_Rank()
-        df = pd.DataFrame(dados)
+    # Remove coluna Data_Atu se existir
+    df = df.drop(columns=["Data_Atu"], errors="ignore")
 
-        # Mostra o DataFrame com destaque por rank
-        st.dataframe(aplicar_estilo(df), use_container_width=True)       
+    # Converter Rank para número
+    df["Rank"] = pd.to_numeric(df["Rank"], errors="coerce")
+
+    # Mostra com estilo, sem índice
+    st.write(aplicar_estilo(df), unsafe_allow_html=True)
+     
                    
 
                                 
