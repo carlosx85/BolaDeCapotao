@@ -282,7 +282,8 @@ def home_page():
         return df.style.applymap(cor_rank, subset=["Rank"]).hide(axis="index")
 
     # Streamlit
-    st.write("🏅 Ranking de Classificação")
+  
+    st.header("🏅 Ranking de Classificação", divider=True)
 
     dados = Info_Rank()
     df = pd.DataFrame(dados)
