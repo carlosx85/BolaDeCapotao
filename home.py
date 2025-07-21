@@ -279,7 +279,7 @@ def home_page():
 
         # Função para aplicar estilos
         def aplicar_estilo(df):
-            return df.style.applymap(cor_rank, subset=["Rank"]).hide(axis="index")  # remove o índice
+            return df.style.applymap(cor_rank, subset=["Nome"]).hide(axis="index")  # remove o índice
 
 
         # Streamlit
