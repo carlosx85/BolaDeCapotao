@@ -347,7 +347,7 @@ def atualizar_online(rodada_ativa):
 
 
     #Inserir Rodada
-    comando3 = f'UPDATE Jogos SET Pontos = CASE      WHEN Mandante_Gol  = Palpite_Mandante_Gol  AND Visitante_Gol = Palpite_Visitante_Gol THEN 4     WHEN Visitante_Gol = Palpite_Visitante_Gol THEN 1     WHEN Mandante_Gol  = Palpite_Mandante_Gol  THEN 1     WHEN Resultado     = Palpite     THEN 2     ELSE 0 END WHERE StatusRodada = "Ativo";'
+    comando3 = f'UPDATE Jogos SET Pontos = CASE      WHEN Mandante_Gol  = Palpite_Mandante_Gol  AND Visitante_Gol = Palpite_Visitante_Gol THEN 4     WHEN Visitante_Gol = Palpite_Visitante_Gol THEN 1     WHEN Mandante_Gol  = Palpite_Mandante_Gol  THEN 1     WHEN Resultado     =  Palpite     THEN 2     ELSE 0 END WHERE StatusRodada = "Ativo" and Palpite <> "Pendente";'
     cursor.execute(comando3)
     conexao.commit()
 
