@@ -111,10 +111,10 @@ def home_page():
 
             else:
                 
-                info = Info_Cabecalho(seq)
-                pontos = info["Pontos"] or 0               
+                info = Info_Cabecalho((usuario["seq"])
+                pontosx = info["Pontos"] or 0               
                 
-                st.badge(f"Rodada Ativaxx **# {rodada_ativa}** >>**# {pontos}** Pts"", icon=":material/check:", color="green")   
+                st.badge(f"Rodada Ativaxx **# {rodada_ativa}** >>**# {pontosx}**"", icon=":material/check:", color="green")   
                 
 
                 
