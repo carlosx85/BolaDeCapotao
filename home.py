@@ -118,7 +118,7 @@ def home_page():
                 
                 
                 
-                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**", icon=":material/check:", color="green")   
+                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**  **# {rodada_ativa}**Pts", icon=":material/check:", color="green")   
                 
                 
                 # Cabeçalho
