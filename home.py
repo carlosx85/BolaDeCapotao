@@ -119,7 +119,7 @@ def home_page():
                 
                 
                 
-                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**  **# {pontosa}**Pts", icon=":material/check:", color="green")   
+                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**  **# , 🚀 {pontosa}**Pts", icon=":material/check:", color="green")   
                 
                 
                 # Cabeçalho
