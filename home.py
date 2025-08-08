@@ -111,10 +111,10 @@ def home_page():
 
             else:
                 
-                info = Info_Cabecalho(seq)
+                info = Info_Cabecalho(usuario["seq"])
 
 
-                pontos = info["Pontos"] or 0   
+                pontosx = info["Pontos"] or 0   
                 
                 
                 
