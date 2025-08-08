@@ -86,6 +86,18 @@ def Info_Rodada_Ativa():
 
 
 
+def Info_Rodada_Pontos_Seq(seq,rodada):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    consulta = "SELECT SUM(Pontos) AS Pontos,Seq,Rodada FROM Jogos WHERE Seq = %s and Rodada = %s"
+    cursor.execute(consulta, (seq,rodada))
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    return resultado 
+
+
+
 def Info_Cabecalho(seq_usuario):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
