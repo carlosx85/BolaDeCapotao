@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from layout import mostrar_cabecalho_publico
-from db import  Info_Cabecalho,Info_Rank,atualizar_online,ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
+from db import  Info_Rodada_Pontos_Seq,Info_Cabecalho,Info_Rank,atualizar_online,ativar_rodada_01,rodada_inicio,atualizar_placar_pendente,atualizar_placar_pendente_palpite,buscar_jogos_ativos_preenchido,rodada_inicio_ativar,verificar_rodada_ativa,buscar_jogos_ativos_Pendente,verificar_email_sn, atualizar_email_sn_para_s,atualizar_email_sn_para_s1
 import requests
 from bs4 import BeautifulSoup
 from streamlit_autorefresh import st_autorefresh
@@ -112,13 +112,14 @@ def home_page():
             else:
                 
                 info = Info_Cabecalho(usuario["seq"])
-
-
                 pontosx = info["Pontos"] or 0   
                 
+                infox = Info_Rodada_Pontos_Seq(usuario["seq"],rodada_ativa)
+                pontosa = infox["Pontos"] or 0 
                 
                 
-                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**  **# {pontosx}**Pts", icon=":material/check:", color="green")   
+                
+                st.badge(f"Rodada Ativaxx **# {rodada_ativa}**  **# {pontosa}**Pts", icon=":material/check:", color="green")   
                 
                 
                 # Cabeçalho
