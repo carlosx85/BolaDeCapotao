@@ -3,9 +3,11 @@ import streamlit as st
 
 def perfil_page():
    
-    st.title(f"👤 {usuario.get('seq', '---')}")
+    
 
     usuario = st.session_state.get("usuario_logado", {})
+    
+    st.title(f"👤 {usuario.get('seq', '---')}")
 
     # Exibe a foto de perfil
     nome_arquivo_foto = usuario.get("foto")  # ex.: "carlos.jpg"
