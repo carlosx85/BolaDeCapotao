@@ -18,43 +18,60 @@ def dashboard_page():
     st.write("Gráficos e relatórios aqui.")
 
 def main():
+    # inicializa página
     if "pagina" not in st.session_state:
         st.session_state["pagina"] = "login"
 
-    # Se não logado, sempre vai para login
+    # se não estiver logado, força login
     if "usuario_logado" not in st.session_state and st.session_state["pagina"] != "login":
         st.session_state["pagina"] = "login"
 
-    # Página atual
-    pagina = st.session_state["pagina"]
+    # fluxo: se for login, mostra login_page (login_page deve setar usuario_logado e pagina="home")
+    if st.session_state["pagina"] == "login":
+        login_page()
+        return
 
-    if pagina == "login":
-        login_page()  # login_page deve definir usuario_logado e pagina="home" se login for ok
+    # --- Sidebar (apenas com usuário logado) ---
+    # pages: (key, label)
+    pages = [
+        ("perfil", "Perfil"),
+        ("home", "Home"),
+        ("rodada", "Rodada"),
+        ("dashboard", "Dashboard"),
+        ("sair", "Sair"),
+    ]
 
-    else:
-        # Sidebar só aparece após login
-        st.sidebar.title(f"Olá, {st.session_state['usuario_logado']['nome']} 👋")
-        opcao = st.sidebar.radio(
-            "Navegar para:",
-            ("Perfil", "Home", "Rodada", "Dashboard", "Sair"),
-            index=["Perfil", "Home", "Rodada", "Dashboard", "Sair"].index(pagina)
-        )
-        st.session_state["pagina"] = opcao.lower()  # controla pelo nome em minúsculo
+    # cria lista de labels para o radio
+    labels = [label for _, label in pages]
 
-        # Roteamento
-        if opcao == "Perfil":
-            perfil_page()
-        elif opcao == "Home":
-            home_page()
-        elif opcao == "Rodada":
-            rodada_page()
-        elif opcao == "Dashboard":
-            dashboard_page()
-        elif opcao == "Sair":
-            st.session_state.pop("usuario_logado", None)
-            st.session_state["pagina"] = "login"
-            st.success("Você saiu do sistema.")
-            st.rerun()
+    # encontra índice atual baseado na key (se não achar, usa índice 1 -> Home)
+    current_key = st.session_state.get("pagina", "home")
+    current_index = next((i for i, (k, _) in enumerate(pages) if k == current_key), 1)
+
+    st.sidebar.title(f"Olá, {st.session_state['usuario_logado'].get('nome','Usuário')} 👋")
+    chosen_label = st.sidebar.radio("Navegar para:", labels, index=current_index)
+
+    # converte label de volta para key
+    chosen_index = labels.index(chosen_label)
+    chosen_key = pages[chosen_index][0]
+
+    # atualiza página no session_state com a key (lowercase)
+    st.session_state["pagina"] = chosen_key
+
+    # roteamento por key
+    if chosen_key == "perfil":
+        perfil_page()
+    elif chosen_key == "home":
+        home_page()
+    elif chosen_key == "rodada":
+        rodada_page()
+    elif chosen_key == "dashboard":
+        dashboard_page()
+    elif chosen_key == "sair":
+        st.session_state.pop("usuario_logado", None)
+        st.session_state["pagina"] = "login"
+        st.success("Você saiu do sistema.")
+        st.rerun()
 
 if __name__ == "__main__":
     main()
