@@ -7,7 +7,7 @@ def perfil_page():
 
     usuario = st.session_state.get("usuario_logado", {})
     
-    st.title(f"👤 {usuario.get('seq', '---')}")
+    st.title(f"👤 {usuario.get('nome', '---')}")
 
     # Exibe a foto de perfil
     nome_arquivo_foto = usuario.get("foto")  # ex.: "carlos.jpg"
