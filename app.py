@@ -1,14 +1,13 @@
 import streamlit as st
 from login import login_page
 from home import home_page
+from perfil import perfil_page
 
 # Páginas extras
-def perfil_page():
-    st.title("👤 Perfil do Usuário")
-    usuario = st.session_state.get("usuario_logado", {})
-    st.write(f"Nome: **{usuario.get('nome', '---')}**")
-    st.write(f"ID: **{usuario.get('seq', '---')}**")
 
+perfil_page():
+    
+    
 def rodada_page():
     st.title("⚽ Rodada")
     st.write("Informações da rodada aqui.")
