@@ -5,7 +5,7 @@ from perfil import perfil_page
 
 # Páginas extras
 
-perfil_page()
+ 
     
     
 def rodada_page():
