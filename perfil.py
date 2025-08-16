@@ -25,13 +25,13 @@ def perfil_page():
         try:
             resposta = requests.head(url_foto, timeout=5)
             if resposta.status_code == 200:
-                st.image(url_foto, width=150, caption=usuario.get("nome", "Usuário"))
+                st.image(url_foto, width=100, caption=usuario.get("nome", "Usuário"))
             else:
-                st.image(FOTO_PADRAO, width=150, caption="Sem foto")
+                st.image(FOTO_PADRAO, width=100, caption="Sem foto")
         except requests.RequestException:
-            st.image(FOTO_PADRAO, width=150, caption="Erro ao carregar foto")
+            st.image(FOTO_PADRAO, width=100, caption="Erro ao carregar foto")
     else:
-        st.image(FOTO_PADRAO, width=150, caption="Sem foto cadastrada")
+        st.image(FOTO_PADRAO, width=100, caption="Sem foto cadastrada")
 
     # Dados do usuário
     st.write(f"**Nome:** {usuario.get('nome', '---')}")
