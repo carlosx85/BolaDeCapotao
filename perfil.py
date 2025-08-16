@@ -13,7 +13,7 @@ def perfil_page():
     st.title(f"👤 {usuario.get('nome', '---')}")
 
     # Foto padrão (quando não encontra no servidor)
-    FOTO_PADRAO = f"https://boladecapotao.com/Palpiteiros/{usuario}.png"
+    FOTO_PADRAO = f"https://boladecapotao.com/Palpiteiros/Buba.png"
 
     # Pega o nome do arquivo e remove barras/espacos extras
     nome_arquivo_foto = usuario.get("foto", "").strip().lstrip("/")
