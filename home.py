@@ -79,7 +79,7 @@ def home_page():
         
         
         
-            rodadaativa = verificar_rodada_ativa(usuario["seq"])
+            rodadaativa = verificar_rodada_ativa()
             rodada_ativa = rodadaativa["Rodada"]
             rodada_inicio_ativar()
             
