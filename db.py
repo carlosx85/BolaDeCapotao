@@ -242,11 +242,11 @@ def normalizar_nome(nome):
     return nome.lower().replace(" ", "-")
 
 
-def verificar_rodada_ativa():
+def verificar_rodada_ativa(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
-    consulta = "SELECT Rodada,StatusRodada FROM  Jogos WHERE   StatusRodada = 'Ativo' GROUP BY Rodada,StatusRodada"
-    cursor.execute(consulta, ())
+    consulta = "SELECT Nome,Rodada,StatusRodada FROM  Jogos WHERE Seq = %s AND  StatusRodada = 'Ativo' GROUP BY Nome,Rodada,StatusRodada"
+    cursor.execute(consulta, (seq,))
     resultado = cursor.fetchone()
     cursor.close()
     conexao.close()
