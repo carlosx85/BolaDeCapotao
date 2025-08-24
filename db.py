@@ -190,6 +190,20 @@ def buscar_jogos_ativos_Pendente(seq):
     return resultados
 
 
+def rodada_listar():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    query = """
+         SELECT * FROM Rodada       
+    """
+    cursor.execute(query, ())
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return resultados
+
+
 def buscar_jogos_ativos_Pendente_OK(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
