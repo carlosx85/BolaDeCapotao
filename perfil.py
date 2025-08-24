@@ -37,5 +37,6 @@ def perfil_page():
     st.write(f"**Nome:** {usuario.get('nome', '---')}")
     st.write(f"**ID:** {usuario.get('seq', '---')}")
     st.write(f"dd {usuario.get('nome', '---')}")
+    st.write(f"**Perfil:** {usuario.get('adm', '---')}")
 
     
