@@ -41,6 +41,7 @@ def main():
         ("home", "Home"),
         ("rodada", "Rodada"),
         ("dashboard", "Dashboard"),
+        ("adm", "Administração"),
         ("sair", "Sair"),
     ]
 
