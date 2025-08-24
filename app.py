@@ -2,7 +2,7 @@ import streamlit as st
 from login import login_page
 from home import home_page
 from perfil import perfil_page
-from adm import perfil_page
+
 
 # Páginas extras
 def rodada_page():
