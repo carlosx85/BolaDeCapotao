@@ -2,6 +2,12 @@ import streamlit as st
 import requests
 from datetime import datetime
 
+def carregar_meses():
+    return list(range(1, 13))
+ 
+def carregar_anos():
+    return list(range(2025, 2031))
+
 def adm_page():  
 
     usuario = st.session_state.get("usuario_logado", {})
