@@ -37,6 +37,6 @@ def adm_page():
         if tipo_despesa.strip() == "":
             st.error("O campo 'Tipo de Despesa' é obrigatório.")
         else:
-            atualizar_valor_despesa(mes,   tipo_despesa )
+           
             st.success("✅ Pagamento efetuado com sucesso!")
     
