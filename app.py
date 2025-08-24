@@ -62,22 +62,34 @@ def main():
     # atualiza página no session_state com a key (lowercase)
     st.session_state["pagina"] = chosen_key
 
-    # roteamento por key
-    if chosen_key == "perfil":
-        perfil_page()
-    elif chosen_key == "home":
-        home_page()
-    elif chosen_key == "rodada":
-        rodada_page()
-    elif chosen_key == "dashboard":
-        dashboard_page()        
-    elif chosen_key == "adm":
-        adm()
-    elif chosen_key == "sair":
-        st.session_state.pop("usuario_logado", None)
-        st.session_state["pagina"] = "login"
-        st.success("Você saiu do sistema.")
-        st.rerun()
+usuario = st.session_state.get("usuario_logado", {})
+
+# Opções padrão
+menu_opcoes = ["Perfil", "Home", "Rodada", "Dashboard", "Sair"]
+
+# Se for administrador, adiciona o menu ADM
+if usuario.get("adm") == "S":
+    menu_opcoes.insert(-1, "Adm")  # antes do "Sair"
+
+opcao = st.sidebar.radio("Navegar para:", menu_opcoes)
+
+# Roteamento
+if opcao == "Perfil":
+    perfil_page()
+elif opcao == "Home":
+    home_page()
+elif opcao == "Rodada":
+    rodada_page()
+elif opcao == "Dashboard":
+    dashboard_page()
+elif opcao == "Adm":  # só aparece se adm == "S"
+    adm()
+elif opcao == "Sair":
+    st.session_state.pop("usuario_logado", None)
+    st.session_state["pagina"] = "login"
+    st.success("Você saiu do sistema.")
+    st.rerun()
+
 
 if __name__ == "__main__":
     main()
