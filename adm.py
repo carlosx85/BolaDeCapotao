@@ -31,15 +31,12 @@ def adm_page():
         mes = st.selectbox("Mês", meses, index=meses.index(mes_atual) if mes_atual in meses else 0)
     with col2:
  
-
-    # Inputs de valor e descrição
-    valor = st.number_input("Digite o Valor da Despesa:",min_value=0, step=1, format="%d")
-    descricao = st.text_input("Descrição", max_chars=100)
+ 
 
     if st.button("Efetuar o pagamento"):
         if tipo_despesa.strip() == "":
             st.error("O campo 'Tipo de Despesa' é obrigatório.")
         else:
-            atualizar_valor_despesa(mes, ano, tipo_despesa, descricao, valor)
+            atualizar_valor_despesa(mes,   tipo_despesa )
             st.success("✅ Pagamento efetuado com sucesso!")
     
