@@ -4,17 +4,13 @@ from home import home_page
 from perfil import perfil_page
 
 # Páginas extras
-
- 
-    
-    
 def rodada_page():
     st.title("⚽ Rodada")
     st.write("Informações da rodada aqui.")
     
-def adm():
-    st.title("⚽ adm")
-    st.write("Informações da rodada aqui.")
+def adm_page():
+    st.title("⚙️ Administração")
+    st.write("Área restrita para administradores.")
 
 def dashboard_page():
     st.title("📊 Dashboard")
@@ -29,40 +25,48 @@ def main():
     if "usuario_logado" not in st.session_state and st.session_state["pagina"] != "login":
         st.session_state["pagina"] = "login"
 
-    # fluxo: se for login, mostra login_page (login_page deve setar usuario_logado e pagina="home")
+    # fluxo: se for login, mostra login_page (ela deve setar usuario_logado e pagina="home")
     if st.session_state["pagina"] == "login":
         login_page()
         return
 
-    # --- Sidebar (apenas com usuário logado) ---
-    # pages: (key, label)
+    usuario = st.session_state.get("usuario_logado", {})
+
+    # --- Sidebar ---
+    st.sidebar.title(f"Olá, {usuario.get('nome','Usuário')} 👋")
+
+    # Menu padrão
     pages = [
         ("perfil", "Perfil"),
         ("home", "Home"),
         ("rodada", "Rodada"),
         ("dashboard", "Dashboard"),
-        ("adm", "Administração"),
-        ("sair", "Sair"),
     ]
 
-    # cria lista de labels para o radio
+    # Só adiciona "Adm" se for admin
+    if usuario.get("adm") == "S":
+        pages.append(("adm", "Administração"))
+
+    # Sempre por último o "Sair"
+    pages.append(("sair", "Sair"))
+
+    # cria lista de labels
     labels = [label for _, label in pages]
 
-    # encontra índice atual baseado na key (se não achar, usa índice 1 -> Home)
+    # encontra índice atual baseado na key
     current_key = st.session_state.get("pagina", "home")
     current_index = next((i for i, (k, _) in enumerate(pages) if k == current_key), 1)
 
-    st.sidebar.title(f"Olá, {st.session_state['usuario_logado'].get('nome','Usuário')} 👋")
     chosen_label = st.sidebar.radio("Navegar para:", labels, index=current_index)
 
-    # converte label de volta para key
+    # converte label para key
     chosen_index = labels.index(chosen_label)
     chosen_key = pages[chosen_index][0]
 
-    # atualiza página no session_state com a key (lowercase)
+    # atualiza página
     st.session_state["pagina"] = chosen_key
 
-    # roteamento por key
+    # roteamento
     if chosen_key == "perfil":
         perfil_page()
     elif chosen_key == "home":
@@ -70,9 +74,9 @@ def main():
     elif chosen_key == "rodada":
         rodada_page()
     elif chosen_key == "dashboard":
-        dashboard_page()        
+        dashboard_page()
     elif chosen_key == "adm":
-        adm()
+        adm_page()
     elif chosen_key == "sair":
         st.session_state.pop("usuario_logado", None)
         st.session_state["pagina"] = "login"
