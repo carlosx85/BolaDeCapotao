@@ -2,13 +2,16 @@ import streamlit as st
 from login import login_page
 from home import home_page
 from perfil import perfil_page
-from adm import adm_page
+from adm import perfil_page
 
 # Páginas extras
 def rodada_page():
     st.title("⚽ Rodada")
     st.write("Informações da rodada aqui.")
- 
+    
+def adm_page():
+    st.title("⚙️ Administraçãoxxx")
+    st.write("Área restrita para administradores.")
 
 def dashboard_page():
     st.title("📊 Dashboard")
