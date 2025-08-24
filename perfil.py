@@ -1,12 +1,7 @@
 import streamlit as st
 import requests
 
-def perfil_page():
-    
-   
-    
-
-
+def perfil_page():  
 
     usuario = st.session_state.get("usuario_logado", {})
 
@@ -36,7 +31,6 @@ def perfil_page():
     # Dados do usuário
     st.write(f"**Nome:** {usuario.get('nome', '---')}")
     st.write(f"**ID:** {usuario.get('seq', '---')}")
-    st.write(f"dd {usuario.get('nome', '---')}")
     st.write(f"**Perfil:** {usuario.get('adm', '---')}")
 
     

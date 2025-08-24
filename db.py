@@ -32,7 +32,8 @@ def validar_login(email, senha):
             "nome": resultado["Nome"],
             "evento": resultado["Evento"],
             "eventoabreviado": resultado["Evento_Abreviado"],
-            "email": resultado["email"]
+            "email": resultado["email"],
+            "adm": resultado["adm"]
         }
         st.session_state["pagina"] = "home"  # Troca para página home
         return True
