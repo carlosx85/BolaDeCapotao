@@ -10,7 +10,7 @@ def rodada_page():
     st.write("Informações da rodada aqui.")
     
 def adm_page():
-    st.title("⚙️ Administraçãoxxx")
+    st.title("⚙️ Administração")
     st.write("Área restrita para administradores.")
 
 def dashboard_page():
