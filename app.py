@@ -72,7 +72,7 @@ def main():
     elif chosen_key == "dashboard":
         dashboard_page()        
     elif chosen_key == "adm":
-        dashboard_page()
+        adm()
     elif chosen_key == "sair":
         st.session_state.pop("usuario_logado", None)
         st.session_state["pagina"] = "login"
