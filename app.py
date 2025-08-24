@@ -11,6 +11,10 @@ from perfil import perfil_page
 def rodada_page():
     st.title("⚽ Rodada")
     st.write("Informações da rodada aqui.")
+    
+def adm():
+    st.title("⚽ adm")
+    st.write("Informações da rodada aqui.")
 
 def dashboard_page():
     st.title("📊 Dashboard")
