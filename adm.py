@@ -1,12 +1,11 @@
 import streamlit as st
 import requests
 from datetime import datetime
+from db import atualizar_rodada
 
-def carregar_meses():
-    return list(range(1, 13))
- 
-def carregar_anos():
-    return list(range(2025, 2031))
+def carregar_rodada():
+    return list(range(1, 38))
+
 
 def adm_page():  
 
@@ -16,31 +15,27 @@ def adm_page():
 
 
     mes_atual = datetime.now().month
-    ano_atual = datetime.now().year
+  
 
     # Carregar listas com cache
-    meses = carregar_meses()
-    anos = carregar_anos()
+    rodadas = carregar_rodada()
+     
 
     # Tipos de despesa
     opcoes = ["Ativo" , "Encerrado", "Pendente"]
-    tipo_despesa = st.selectbox("Selecione o Tipo de Despesa:", opcoes)
+    tipo = st.selectbox("Selecione o Status:", opcoes)
 
-    # Seleção de mês e ano
-    col1, col2, _ = st.columns([2, 4, 6])
-    with col1:
-        mes = st.selectbox("Mês", meses, index=meses.index(mes_atual) if mes_atual in meses else 0)
-    with col2:
-        ano = st.selectbox("Ano", anos, index=anos.index(ano_atual) if ano_atual in anos else 0)
+    # Seleção de mês e ano 
+ 
+    rodada = st.selectbox("Rodada", rodadas, index=rodadas.index(mes_atual) if mes_atual in rodadas else 0)
+ 
 
-    # Inputs de valor e descrição
-    valor = st.number_input("Digite o Valor da Despesa:",min_value=0, step=1, format="%d")
-    descricao = st.text_input("Descrição", max_chars=100)
+ 
 
     if st.button("Efetuar o pagamento"):
         if tipo_despesa.strip() == "":
             st.error("O campo 'Tipo de Despesa' é obrigatório.")
         else:
-            atualizar_valor_despesa(mes, ano, tipo_despesa, descricao, valor)
+            atualizar_rodada(rodada, tipo)
             st.success("✅ Pagamento efetuado com sucesso!")
     
