@@ -23,7 +23,7 @@ def adm_page():
     anos = carregar_anos()
 
     # Tipos de despesa
-    opcoes = [" " , "Lavagem dos Coletes", "Compra de Bola", "Compra de Coletes", "Material de Farmácia"]
+    opcoes = ["Ativo" , "Encerrado", "Pendente"]
     tipo_despesa = st.selectbox("Selecione o Tipo de Despesa:", opcoes)
 
     # Seleção de mês e ano
