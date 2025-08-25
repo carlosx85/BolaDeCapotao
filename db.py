@@ -97,6 +97,9 @@ def Info_Rodada_Pontos_Seq(seq,rodada):
     conexao.close()
     return resultado 
 
+
+
+
 def Info_Adm(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
@@ -230,6 +233,18 @@ def atualizar_mandante_gol(seq,id):
     conexao.commit()
     cursor.close()
     conexao.close()
+    
+def atualizar_stattus_rodada(tipo,rodada):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Jogos SET StatusRodada = %s , Rodada_Ativa_SN = 'S'  WHERE Rodada = %s "
+    cursor.execute(atualiza, (tipo,rodada))
+    conexao.commit()
+    cursor.close()
+    conexao.close()    
+    
+    
+    
     
     
 def atualizar_placar_pendente(seq,jogo_id,mandante_gol, visitante_gol):
