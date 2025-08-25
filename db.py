@@ -234,7 +234,7 @@ def atualizar_mandante_gol(seq,id):
     cursor.close()
     conexao.close()
     
-def atualizar_stattus_rodada(tipo,rodada):
+def atualizar_stattus_rodada_ativar(tipo,rodada):
     conexao = conectar()
     cursor = conexao.cursor()
     atualiza = "UPDATE Jogos SET StatusRodada = %s , Rodada_Ativa_SN = 'S'  WHERE Rodada = %s "
@@ -242,6 +242,15 @@ def atualizar_stattus_rodada(tipo,rodada):
     conexao.commit()
     cursor.close()
     conexao.close()    
+    
+def atualizar_stattus_rodada_desativar():
+    conexao = conectar()
+    cursor = conexao.cursor()
+    atualiza = "UPDATE Jogos SET StatusRodada = 'Encerrada' , Rodada_Ativa_SN = 'N'  WHERE StatusRodada = 'Ativo' "
+    cursor.execute(atualiza, ())
+    conexao.commit()
+    cursor.close()
+    conexao.close()   
     
     
     

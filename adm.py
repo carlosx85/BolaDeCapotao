@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from datetime import datetime
-from db import atualizar_stattus_rodada
+from db import atualizar_stattus_rodada_ativar,atualizar_stattus_rodada_desativar
 
 def carregar_rodada():
     return list(range(1, 38))
@@ -34,8 +34,9 @@ def adm_page():
 
     if st.button("Efetuar o pagamento"):
         if tipo.strip() == "":
-            st.error("O campo 'Tipo de Despesa' é obrigatório.")
+            st.error("O campo 'Tipo' é obrigatório.")
         else:
-            atualizar_stattus_rodada(rodada, tipo)
+            atualizar_stattus_rodada_desativar()
+            atualizar_stattus_rodada_ativar(rodada, tipo)
             st.success("✅ Pagamento efetuado com sucesso!")
     
