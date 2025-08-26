@@ -327,6 +327,8 @@ def home_page():
         
         
         
+        st.title("Hello, *World!* :sunglasses:")
+        
         
         col1, col2, col3 = st.columns(3)
         col1.metric("Colocação", "70 °F", "1.2 °F")
