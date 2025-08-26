@@ -22,12 +22,15 @@ def adm_page():
      
 
     # Tipos de despesa
-    opcoes = ["Ativo" , "Encerrado", "Pendente"]
-    tipo = st.selectbox("Selecione o Status:", opcoes)
+
+    rodada = st.selectbox("Selecione o Status:", rodadas)
 
     # Seleção de mês e ano 
  
-    rodada = st.selectbox("Rodada", rodadas)
+ # Tipos de despesa
+    opcoes = ["Ativo" , "Encerrado", "Pendente"]
+    tipo = st.selectbox("Selecione o Status:", opcoes)
+
  
 
  
