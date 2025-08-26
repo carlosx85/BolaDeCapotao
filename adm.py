@@ -4,7 +4,7 @@ from datetime import datetime
 from db import atualizar_status_rodada_desativar
 
 def carregar_rodada():
-    return list(range(1, 38))
+    return list(range(1, 39))
 
 
 def adm_page():  
