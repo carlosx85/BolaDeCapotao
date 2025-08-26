@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from datetime import datetime
-from db import atualizar_stattus_rodada_ativar,atualizar_stattus_rodada_desativar
+from db import atualizar_status_rodada_ativar,atualizar_status_rodada_desativar
 
 def carregar_rodada():
     return list(range(1, 38))
@@ -27,7 +27,7 @@ def adm_page():
 
     # Seleção de mês e ano 
  
-    rodada = st.selectbox("Rodada", rodadas, index=rodadas.index(mes_atual) if mes_atual in rodadas else 0)
+    rodada = st.selectbox("Rodada", rodadas)
  
 
  
@@ -36,7 +36,7 @@ def adm_page():
         if tipo.strip() == "":
             st.error("O campo 'Tipo' é obrigatório.")
         else:
-            atualizar_stattus_rodada_desativar()
-            atualizar_stattus_rodada_ativar(rodada, tipo)
+            atualizar_status_rodada_desativar()
+            #atualizar_status_rodada_ativar(rodada, tipo)
             st.success("✅ Pagamento efetuado com sucesso!")
     
