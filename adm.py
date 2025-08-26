@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from datetime import datetime
-from db import atualizar_status_rodada_ativar,atualizar_status_rodada_desativar
+from db import atualizar_status_rodada_desativar
 
 def carregar_rodada():
     return list(range(1, 38))
@@ -13,8 +13,6 @@ def adm_page():
 
     st.title(f"👤 {usuario.get('nome', '---')}")
 
-
-    mes_atual = datetime.now().month
   
 
     # Carregar listas com cache
@@ -23,7 +21,7 @@ def adm_page():
 
     # Tipos de despesa
 
-    rodada = st.selectbox("Selecione o Status:", rodadas)
+
 
     # Seleção de mês e ano 
  
@@ -31,7 +29,7 @@ def adm_page():
     opcoes = ["Ativo" , "Encerrado", "Pendente"]
     tipo = st.selectbox("Selecione o Status:", opcoes)
 
- 
+    rodada = st.selectbox("Selecione a Rodada:", rodadas)
 
  
 
