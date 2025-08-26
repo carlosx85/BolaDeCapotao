@@ -327,7 +327,7 @@ def home_page():
         
         
         
-        st.title("Hello, *World!* :sunglasses:")
+        st.title("Resumo Geral!* :sunglasses:")
         
         
         col1, col2, col3 = st.columns(3)
