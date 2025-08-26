@@ -234,6 +234,8 @@ def atualizar_mandante_gol(seq,id):
     cursor.close()
     conexao.close()
     
+    
+    
 def atualizar_status_rodada_ativar(tipo,rodada):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -242,6 +244,8 @@ def atualizar_status_rodada_ativar(tipo,rodada):
     conexao.commit()
     cursor.close()
     conexao.close()    
+    
+    
     
 def atualizar_status_rodada_desativar():
     conexao = conectar()
