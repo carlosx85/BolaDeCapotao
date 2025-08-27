@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
-from db import  get_rodadas
+from db import  get_rodadas,
 
 
-def rodada():  
+def adm_rodada():  
     
     usuario = st.session_state.get("usuario_logado", {})
 

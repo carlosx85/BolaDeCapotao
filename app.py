@@ -3,6 +3,7 @@ from login import login_page
 from home import home_page
 from perfil import perfil_page
 from adm import adm_page
+from rodada import adm_rodada
 import requests
 
 
@@ -77,7 +78,7 @@ def main():
     elif chosen_key == "home":
         home_page()
     elif chosen_key == "rodada":
-        rodada_page()
+        adm_rodada()
     elif chosen_key == "dashboard":
         dashboard_page()
     elif chosen_key == "adm":
