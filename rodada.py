@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from db import  get_rodadas
 
 
 def rodada():  
