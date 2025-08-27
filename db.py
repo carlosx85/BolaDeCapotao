@@ -308,9 +308,7 @@ def get_jogos(seq_rodada):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
     cursor.execute("""
-        SELECT * 
-        FROM Jogos 
-        WHERE AND Seq = %s 
+        SELECT *  FROM Jogos   WHERE  Seq = %s 
     """, (seq_rodada,))
     dados = cursor.fetchall()
     conexao.close()
