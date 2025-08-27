@@ -310,7 +310,7 @@ def get_jogos(seq, rodada):
     cursor.execute("""
         SELECT * 
         FROM Jogos 
-        WHERE StatusRodada LIKE 'Ativo' 
+        WHERE  
           AND Seq = %s
           AND Rodada = %s
           
