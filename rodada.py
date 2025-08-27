@@ -15,7 +15,7 @@ def adm_rodada():
     rodadas = get_rodadas()
 
     for rodada in rodadas:
-        rodada_nome = f"Rodada {rodada['Rodada']} - {rodada['StatusRodada']}"
+        rodada_nome = f"Rodada {rodada['Rodada']} - {rodada['StatusRodada']} {usuario.get('seq', '---')}"
         if rodada["Rodada_Ativa_SN"] == "S":
             rodada_nome += " ✅ (Ativa)"
         
