@@ -310,9 +310,7 @@ def get_jogos(seq_rodada):
     cursor.execute("""
         SELECT * 
         FROM Jogos 
-        WHERE StatusRodada LIKE 'Ativo' 
-          AND Seq = %s  
-          AND Palpite <> 'Pendente'
+        WHERE AND Seq = %s 
     """, (seq_rodada,))
     dados = cursor.fetchall()
     conexao.close()
