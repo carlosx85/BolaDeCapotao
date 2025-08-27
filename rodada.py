@@ -10,6 +10,7 @@ def adm_rodada():
     usuario = st.session_state.get("usuario_logado", {})
     st.title(f"👤 {usuario.get('nome', '---')}")
     st.write(f"**ID:** {usuario.get('seq', '---')}")
+    id_usuario = usuario.get("seq", None)
     
  
     rodadas = get_rodadas()
@@ -20,7 +21,7 @@ def adm_rodada():
             rodada_nome += " ✅ (Ativa)"
         
         with st.expander(rodada_nome, expanded=False):
-            jogos = get_jogos(6, rodada["Rodada"])
+            jogos = get_jogos(id_usuario, rodada["Rodada"])
             if jogos:
                 df = pd.DataFrame(jogos)
                 st.dataframe(df, use_container_width=True)
