@@ -311,7 +311,7 @@ def get_jogos(seq, rodada):
         SELECT * 
         FROM Jogos 
         WHERE  
-          AND Seq = %s
+            Seq = %s
           AND Rodada = %s
           
     """, (seq, rodada))
