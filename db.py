@@ -295,6 +295,15 @@ def verificar_rodada_ativa(seq):
     conexao.close()
     return resultado
 
+
+def get_rodadas():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    cursor.execute("SELECT Rodada, StatusRodada, Rodada_Ativa_SN FROM Rodada")
+    dados = cursor.fetchall()
+    conexao.close()
+    return dados
+
 def buscar_jogos_ativos_preenchido(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
