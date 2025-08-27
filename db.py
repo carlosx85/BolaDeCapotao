@@ -304,6 +304,20 @@ def get_rodadas():
     conexao.close()
     return dados
 
+def get_jogos(seq_rodada):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+    cursor.execute("""
+        SELECT * 
+        FROM Jogos 
+        WHERE StatusRodada LIKE 'Ativo' 
+          AND Seq = %s  
+          AND Palpite <> 'Pendente'
+    """, (seq_rodada,))
+    dados = cursor.fetchall()
+    conexao.close()
+    return dados
+
 def buscar_jogos_ativos_preenchido(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
