@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 from db import get_rodadas,get_jogos
+import pandas as pd
  
 
 
