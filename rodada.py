@@ -20,7 +20,7 @@ def adm_rodada():
             rodada_nome += " ✅ (Ativa)"
         
         with st.expander(rodada_nome, expanded=False):
-            jogos = get_jogos(rodada["Seq"], rodada["Rodada"])
+            jogos = get_jogos(6, rodada["Rodada"])
             if jogos:
                 df = pd.DataFrame(jogos)
                 st.dataframe(df, use_container_width=True)
