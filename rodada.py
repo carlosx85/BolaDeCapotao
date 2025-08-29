@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from db import get_rodadas,get_jogos
+from db import get_rodadas,get_jogos,buscar_jogos_ativos_preenchido
 import pandas as pd
  
 
@@ -22,6 +22,9 @@ def adm_rodada():
         
         with st.expander(rodada_nome, expanded=False):
             jogos = get_jogos(id_usuario, rodada["Rodada"])
+            jogosx = buscar_jogos_ativos_preenchido(id_usuario)  
+            
+            
             if jogos:
                 df = pd.DataFrame(jogos)
                 st.dataframe(df, use_container_width=True)
