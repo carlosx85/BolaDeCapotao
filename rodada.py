@@ -21,8 +21,8 @@ def adm_rodada():
             rodada_nome += " ✅ (Ativa)"
         
         with st.expander(rodada_nome, expanded=False):
-            jogos = get_jogos(id_usuario, rodada["Rodada"])
-            jogosx = buscar_jogos_ativos_preenchido(id_usuario)  
+            jogosx = get_jogos(id_usuario, rodada["Rodada"])
+            jogos = buscar_jogos_ativos_preenchido(id_usuario)  
             
             
             if jogos:
