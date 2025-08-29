@@ -50,42 +50,4 @@ def adm_rodada():
                 
                 
             else:
-                
-               # Cabeçalho
-                st.markdown(
-                    """
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
-                        <span style="font-size: 14px; font-weight: bold; width: 80px; text-align: right;">Placar</span>
-                        <span style="font-size: 14px; font-weight: bold; width: 30px;"></span>
-                        <span style="font-size: 14px; font-weight: bold; width: 80px; text-align: center;">Palpite</span>
-                        <span style="font-size: 14px; font-weight: bold; width: 30px;"></span>
-                        <span style="font-size: 14px; font-weight: bold; width: 60px; text-align: left;">Pontos</span>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )           
-
-                           
-                jogosx = get_jogos(id_usuario, rodada["Rodada"])
-                jogos = buscar_jogos_ativos_preenchido(id_usuario)  
-                            
-
-                for jogo in jogosx:
-                    pontos = jogo["Pontos"]
-                    mandante = jogo["Mandante"]
-                    visitante = jogo["Visitante"] 
-                    palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
-                    palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
-                    mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
-                    visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
-                    st.markdown(
-                        f"""
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
-                            <span style="font-size: 14px; font-weight: ; text-align: center;">{mandante_gol} x {visitante_gol}&nbsp; &nbsp; </span>
-                            <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30"  />
-                            <span style="font-size: 14px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
-                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
-                            <span style="font-size: 14px; font-weight: ; text-align: center;"> &nbsp; &nbsp; &nbsp; &nbsp; {pontos if pontos is not None else ""} </span> 
-                        </div>
-                        """,
-                        unsafe_allow_html=True
+                st.info("Nenhum jogo ativo para esta rodada.")
