@@ -65,7 +65,7 @@ def adm_rodada():
                 )           
 
                            
-                jogosx = buscar_jogos_ativos_preenchido(usuario["seq"]) 
+                jogosx = buscar_jogos_ativos_preenchido(id_usuario) 
                             
 
                 for jogo in jogosx:
