@@ -50,6 +50,7 @@ def adm_rodada():
                 
                 
             else:
+                
                # Cabeçalho
                 st.markdown(
                     """
@@ -65,7 +66,8 @@ def adm_rodada():
                 )           
 
                            
-                jogosx = buscar_jogos_ativos_preenchido(id_usuario) 
+                jogosx = get_jogos(id_usuario, rodada["Rodada"])
+                jogos = buscar_jogos_ativos_preenchido(id_usuario)  
                             
 
                 for jogo in jogosx:
