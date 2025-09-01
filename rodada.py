@@ -17,11 +17,11 @@ def adm_rodada():
 
     for rodada in rodadas:
         rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']})"
-        rodada = f"({rodada['Palpite']}"
+        rodadax = f"{rodada['Palpite']}"
         if rodada["Palpite"] == "Pendente":
-            rodada += "   Palpitou? 🔴"   # Vermelho (bola vermelha)
+            rodadax += "   Palpitou? 🔴"   # Vermelho (bola vermelha)
         else:
-            rodada += "   Palpitou?  ✅"   
+            rodadax += "   Palpitou?  ✅"   
         
         with st.expander(rodada_nome, expanded=False):
             jogosx = get_jogos(id_usuario, rodada["Rodada"])
