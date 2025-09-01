@@ -299,7 +299,7 @@ def verificar_rodada_ativa(seq):
 def get_rodadas():
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
-    cursor.execute("SELECT Rodada, StatusRodada, Rodada_Ativa_SN FROM Rodada")
+    cursor.execute("SELECT * FROM Rodada")
     dados = cursor.fetchall()
     conexao.close()
     return dados
