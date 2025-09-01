@@ -17,8 +17,10 @@ def adm_rodada():
 
     for rodada in rodadas:
         rodada_nome = f"Rodada {rodada['Rodada']} - {rodada['StatusRodada']} {usuario.get('seq', '---')}"
-        if rodada["Rodada_Ativa_SN"] == "S":
-            rodada_nome += " ✅ (Ativa)"
+        if rodada["Palpite"] == "Pendente":
+            rodada_nome += " 🔴 (Pendente)"   # Vermelho (bola vermelha)
+        else:
+            rodada_nome += " ✅"   
         
         with st.expander(rodada_nome, expanded=False):
             jogosx = get_jogos(id_usuario, rodada["Rodada"])
