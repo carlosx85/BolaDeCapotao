@@ -16,7 +16,7 @@ def adm_rodada():
     rodadas = get_rodadas(id_usuario)
 
     for rodada in rodadas:
-        rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']})"
+        rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']}) {rodada['Palpite']}"
         rodadax = f"{rodada['Palpite']}"
         if rodada["Palpite"] == "Pendente":
             rodadax += "   Palpitou? 🔴"   # Vermelho (bola vermelha)
