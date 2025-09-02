@@ -13,7 +13,7 @@ def adm_rodada():
     id_usuario = usuario.get("seq", None)
     
  
-    rodadas = get_rodadas()
+    rodadas = get_rodadas(id_usuario)
 
     for rodada in rodadas:
         rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']})"

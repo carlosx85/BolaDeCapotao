@@ -296,13 +296,24 @@ def verificar_rodada_ativa(seq):
     return resultado
 
 
-def get_rodadas():
+
+
+ 
+
+def get_rodadas(seq):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM Rodada")
-    dados = cursor.fetchall()
+
+    query = """
+        SELECT * FROM Rodada WHERE Seq = %s        
+    """
+    cursor.execute(query, (seq, ))
+    resultados = cursor.fetchall()
+    cursor.close()
     conexao.close()
-    return dados
+    return resultados
+
+
 
 def get_jogos(seq, rodada):
     conexao = conectar()
