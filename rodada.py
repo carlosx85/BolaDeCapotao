@@ -36,7 +36,7 @@ def adm_rodada():
             if status_raw == "Ativo" and palpite_raw == "Pendente":
                 st.write("👉 **Mostrar**")
             else:
-                st.write(f"🚫 **Não Mostrar** ({rodada['StatusRodada']})")
+                st.write(f"🚫 **Não Mostrar** ({status_raw})")
 
 
             
