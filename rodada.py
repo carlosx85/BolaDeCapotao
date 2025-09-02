@@ -35,7 +35,7 @@ def adm_rodada():
 
         with st.expander(rodada_nome, expanded=False):
             if status_raw == "ativo" or status_raw == "pendente":
-                st.write(f"👉 **Mostrar**{rodada["Rodada"]}")
+                st.write(f"👉 **Mostrar**{id_usuario}{rodada["Rodada"]}")
 
                 # 🔥 Aqui sim busca os jogos quando for "Mostrar"
                 jogosx = get_jogos(id_usuario, rodada["Rodada"])
