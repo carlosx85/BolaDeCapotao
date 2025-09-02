@@ -16,12 +16,14 @@ def adm_rodada():
     rodadas = get_rodadas(id_usuario)
 
     for rodada in rodadas:
-        rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']}) {rodada['Palpite']}"
-        
         if rodada["Palpite"] == "Pendente":
-            rodada["Palpite"] += "   Palpitou? 🔴"   # Vermelho (bola vermelha)
+            palpite_texto = "Palpitou? 🔴"
         else:
-            rodada["Palpite"] += "   Palpitou?  ✅"   
+            palpite_texto = "Palpitou? ✅"
+        
+        rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']}) {rodada['Palpite']}   {palpite_texto}"
+        
+        st.write(rodada_nome)
             
             
             
