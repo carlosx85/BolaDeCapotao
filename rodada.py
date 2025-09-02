@@ -21,7 +21,7 @@ def adm_rodada():
         palpite_raw = str(rodada["Palpite"]).strip().lower()
 
         # Só montamos o texto de exibição
-        if palpite_raw == "pendente":
+        if palpite_raw == "Pendente":
             palpite_texto = "Palpitou? 🔴"
         else:
             palpite_texto = "Palpitou? ✅"
