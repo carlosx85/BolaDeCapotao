@@ -16,28 +16,24 @@ def adm_rodada():
     rodadas = get_rodadas(id_usuario)
 
     for rodada in rodadas:
-        # Define ícone do palpite
+        # Ícone do palpite
         if rodada["Palpite"] == "Pendente":
             palpite_texto = "Palpitou? 🔴"
         else:
             palpite_texto = "Palpitou? ✅"
 
-
-
-        # Texto final
+        # Título do expander
         rodada_nome = (
             f"Rodada {rodada['Rodada']} "
             f"({rodada['StatusRodada']}) "
-            f"{rodada['Palpite']}   {palpite_texto} → {mostrar_texto}"
+            f"{rodada['Palpite']}   {palpite_texto}"
         )
 
         with st.expander(rodada_nome, expanded=False):
-            st.write(f"Detalhes da rodada {rodada['Rodada']} aqui...")
-                        # Condição Mostrar / Não Mostrar
             if rodada["StatusRodada"] == "Ativo" and rodada["Palpite"] == "Pendente":
-                mostrar_texto = "Mostrar"
+                st.write("👉 **Mostrar**")
             else:
-                mostrar_texto = "Não Mostrar"
+                st.write("🚫 **Não Mostrar**")
 
             
             
@@ -46,4 +42,35 @@ def adm_rodada():
             
             
             
- 
+            
+            
+            jogosx = get_jogos(id_usuario, rodada["Rodada"])
+            jogos = buscar_jogos_ativos_preenchido(id_usuario)  
+            
+            
+            if jogos:
+                for jogo in jogosx:
+                    pontos = jogo["Pontos"]
+                    mandante = jogo["Mandante"]
+                    visitante = jogo["Visitante"] 
+                    palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
+                    palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
+                    mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
+                    visitante_gol = jogo["Visitante_Gol"] if jogo["Visitante_Gol"] is not None else ""
+                    st.markdown(
+                        f"""
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                            <span style="font-size: 18px; font-weight: ;"> </span>
+                            <img src="https://boladecapotao.com/times/{mandante.lower()}.png" width="30" />
+                            <span style="font-size: 18px; font-weight: ;">{palpite_mandante_gol} x {palpite_visitante_gol}</span>
+                            <img src="https://boladecapotao.com/times/{visitante.lower()}.png" width="30" />
+                            <span style="font-size: 18px; font-weight: ;"> </span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+        )
+
+                
+                
+            else:
+                st.info("Nenhum jogo ativo para esta rodada.")
