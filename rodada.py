@@ -30,10 +30,10 @@ def adm_rodada():
         )
 
         with st.expander(rodada_nome, expanded=False):
-            if rodada["StatusRodada"] == "ativo" and rodada["StatusRodada"] == "pendente":
+            if rodada["StatusRodada"] == "Ativo" and rodada["StatusRodada"] == "Pendente":
                 st.write("👉 **Mostrar**")
             else:
-                st.write("🚫 **Não Mostrar**")
+                st.write(F"🚫 **Não Mostrar** {rodada["StatusRodada"]}")
 
             
             
