@@ -33,10 +33,10 @@ def adm_rodada():
         )
 
         with st.expander(rodada_nome, expanded=False):
-            if status_raw == "ativo":
+            if status_raw == "ativo" or status_raw == "pendente":
                 st.write("👉 **Mostrar**")
             else:
-                st.write(f"🚫 **Não Mostrar** ({status_raw})g")
+                st.write(f"🚫 **Não Mostrar** ({status_raw})")
 
 
             
