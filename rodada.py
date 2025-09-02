@@ -34,7 +34,7 @@ def adm_rodada():
         )
 
         with st.expander(rodada_nome, expanded=False):
-            if status_raw == "ativo" and palpite_raw == "pendente":
+            if status_raw == "ativo" or status_raw == "pendente":
                 st.write("👉 **Mostrar**")
 
                 # 🔥 Aqui sim busca os jogos quando for "Mostrar"
