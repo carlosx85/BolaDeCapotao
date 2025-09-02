@@ -16,13 +16,16 @@ def adm_rodada():
     rodadas = get_rodadas(id_usuario)
 
     for rodada in rodadas:
-        # Ícone do palpite
-        if rodada["Palpite"] == "Pendente":
+        # Pegamos os valores originais do banco
+        status_raw = str(rodada["StatusRodada"]).strip().lower()
+        palpite_raw = str(rodada["Palpite"]).strip().lower()
+
+        # Só montamos o texto de exibição
+        if palpite_raw == "pendente":
             palpite_texto = "Palpitou? 🔴"
         else:
             palpite_texto = "Palpitou? ✅"
 
-        # Título do expander
         rodada_nome = (
             f"Rodada {rodada['Rodada']} "
             f"({rodada['StatusRodada']}) "
@@ -30,10 +33,11 @@ def adm_rodada():
         )
 
         with st.expander(rodada_nome, expanded=False):
-            if rodada["StatusRodada"] == "Ativo" and rodada["StatusRodada"] == "Pendente":
+            if status_raw == "ativo" and palpite_raw == "pendente":
                 st.write("👉 **Mostrar**")
             else:
-                st.write(F"🚫 **Não Mostrar** {rodada["StatusRodada"]}")
+                st.write(f"🚫 **Não Mostrar** ({rodada['StatusRodada']})")
+
 
             
             
