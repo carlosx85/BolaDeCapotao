@@ -21,7 +21,7 @@ def adm_rodada():
         else:
             palpite_texto = "Palpitou? ✅"
         
-        rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']}) {rodada['Palpite']}   {palpite_texto}"
+        rodada_nome = f"Rodada {rodada['Rodada']}   {palpite_texto}"
         
       
             
