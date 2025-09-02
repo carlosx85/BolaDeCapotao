@@ -23,7 +23,7 @@ def adm_rodada():
         
         rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']}) {rodada['Palpite']}   {palpite_texto}"
         
-        st.write(rodada_nome)
+      
             
             
             
