@@ -18,7 +18,7 @@ def adm_rodada():
     for rodada in rodadas:
         rodada_nome = f"Rodada {rodada['Rodada']} ({rodada['StatusRodada']}) {rodada['Palpite']}"
         rodadax = f"{rodada['Palpite']}"
-        if rodada["Palpite"] == "Pendente":
+        if rodadax["Palpite"] == "Pendente":
             rodadax += "   Palpitou? 🔴"   # Vermelho (bola vermelha)
         else:
             rodadax += "   Palpitou?  ✅"   
