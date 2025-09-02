@@ -34,11 +34,8 @@ def adm_rodada():
         )
 
         with st.expander(rodada_nome, expanded=False):
-            
-            if status_raw == "encerrada" or status_raw == "em andamento":
-                
-                st.write(f"🚫 **Não Mostrar** ({status_raw})")            
-
+            if status_raw == "ativo" or status_raw == "pendente":
+                st.write("👉 **Mostrar**")
 
                 # 🔥 Aqui sim busca os jogos quando for "Mostrar"
                 jogosx = get_jogos(id_usuario, rodada["Rodada"])
@@ -65,5 +62,4 @@ def adm_rodada():
                             unsafe_allow_html=True
                         )
             else:
-
-                st.write("👉 **Mostrar**")
+                st.write(f"🚫 **Não Mostrar** ({status_raw})")
