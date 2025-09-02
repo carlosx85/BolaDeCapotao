@@ -36,9 +36,13 @@ def adm_rodada():
             if status_raw == "ativo" or status_raw == "pendente":
                 st.write("👉 **Mostrar**")
             else:
-                st.write(f"🚫 **Não Mostrar** ({status_raw})") 
+                st.write(f"🚫 **Não Mostrar** ({status_raw})")
+                
+                  
             
-            jogosx = get_jogos(id_usuario,  {rodada['Rodada']})
+            
+            
+            jogosx = get_jogos(id_usuario, rodada["Rodada"])
             jogos = buscar_jogos_ativos_preenchido(id_usuario)  
             
             
