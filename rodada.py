@@ -22,11 +22,7 @@ def adm_rodada():
         else:
             palpite_texto = "Palpitou? ✅"
 
-        # Condição Mostrar / Não Mostrar
-        if rodada["StatusRodada"] == "Ativo" and rodada["Palpite"] == "Pendente":
-            mostrar_texto = "Mostrar"
-        else:
-            mostrar_texto = "Não Mostrar"
+
 
         # Texto final
         rodada_nome = (
@@ -37,6 +33,11 @@ def adm_rodada():
 
         with st.expander(rodada_nome, expanded=False):
             st.write(f"Detalhes da rodada {rodada['Rodada']} aqui...")
+                        # Condição Mostrar / Não Mostrar
+            if rodada["StatusRodada"] == "Ativo" and rodada["Palpite"] == "Pendente":
+                mostrar_texto = "Mostrar"
+            else:
+                mostrar_texto = "Não Mostrar"
 
             
             
