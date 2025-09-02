@@ -35,7 +35,7 @@ def adm_rodada():
 
         with st.expander(rodada_nome, expanded=False):
             # condição correta
-            if status_raw == "ativo" and status_raw == "pendente":
+            if status_raw == "ativo" or status_raw == "pendente":
                 st.write("👉 **Mostrar**")
 
                 # busca só quando precisa
