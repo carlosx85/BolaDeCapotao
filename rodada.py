@@ -34,19 +34,19 @@ def adm_rodada():
         )
 
         with st.expander(rodada_nome, expanded=False):
-            if status_raw == "ativo" or status_raw == "pendente":
-                
+            # condição correta
+            if status_raw == "ativo" and palpite_raw == "pendente":
                 st.write("👉 **Mostrar**")
 
-                # 🔥 Aqui sim busca os jogos quando for "Mostrar"
+                # busca só quando precisa
                 jogosx = get_jogos(id_usuario, rodada["Rodada"])
-                jogos = buscar_jogos_ativos_preenchido(id_usuario)
 
-                if jogos:
+                if jogosx:
                     for jogo in jogosx:
                         pontos = jogo["Pontos"]
                         mandante = jogo["Mandante"]
                         visitante = jogo["Visitante"]
+
                         palpite_mandante_gol = jogo["Palpite_Mandante_Gol"] if jogo["Palpite_Mandante_Gol"] is not None else "-"
                         palpite_visitante_gol = jogo["Palpite_Visitante_Gol"] if jogo["Palpite_Visitante_Gol"] is not None else "-"
                         mandante_gol = jogo["Mandante_Gol"] if jogo["Mandante_Gol"] is not None else ""
@@ -63,4 +63,5 @@ def adm_rodada():
                             unsafe_allow_html=True
                         )
             else:
-                st.write(f"🚫 **Não Mostrar** ({status_raw})")
+                st.write("🚫 **Não Mostrar**")
+
