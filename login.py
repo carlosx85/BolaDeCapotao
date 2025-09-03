@@ -25,6 +25,7 @@ def login_page():
     if st.button("Entrar"):
         if validar_login(email, senha):
             st.success("Login realizado com sucesso!")
+            st.session_state.clear()
             st.rerun()  # Redireciona após login
         else:
             st.error("Email ou senha inválidos.")
