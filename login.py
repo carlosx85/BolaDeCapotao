@@ -21,11 +21,11 @@ def login_page():
 
     email = st.text_input("Email", value="carlos.santosx85@hotmail.com")
     senha = st.text_input("Senha", type="password" , value="3")
-
+    st.session_state.clear()
     if st.button("Entrar"):
         if validar_login(email, senha):
             st.success("Login realizado com sucesso!")
-            st.session_state.clear()
+            
             st.rerun()  # Redireciona após login
         else:
             st.error("Email ou senha inválidos.")
