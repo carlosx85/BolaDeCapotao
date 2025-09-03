@@ -160,7 +160,7 @@ def atualizar_email_sn_para_s(seq):
 def ativar_rodada_01():
     conexao = conectar()
     cursor = conexao.cursor()
-    atualizax = "UPDATE Jogos SET StatusRodada = 'Ativo' WHERE Rodada LIKE '15'" 
+    atualizax = "UPDATE Jogos SET StatusRodada = 'Ativo' WHERE Rodada LIKE '1'" 
     cursor.execute(atualizax,)
     conexao.commit()
     cursor.close()
