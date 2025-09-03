@@ -258,7 +258,7 @@ def home_page():
                     st.markdown(f"<p style='text-align: left; margin-top: 0px'>{mandante}", unsafe_allow_html=True)
                 novo_mandante = col2.number_input(
                     label="",
-                    value=0,
+                    min_value=0,
                     value=int(mandante_gol),
                     key=f"mandante_gol_{jogo_id}"
                 )
@@ -267,7 +267,7 @@ def home_page():
                 
                 novo_visitante = col3.number_input(
                     label="",
-                    value=0,
+                    min_value=0,
                     value=int(visitante_gol),
                     key=f"visitante_gol_{jogo_id}"
                 )
